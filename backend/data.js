@@ -18,7 +18,7 @@ const AccidentSchema = new Schema(
 	date: Date,
 	year: Number,
 	time: Number,
-	hour: Number, 
+	hour: Number,
 	street1: String,
 	street2: String,
 	visibility: String,
