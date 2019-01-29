@@ -1,19 +1,46 @@
 import React, { Component } from 'react';
 import './App.css';
+import MainMap from './Map'
 
 class App extends Component {
 
+  constructor() {
+    super();
+    this.state = {
+      markers:    [
+        {
+            "id": 1,
+            "name": "Eaton Centre",
+            "latitude": "43.6544",
+            "longitude": "-79.3807"
+        },
+        {
+            "id": 2,
+            "name": "City Hall",
+            "latitude": "43.6534",
+            "longitude": "-79.3841"
+        },
+        {
+            "id": 3,
+            "name": "Trinity Bellwoods Park",
+            "latitude": "43.6500",
+            "longitude": "-79.4169"
+        }
+      ]
+    }
+  }
+
   render() {
-    return (
-      <div className="main-container">
-        <NavBar />
-        <LandingPage />
-        <MapGraphAction />
-        <footer className="footer">
-          footer placeholder
-        </footer>
-      </div>
-    );
+  return (
+    <div className="main-container">
+      <NavBar />
+      <LandingPage />
+      <MapGraphAction markers={this.state.markers} />
+      <footer className="footer">
+        footer placeholder
+      </footer>
+    </div>
+  );
   }
 }
 
@@ -90,8 +117,14 @@ class MapGraphAction extends Component {
   // e.g. MessageList from Chatty-App
   render() {
     return (
-      <div>
-        <Map />
+      <div className="map-container">
+        <MainMap 
+          markers = {this.props.markers}
+          center={{lat: 43.6532, lng: -79.3832}}
+          loadingElement={<div style={{ height: `100%` }} />}
+          containerElement={<div style={{ height: `600px`, width: `100%` }} />}
+          mapElement={<div style={{ height: `100%` }} />}
+        />
         <Filters />
         <Graphs />
       </div>
@@ -99,15 +132,6 @@ class MapGraphAction extends Component {
   }
 }
 
-class Map extends Component {
-  render() {
-    return (
-      <div className="map-container">
-        <img className="map" src={require("./media/fake-map.jpg")} alt="map" />
-      </div>
-      );
-  }
-}
 
 class Filters extends Component {
   render() {
