@@ -1,3 +1,33 @@
+nav#mainNav {
+    background-color: #0B3C5D;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: bold
+}
+
+.bg-dark {
+    background-color: #0B3C5D!important;
+}
+
+
+.navbar-dark .navbar-nav .nav-link {
+  color: #328CC1;
+  text-transform: uppercase;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: #FFFFFF;
+}
+
+.navbar-dark .navbar-brand {
+  color: #D9B310;
+}
+
+.navbar-dark .navbar-brand:hover {
+  color: #328CC1;
+}
+
+
+
 
 .main-container {
   width: auto;
