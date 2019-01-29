@@ -40,6 +40,21 @@
   /*width: 99%;*/
 }
 
+.show-map-btn {
+  height: 3em;
+  border-width: 1px;
+  border-radius: 0.5em;
+  border-color: #08253a;
+  background: #F9CF00;
+  color: #08253a;
+}
+
+.show-map-btn:hover {
+  border-color: #F19F4D;
+  background: #08253a;
+  color: #F19F4D;
+}
+
 .video {
   width: 100%;
   background-size: cover;

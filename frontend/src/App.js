@@ -48,6 +48,9 @@ class App extends Component {
         </nav>
 
         <div className="landing-media">
+          <button className="show-map-btn" type="button">
+            Go to map
+          </button>
           <video className="video" playsInline autoPlay loop>
             <source className="video" src={require("./media/bikesafeto.webm")} type="video/webm" />
             <source className="video" src={require("./media/bikesafeto.mp4")} type="video/mp4" />
