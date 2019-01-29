@@ -8,7 +8,9 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      markers:    [
+      accidentMarkers: [],
+      theftMarkers: [],
+      oldMarkers:    [
         {
             "id": 1,
             "name": "Eaton Centre",
@@ -32,9 +34,10 @@ class App extends Component {
   }
 
   componentDidMount(){
-      axios.get('http://localhost:3001/')
+      axios.get('http://localhost:3001/api')
       .then(response => {
-        console.log(response);
+        this.setState({ accidentMarkers: response.data.accidentData });
+        this.setState({ theftMarkers: response.data.theftData });
       })
       .catch(function (error) {
         console.log(error);
@@ -52,7 +55,7 @@ class App extends Component {
     <div className="main-container">
       <NavBar />
       <LandingPage />
-      <MapGraphAction markers={this.state.markers} />
+      <MapGraphAction accidentMarkers={this.state.accidentMarkers} theftMarkers={this.state.theftMarkers}/>
       <footer className="footer">
         footer placeholder
       </footer>
@@ -136,7 +139,8 @@ class MapGraphAction extends Component {
     return (
       <div className="map-container">
         <MainMap
-          markers = {this.props.markers}
+          accidentMarkers = {this.props.accidentMarkers}
+          theftMarkers = {this.props.theftMarkers}
           center={{lat: 43.6532, lng: -79.3832}}
           loadingElement={<div style={{ height: `100%` }} />}
           containerElement={<div style={{ height: `600px`, width: `100%` }} />}

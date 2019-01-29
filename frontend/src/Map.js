@@ -3,12 +3,14 @@ import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 import Markers from './Markers'
 
 class MainMap extends Component {
-  
-  render() {
-    
-    const markers = this.props.markers.map(marker => {
 
-      return <Markers key = {marker.id} lat = {marker.latitude} lng = {marker.longitude} />
+  render() {
+    const accidentMarkers = this.props.accidentMarkers.map(marker => {
+
+      return <Markers key = {marker._id} lat = {marker.location.coordinates[1]} lng = {marker.location.coordinates[0]} />
+    });
+    const theftMarkers = this.props.theftMarkers.map(marker => {
+      return <Markers key = {marker._id} lat = {marker.location.coordinates[1]} lng = {marker.location.coordinates[0]} />
     });
 
     return (
@@ -16,7 +18,8 @@ class MainMap extends Component {
       <GoogleMap
         defaultZoom={14}
         defaultCenter={this.props.center}>
-        {markers}
+        {accidentMarkers}
+        {theftMarkers}
       </GoogleMap>
 
     )
