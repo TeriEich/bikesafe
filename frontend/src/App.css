@@ -1,32 +1,135 @@
-.App {
-  text-align: center;
+
+.main-container {
+  width: auto;
+  height: auto;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+.nav-bar {
+  width: 100%;
+  height: auto;
+  z-index: 1000;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.nav-brand {
+  margin: 3em;
+  display: inline;
+  color: #08253a;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.report-form-btn {
+  float: right;
+  margin: 3em;
+  display: inline;
+  height: 3em;
+  border-width: 1px;
+  border-radius: 0.5em;
+  border-color: #08253a;
+  background: #F9CF00;
+  color: #08253a;
+}
+.report-form-btn:hover {
+  border-color: #F19F4D;
+  background: #08253a;
+  color: #F19F4D;
+
+}
+
+.landing-media {
+  /*margin: auto;*/
+  /*width: 99%;*/
+}
+
+.video {
+  width: 100%;
+  background-size: cover;
+  /*margin: auto;*/
+  object-fit: contain;
+}
+
+.map-container {
+  /*margin: auto;*/
+  /*width: 99%;*/
+}
+
+.map {
+  width: 100%;
+  object-fit: contain;
+}
+
+.filter-bar {
+  margin: auto;
+  width: 90%;
+  height: auto;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
-.App-link {
-  color: #61dafb;
+.filter-by-type {
+  order: 1;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.filter-by-source {
+  order: 2;
+}
+
+.filter-by-datetime {
+  order: 3;
+}
+
+.filter-by-road-condition {
+  order: 4;
+}
+
+.filter-by-light-condition {
+  order: 5;
+}
+
+.container-graphs {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: auto;
+  width: 90%;
+  height: auto;
+  justify-content: space-between;
+
+}
+
+.graph {
+  flex-grow: 1;
+  width: 40%;
+  height: 44%;
+  object-fit: contain;
+  margin: 2em;
+  padding: 1em;
+  border: 2px solid;
+  box-sizing: content-box;
+  background: white;
+}
+
+#graph-1 {
+  order: 1;
+  border-color: #4484CE;
+}
+
+#graph-2 {
+  order: 2;
+  border-color: #F19F4D;
+}
+
+#graph-3 {
+  order: 3;
+  border-color: #F19F4D;
+
+}
+
+#graph-4 {
+  order: 4;
+  border-color: #4484CE;
+}
+
+.footer {
 }

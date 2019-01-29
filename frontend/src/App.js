@@ -17,7 +17,7 @@ class App extends Component {
     return (
       <div className="main-container">
         <nav className="nav-bar">
-            <h1 className="nav-brand">bikesafeTO</h1>
+            <h2 className="nav-brand">bikesafeTO</h2>
           <button className="report-form-btn" type="button" onClick={() => this._openForm()}>
             Submit a Report
           </button>
@@ -48,9 +48,9 @@ class App extends Component {
         </nav>
 
         <div className="landing-media">
-          <video>
-            <source src={require("./media/bikesafeto.mp4")} type="video/mp4" />
-            <source src="./media/landing-page-video.webm" type="video/webm" />
+          <video className="video" playsInline autoPlay loop>
+            <source className="video" src={require("./media/bikesafeto.webm")} type="video/webm" />
+            <source className="video" src={require("./media/bikesafeto.mp4")} type="video/mp4" />
             <source src="./media/landing-page-video-substitute.png" type="img/png" />
           </video>
         </div>
@@ -120,10 +120,10 @@ class App extends Component {
         </div>
 
         <div className="container-graphs">
-          <img className="graph" id="graph-1" src={require("./media/fake-graph.jpg")} alt="graph" />
-          <img className="graph" id="graph-2" src={require("./media/fake-graph.jpg")} alt="graph" />
-          <img className="graph" id="graph-3" src={require("./media/fake-graph.jpg")} alt="graph" />
-          <img className="graph" id="graph-4" src={require("./media/fake-graph.jpg")} alt="graph" />
+          <img className="graph" id="graph-1" src={require("./media/fake-graph.png")} alt="graph" />
+          <img className="graph" id="graph-2" src={require("./media/fake-graph.png")} alt="graph" />
+          <img className="graph" id="graph-3" src={require("./media/fake-graph.png")} alt="graph" />
+          <img className="graph" id="graph-4" src={require("./media/fake-graph.png")} alt="graph" />
         </div>
 
         <footer className="footer">
