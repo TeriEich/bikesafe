@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import MainMap from './Map'
+import axios from 'axios'
 
 class App extends Component {
 
@@ -29,6 +30,22 @@ class App extends Component {
       ]
     }
   }
+
+  componentDidMount(){
+      axios.get('http://localhost:3001/')
+      .then(response => {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+    }
+    // GOING TO BE OUR MARKERS
+    // tabRow(){
+    //     return this.state.serverports.map(function(object, i){
+    //         return <TableRow obj={object} key={i} />;
+    //     });
+    // }
 
   render() {
   return (
@@ -118,7 +135,7 @@ class MapGraphAction extends Component {
   render() {
     return (
       <div className="map-container">
-        <MainMap 
+        <MainMap
           markers = {this.props.markers}
           center={{lat: 43.6532, lng: -79.3832}}
           loadingElement={<div style={{ height: `100%` }} />}

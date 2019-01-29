@@ -8,6 +8,7 @@ const logger = require("morgan");
 const schemas = require("./schemas");
 const Accident = schemas.Accident;
 const Theft = schemas.Theft;
+// const ServerPortRouter = require('./routes/ServerPortRouter');
 
 const API_PORT = 3001;
 const app = express();
@@ -37,14 +38,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(logger("dev"));
 
-// this is our get method
-// this method fetches all available data in our database
-// router.get("/getData", (req, res) => {
-//   Data.find((err, data) => {
-//     if (err) return res.json({ success: false, error: err });
-//     return res.json({ success: true, data: data });
-//   });
-// });
+/*
+this is our get method
+this method fetches all available data in our database*/
+router.get("/", (req, res) => {
+  Accident.find((err, data) => {
+    if (err) return res.json({ success: false, error: err });
+    return res.json({ success: true, data: data });
+  });
+});
 
 // // this is our update method
 // // this method overwrites existing data in our database
