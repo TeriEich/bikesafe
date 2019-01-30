@@ -3,13 +3,16 @@ import './App.css';
 import NavBar from './NavBar';
 import LandingPage from './LandingPage';
 import MainMap from './Map'
+import axios from 'axios'
 
 class App extends Component {
 
   constructor() {
     super();
     this.state = {
-      markers:    [
+      accidentMarkers: [],
+      theftMarkers: [],
+      oldMarkers:    [
         {
             "id": 1,
             "name": "Eaton Centre",
@@ -32,12 +35,29 @@ class App extends Component {
     }
   }
 
+  componentDidMount(){
+      axios.get('http://localhost:3001/api')
+      .then(response => {
+        this.setState({ accidentMarkers: response.data.accidentData });
+        this.setState({ theftMarkers: response.data.theftData });
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+    }
+    // GOING TO BE OUR MARKERS
+    // tabRow(){
+    //     return this.state.serverports.map(function(object, i){
+    //         return <TableRow obj={object} key={i} />;
+    //     });
+    // }
+
   render() {
   return (
     <div className="main-container">
       <NavBar />
       <LandingPage />
-      <MapGraphAction markers={this.state.markers} />
+      <MapGraphAction accidentMarkers={this.state.accidentMarkers} theftMarkers={this.state.theftMarkers}/>
       <footer className="footer">
         footer placeholder
       </footer>
@@ -53,8 +73,9 @@ class MapGraphAction extends Component {
   render() {
     return (
       <div className="map-container">
-        <MainMap 
-          markers = {this.props.markers}
+        <MainMap
+          accidentMarkers = {this.props.accidentMarkers}
+          theftMarkers = {this.props.theftMarkers}
           center={{lat: 43.6532, lng: -79.3832}}
           loadingElement={<div style={{ height: `100%` }} />}
           containerElement={<div style={{ height: `600px`, width: `100%` }} />}
