@@ -4,7 +4,7 @@ import NavBar from './NavBar';
 import LandingPage from './LandingPage';
 import MapGraphAction from './MapGraphAction';
 import axios from 'axios'
-import { Nav, NavLink } from 'reactstrap'
+import { Navbar, NavbarBrand, NavbarToggler, Collapse, Nav, NavItem, NavLink } from 'reactstrap';
 
 
 class App extends Component {
@@ -72,8 +72,6 @@ class App extends Component {
       </div>
     );
   }
-
 }
-
 
 export default App;
