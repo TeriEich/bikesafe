@@ -4,9 +4,12 @@ import MainMap from './Map'
 import Graphs  from './Graphs'
 
 export default class MapGraphAction extends Component {
-  // contains functionality of map, filters, and graphs
-  // working together.
-  // e.g. MessageList from Chatty-App
+  constructor() {
+    super();
+    this.state = {
+
+    }
+  }
   render() {
     return (
       <div className="map-container">
