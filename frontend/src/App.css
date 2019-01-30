@@ -29,6 +29,12 @@ nav#mainNav {
 
 .landing-media { position:relative; }
 
+.landing-button {
+  position: absolute;
+  left: 50%;
+  top: 475%;
+}
+
 .overlay {
     position:absolute;
     top:0;

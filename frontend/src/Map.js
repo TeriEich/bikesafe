@@ -7,10 +7,10 @@ class MainMap extends Component {
   render() {
     const accidentMarkers = this.props.accidentMarkers.map(marker => {
 
-      return <Markers key = {marker._id} lat = {marker.location.coordinates[1]} lng = {marker.location.coordinates[0]} />
+      return <Markers key={marker._id} lat={marker.location.coordinates[1]} lng={marker.location.coordinates[0]} />
     });
     const theftMarkers = this.props.theftMarkers.map(marker => {
-      return <Markers key = {marker._id} lat = {marker.location.coordinates[1]} lng = {marker.location.coordinates[0]} />
+      return <Markers key={marker._id} lat={marker.location.coordinates[1]} lng={marker.location.coordinates[0]} />
     });
 
     return (
@@ -27,13 +27,3 @@ class MainMap extends Component {
 }
 
 export default withGoogleMap(MainMap)
-
-
-// // in the render
-// //allows for an empty array instead of returning undefined if no markers found
-// const markers = this.props.markers || []
-// // in the return
-// {markers.map((marker, index) => (
-//             <Marker {...marker} />
-//             )
-//         )}
