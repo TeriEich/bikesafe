@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import './App.css';
 import NavBar from './NavBar';
 import LandingPage from './LandingPage';
-import MainMap from './Map'
+import MapGraphAction from './MapGraphAction';
 import axios from 'axios'
+import { Navbar, NavbarBrand, NavbarToggler, Collapse, Nav, NavItem, NavLink } from 'reactstrap'
+
 
 class App extends Component {
 
@@ -63,7 +65,9 @@ class App extends Component {
           <LandingPage toggle={this.toggle} />
         )}
         <footer className="footer">
-          footer placeholder
+          <Nav>
+            <NavLink href="#">Contact</NavLink> <NavLink href="#">Privacy</NavLink>
+          </Nav>
         </footer>
       </div>
     );

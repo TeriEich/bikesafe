@@ -5,7 +5,7 @@ nav#mainNav {
 }
 
 .bg-dark {
-    background-color: #0B3C5D!important;
+  background-color: #0B3C5D!important;
 }
 
 
@@ -36,10 +36,10 @@ nav#mainNav {
 }
 
 .overlay {
-    position:absolute;
-    top:0;
-    left:0;
-    z-index:1;
+  position:absolute;
+  top:0;
+  left:0;
+  z-index:1;
 }
 
 .main-container {
@@ -89,13 +89,13 @@ nav#mainNav {
   border-radius: 0.5em;
   border-color: #08253a;
   background: #F9CF00;
-  color: #08253a;
+  color: #E5CC2A;
 }
 
 .show-map-btn:hover {
   border-color: #F19F4D;
   background: #08253a;
-  color: #F19F4D;
+  color: #E5CC2A;
 }
 
 .video {
@@ -119,12 +119,16 @@ nav#mainNav {
 
 .filter-bar {
   margin: auto;
-  width: 90%;
+  width: auto;
   height: auto;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
+  background-color: #0B3C5D;
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: bold;
+  color: #328CC1;
 }
 
 .filter-by-type {
@@ -152,9 +156,10 @@ nav#mainNav {
   flex-direction: row;
   flex-wrap: wrap;
   margin: auto;
-  width: 90%;
+  width: 100%;
   height: auto;
   justify-content: space-between;
+  background-color: #F8F8F8;
 
 }
 
@@ -192,4 +197,11 @@ nav#mainNav {
 }
 
 .footer {
+  background-color: #0B3C5D;
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: bold;
+  color: #328CC1;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
