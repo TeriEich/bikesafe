@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Navbar, NavbarBrand, NavbarToggler, Collapse, Nav, NavItem, NavLink } from 'reactstrap'
 
 export default class NavBar extends React.Component {
@@ -29,13 +29,7 @@ export default class NavBar extends React.Component {
 								<NavLink href="/">Home</NavLink>
 							</NavItem>
 							<NavItem>
-								<NavLink href="/">Option 2</NavLink>
-							</NavItem>
-							<NavItem>
-								<NavLink href="/">Option 3</NavLink>
-							</NavItem>
-							<NavItem>
-								<NavLink href="/">Option 4</NavLink>
+								<NavLink href="/">Incident Submission</NavLink>
 							</NavItem>
 						</Nav>
 					</Collapse>
