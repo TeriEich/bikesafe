@@ -10,7 +10,7 @@ export default class MapGraphAction extends Component {
       showAccidents: true,
       showThefts: true,
       accidentFilters: {
-        status: true,
+        status: false,
         yearFilters: null,
         neighbourhoodFilters: null,
         roadConditionsFilters: null,
@@ -19,20 +19,56 @@ export default class MapGraphAction extends Component {
         sourceFilters: null
       },
       theftFilters: {
-        status: false,
-        yearFilters: [],
-        neighbourhoodFilters: [],
-        makeFilters: [],
-        modelFilters: [],
-        sourceFilters: []
+        status: true,
+        yearFilters: [2014, 2015],
+        neighbourhoodFilters: null,
+        makeFilters: null,
+        modelFilters: null,
+        sourceFilters: null
       }
     };
     this.toggleAccidentShow = this.toggleAccidentShow.bind(this)
     this.toggleTheftShow = this.toggleTheftShow.bind(this)
+    this.createFilteredAccidentMarkers = this.createFilteredAccidentMarkers.bind(this)
+    this.createFilteredTheftMarkers = this.createFilteredTheftMarkers.bind(this)
   }
 
 setAccidentFilters() {
 
+}
+
+createFilteredTheftMarkers() {
+  let theftMarkers = this.props.theftMarkers
+
+  console.log('theft markers inside filter function', theftMarkers)
+
+  if (this.state.theftFilters.status) {
+
+    if (this.state.theftFilters.yearFilters) {
+      theftMarkers = theftMarkers.filter(marker => {
+        console.log('year', marker.occurrenceYear)
+        return this.state.theftFilters.yearFilters.includes(marker.occurrenceYear)
+      })
+    }
+    // if (this.state.theftFilters.neighbourhoodFilters) {
+    //   theftMarkers = theftMarkers.filter(marker => {
+    //     let neighbourhood = marker.neighbourhood.substring(0, (marker.neighbourhood.indexOf("(") - 1))
+    //     if (this.state.theftFilters.neighbourhoodFilters.includes(neighbourhood)) {
+    //       return true
+    //     }
+    //   })
+    // }
+    // if (this.state.theftFilters.makeFilters) {
+    //   theftMarkers = theftMarkers.filter(marker => {
+    //     if (this.state.theftFilters.makeFilters.includes(marker.bikeMake)) {
+    //       return true
+    //     }
+    //   })
+    // }
+
+
+  }
+  return theftMarkers
 }
 
 createFilteredAccidentMarkers() {
@@ -54,6 +90,34 @@ createFilteredAccidentMarkers() {
         }
       })
     }
+    if (this.state.accidentFilters.roadConditionsFilters) {
+      accidentMarkers = accidentMarkers.filter(marker => {
+        if (this.state.accidentFilters.roadConditionsFilters.includes(marker.roadConditions)) {
+          return true
+        }
+      })
+    }
+    if (this.state.accidentFilters.lightConditionsFilters) {
+      accidentMarkers = accidentMarkers.filter(marker => {
+        if (this.state.accidentFilters.lightConditionsFilters.includes(marker.light)) {
+          return true
+        }
+      })
+    }
+    if (this.state.accidentFilters.injuryFilters) {
+      accidentMarkers = accidentMarkers.filter(marker => {
+        if (this.state.accidentFilters.injuryFilters.includes(marker.injuryType)) {
+          return true
+        }
+      })
+    }
+    if (this.state.accidentFilters.sourceFilters) {
+      accidentMarkers = accidentMarkers.filter(marker => {
+        if (this.state.accidentFilters.sourceFilters.includes(marker.source)) {
+          return true
+        }
+      })
+    }
   }
   return accidentMarkers
 }
@@ -71,16 +135,17 @@ toggleTheftShow() {
 }
 
   render() {
+    const theftMarkers = this.createFilteredTheftMarkers()
+    console.log('final theft markers', theftMarkers)
 
     const accidentMarkers = this.createFilteredAccidentMarkers()
-    console.log(accidentMarkers)
     return (
       <div className="map-container">
         <MainMap
           showAccidents={this.state.showAccidents}
           accidentMarkers={accidentMarkers}
           showThefts={this.state.showThefts}
-          theftMarkers={this.props.theftMarkers}
+          theftMarkers={theftMarkers}
           center={{lat: 43.6532, lng: -79.3832}}
           loadingElement={<div style={{ height: `100%` }} />}
           containerElement={<div style={{ height: `700px`, width: `100%` }} />}

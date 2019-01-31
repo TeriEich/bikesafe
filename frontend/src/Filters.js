@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Collapse, Button, CardBody, Card, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import Toggle from 'react-toggle';
 
 export default class Filters extends Component {
@@ -54,42 +53,42 @@ export default class Filters extends Component {
           <label htmlFor="filter-type-all">All Incident Types</label>
         </div>
 
-    //     <div className="filter-by-source">
-    //       <label className="source-types">Source of Report:</label>
-    //       <br/>
-    //       <input type="checkbox" id="filter-TPS" />
-    //       <label htmlFor="filter-TPS">Toronto Police Reports</label>
-    //       <br/>
-    //       <input type="checkbox" id="filter-user" />
-    //       <label htmlFor="filter-user">User Reported Incidents</label>
-    //     </div>
+      <div className="filter-by-source">
+          <label className="source-types">Source of Report:</label>
+           <br/>
+           <input type="checkbox" id="filter-TPS" />
+           <label htmlFor="filter-TPS">Toronto Police Reports</label>
+           <br/>
+           <input type="checkbox" id="filter-user" />
+           <label htmlFor="filter-user">User Reported Incidents</label>
+        </div>
 
-    //     <div className="filter-by-datetime">
-    //       <label htmlFor="filter-datetime">Select the date to filter by:</label>
-    //       <br/>
-    //       <input type="datetime-local" className="filter-datetime" />
-    //     </div>
+        <div className="filter-by-datetime">
+          <label htmlFor="filter-datetime">Select the date to filter by:</label>
+          <br/>
+          <input type="datetime-local" className="filter-datetime" />
+        </div>
 
-    //     <div className="filter-by-road-condition">
-    //       <label className="condition-types">Road Surface Conditions(accident):</label>
-    //       <br/>
-    //       <input type="checkbox" id="filter-wet-road" />
-    //       <label htmlFor="filter-wet-road">Wet Road Surface Conditions</label>
-    //       <br/>
-    //       <input type="checkbox" id="filter-dry-road" />
-    //       <label htmlFor="filter-dry-road">Dry Road Surface Conditions</label>
-    //     </div>
+        <div className="filter-by-road-condition">
+          <label className="condition-types">Road Surface Conditions(accident):</label>
+          <br/>
+          <input type="checkbox" id="filter-wet-road" />
+          <label htmlFor="filter-wet-road">Wet Road Surface Conditions</label>
+          <br/>
+          <input type="checkbox" id="filter-dry-road" />
+          <label htmlFor="filter-dry-road">Dry Road Surface Conditions</label>
+        </div>
 
-    //     <div className="filter-by-light-condition">
-    //       <label className="condition-types">Light Conditions(accident):</label>
-    //       <br/>
-    //       <input type="checkbox" id="filter-dark-light" />
-    //       <label htmlFor="filter-dark-light">Dark Conditions</label>
-    //       <br/>
-    //       <input type="checkbox" id="filter-day-light" />
-    //       <label htmlFor="filter-day-light">Daylight</label>
-    //     </div>
-    //   </div>
-    //   );
+        <div className="filter-by-light-condition">
+          <label className="condition-types">Light Conditions(accident):</label>
+          <br/>
+          <input type="checkbox" id="filter-dark-light" />
+          <label htmlFor="filter-dark-light">Dark Conditions</label>
+          <br/>
+          <input type="checkbox" id="filter-day-light" />
+          <label htmlFor="filter-day-light">Daylight</label>
+          </div>
+        </div>
+      );
   }
 }

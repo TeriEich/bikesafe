@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 import TheftMarkers from './TheftMarkers';
-import AccidentMarkers from './AccidentMarkers'
+import AccidentMarkers from './AccidentMarkers';
 import { withGoogleMap, GoogleMap } from 'react-google-maps';
 
 class MainMap extends Component {
 
-  constructor() {
-    super()
-  }
-  
+
   createAccidentMarkers() {
     const showAccidents = this.props.showAccidents
     let markers
@@ -28,7 +25,7 @@ class MainMap extends Component {
 
     if (showThefts) {
       markers = this.props.theftMarkers.map(marker => {
-        return <TheftMarkers key = {marker._id} date = {marker.date} lat = {marker.location.coordinates[1]} lng = {marker.location.coordinates[0]} injuryType = {marker.injuryType} neighbourhood = {marker.neighbourhood} roadConditions = {marker.roadConditions} visibility = {marker.visibility} street1 = {marker.street1} street2 = {marker.street2} source = {marker.source} light = {marker.light} />
+        return <TheftMarkers key = {marker._id} occurrenceDay = {marker.occurrenceDay} occurrenceMonth = {marker.occurrenceMonth} occurrenceYear = {marker.occurrenceYear} lat = {marker.location.coordinates[1]} lng = {marker.location.coordinates[0]} neighbourhood = {marker.neighbourhood} bikeMake = {marker.bikeMake} bikeModel = {marker.bikeModel} source = {marker.source} />
       });
     }
 
