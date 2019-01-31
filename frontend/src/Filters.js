@@ -1,9 +1,26 @@
 import React, { Component } from 'react';
+import Toggle from 'react-toggle'
+
+
 
 export default class Filters extends Component {
   render() {
     return (
       <div className="filter-bar">
+
+      <label>
+      <Toggle
+        defaultChecked={this.props.showAccidents}
+        onChange={this.props.toggleAccidentShow} />
+       <span>Accidents</span>
+      </label>
+
+      <label>
+      <Toggle
+        defaultChecked={this.props.showThefts}
+        onChange={this.props.toggleTheftShow} />
+       <span>Thefts</span>
+      </label>
         <div className="filter-by-type">
           <label className="incident-type">Incident Type</label>
           <br/>
