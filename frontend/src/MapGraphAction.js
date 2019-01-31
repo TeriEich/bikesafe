@@ -4,12 +4,25 @@ import MainMap from './Map'
 import Graphs  from './Graphs'
 
 export default class MapGraphAction extends Component {
-  constructor() {
-    super();
-    this.state = {
+  // constructor() {
+  //   super();
+  //   this.state = {
+  //     displayMarkers: {this.props.whatever},
+  //     filters: {}
+  //
+  //   }
+  // }
 
-    }
-  }
+  // setFilters = () => {
+  //   // Call the renegerateList function and setState()
+  //   // Figure out where to save data
+  // }
+
+  // regenerateList = () => {
+  //   // Apply filters
+  //   // Triggers the setFilters function
+  // }
+
   render() {
     return (
       <div className="map-container">
