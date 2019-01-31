@@ -20,10 +20,8 @@ export default class MapGraphAction extends Component {
       },
       theftFilters: {
         status: true,
-        yearFilters: [2014, 2015],
+        yearFilters: null,
         neighbourhoodFilters: null,
-        makeFilters: null,
-        modelFilters: null,
         sourceFilters: null
       }
     };
@@ -33,10 +31,8 @@ export default class MapGraphAction extends Component {
     this.createFilteredTheftMarkers = this.createFilteredTheftMarkers.bind(this)
   }
 
-setAccidentFilters() {
 
-}
-
+// test source filter
 createFilteredTheftMarkers() {
   let theftMarkers = this.props.theftMarkers
 
@@ -50,27 +46,26 @@ createFilteredTheftMarkers() {
         return this.state.theftFilters.yearFilters.includes(marker.occurrenceYear)
       })
     }
-    // if (this.state.theftFilters.neighbourhoodFilters) {
-    //   theftMarkers = theftMarkers.filter(marker => {
-    //     let neighbourhood = marker.neighbourhood.substring(0, (marker.neighbourhood.indexOf("(") - 1))
-    //     if (this.state.theftFilters.neighbourhoodFilters.includes(neighbourhood)) {
-    //       return true
-    //     }
-    //   })
-    // }
-    // if (this.state.theftFilters.makeFilters) {
-    //   theftMarkers = theftMarkers.filter(marker => {
-    //     if (this.state.theftFilters.makeFilters.includes(marker.bikeMake)) {
-    //       return true
-    //     }
-    //   })
-    // }
-
-
+    if (this.state.theftFilters.neighbourhoodFilters) {
+      theftMarkers = theftMarkers.filter(marker => {
+        let neighbourhood = marker.neighbourhood.substring(0, (marker.neighbourhood.indexOf("(") - 1))
+        if (this.state.theftFilters.neighbourhoodFilters.includes(neighbourhood)) {
+          return true
+        }
+      })
+    }
+    if (this.state.theftFilters.sourceFilters) {
+      theftMarkers = theftMarkers.filter(marker => {
+        if (this.state.theftFilters.sourceFilters.includes(marker.source)) {
+          return true
+        }
+      })
+    }
   }
   return theftMarkers
 }
 
+// test source filter
 createFilteredAccidentMarkers() {
   let accidentMarkers = this.props.accidentMarkers
 
