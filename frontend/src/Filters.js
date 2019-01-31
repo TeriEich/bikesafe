@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Collapse, Button, CardBody, Card, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import Toggle from 'react-toggle';
 
 export default class Filters extends Component {
   constructor(props) {
@@ -24,43 +25,34 @@ export default class Filters extends Component {
 
   render() {
     return (
-    <div>
-        <Button color="primary" onClick={this.filters} style={{ marginBottom: '1rem' }}>Filters</Button>
-        <Collapse isOpen={this.state.collapse}>
-          <Card>
-            <CardBody>
-              <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                <DropdownToggle caret>
-                  Accidents
-                  </DropdownToggle>
-                  <DropdownMenu>
-                  <DropdownItem header>Accidents</DropdownItem>
-                  <DropdownItem>Some Action
-                  </DropdownItem>
-                  <DropdownItem disabled>Action (disabled)</DropdownItem>
-                  <DropdownItem divider />
-                  <DropdownItem>Foo Action</DropdownItem>
-                  <DropdownItem>Bar Action</DropdownItem>
-                  <DropdownItem>Quo Action</DropdownItem>
-                </DropdownMenu>
-              </Dropdown>
-            </CardBody>
-          </Card>
-        </Collapse>
-      </div>
-    );
-    // return (
-    //   <div className="filter-bar">
-    //     <div className="filter-by-incident">
-    //       <label className="incident-type">Incident Type</label>
-    //       <br/>
-    //       <input type="checkbox" id="filter-theft" />
-    //       <label htmlFor="filter-theft">Theft</label>
-    //       <br/>
-    //       <input type="checkbox" id="filter-accident" />
-    //       <label htmlFor="filter-accident">Accident</label>
-    //     </div>
 
+      <div className="filter-bar">
+
+      <label>
+      <Toggle
+        defaultChecked={this.props.showAccidents}
+        onChange={this.props.toggleAccidentShow} />
+       <span>Accidents</span>
+      </label>
+
+      <label>
+      <Toggle
+        defaultChecked={this.props.showThefts}
+        onChange={this.props.toggleTheftShow} />
+       <span>Thefts</span>
+      </label>
+        <div className="filter-by-type">
+          <label className="incident-type">Incident Type</label>
+          <br/>
+          <input type="checkbox" id="filter-theft" />
+          <label htmlFor="filter-theft">Theft</label>
+          <br/>
+          <input type="checkbox" id="filter-accident" />
+          <label htmlFor="filter-accident">Accident</label>
+          <br/>
+          <input type="checkbox" id="filter-type-all" />
+          <label htmlFor="filter-type-all">All Incident Types</label>
+        </div>
 
     //     <div className="filter-by-source">
     //       <label className="source-types">Source of Report:</label>
