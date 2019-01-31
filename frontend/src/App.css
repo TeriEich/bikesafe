@@ -1,53 +1,50 @@
-nav#mainNav {
-    background-color: #0B3C5D;
-    font-family: 'Josefin Sans', sans-serif;
-    font-weight: bold
-}
+/* color scheme:
+blue-black (Black Pearl): #00111f;
+navy: #00223e;
+medium-dark blue (Prussian Blue): #0B3C5D; lighter vers: #006d8c
+sky blue: #328CC1;
+yellow (Gold Leaf): #D9B310;
+light grey: #F8F8F8;
+*/
 
-.bg-dark {
-  background-color: #0B3C5D!important;
-}
-
-
-.navbar-dark .navbar-nav .nav-link {
-  color: #328CC1;
-  text-transform: uppercase;
-}
-
-.navbar-dark .navbar-nav .nav-link:hover {
-  color: #FFFFFF;
-}
-
-.navbar-dark .navbar-brand {
-  color: #D9B310;
-}
-
-.navbar-dark .navbar-brand:hover {
-  color: #328CC1;
-}
-
-
-.landing-media { position:relative; }
-
-.landing-button {
-  position: absolute;
-  left: 50%;
-  top: 475%;
-}
-
-.overlay {
-  position:absolute;
-  top:0;
-  left:0;
-  z-index:1;
-}
 
 .main-container {
   width: auto;
   height: auto;
+  background-color: #00223e;
 }
 
-.nav-bar {
+#mainNav {
+    background-color: #00223e!important;
+    font-family: 'Josefin Sans', sans-serif;
+    /*font-weight: bold*/
+}
+
+/*.bg-dark {*/
+  /*background-color: #00223e!important;*/
+/*}*/
+
+
+.navbar-dark .navbar-nav .nav-link {
+  color: white;
+  text-transform: uppercase;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: #D9B310;
+}
+
+.navbar-dark .navbar-brand {
+  font-size: 1.5em;
+  color: #D9B310;
+}
+
+.navbar-dark .navbar-brand:hover {
+  color: white;
+}
+
+/* These classes are commented out in NavBar.js
+/*.nav-bar {
   width: 100%;
   height: auto;
   z-index: 1000;
@@ -58,7 +55,77 @@ nav#mainNav {
   display: inline;
   color: #08253a;
   font-family: 'Josefin Sans', sans-serif;
+}*/
+
+.overlay {
+  position: fixed;
+  margin: 0 auto;
+  padding: 0.75em;
+  top: 13%;
+  left: 30%;
+  right: 30%;
+  z-index: 99;
+  /*font-weight: bold;*/
+  color: rgb(255, 255, 255, 0.85);
+  background-color: rgb(0, 34, 62, 0.85);
+  text-align: center;
 }
+
+.intro-lead-in {
+  font-size: 1.25em;
+}
+
+.intro-heading {
+  font-size: 1.15em;
+}
+
+.landing-button {
+  position: fixed;
+  left: 45%;
+  right: 45%;
+  top: 47%;
+  bottom: 47%;
+  color: #00223e;
+  font-weight: bold;
+  background-color: rgb(255, 255, 255, 0.7);
+  /*border-color: #0B3C5D;*/
+  border: 1px solid;
+  border-color: #00223e;
+  margin: 0 auto;
+  z-index: 100;
+  overflow: hidden;
+}
+
+.landing-button:hover {
+  color: white;
+  background-color: rgb(0, 34, 62);
+  border-color: white;
+}
+
+.video {
+  width: 100%;
+  background-size: cover;
+  /*margin: auto;*/
+  object-fit: contain;
+  position: relative;
+  z-index: 0;
+}
+
+/* This class is commented out in LandingPage.js
+/*.show-map-btn {
+  height: 3em;
+  border-width: 1px;
+  border-radius: 0.5em;
+  border-color: #08253a;
+  background: #F9CF00;
+  color: #E5CC2A;
+}
+
+.show-map-btn:hover {
+  border-color: #F19F4D;
+  background: #08253a;
+  color: #E5CC2A;
+}*/
 
 .report-form-btn {
   float: right;
@@ -76,35 +143,6 @@ nav#mainNav {
   background: #08253a;
   color: #F19F4D;
 
-}
-
-.landing-media {
-  /*margin: auto;*/
-  /*width: 99%;*/
-}
-
-.show-map-btn {
-  height: 3em;
-  border-width: 1px;
-  border-radius: 0.5em;
-  border-color: #08253a;
-  background: #F9CF00;
-  color: #E5CC2A;
-}
-
-.show-map-btn:hover {
-  border-color: #F19F4D;
-  background: #08253a;
-  color: #E5CC2A;
-}
-
-.video {
-  width: 100%;
-  background-size: cover;
-  /*margin: auto;*/
-  object-fit: contain;
-  position:relative;
-  z-index:0;
 }
 
 .map-container {
@@ -125,10 +163,11 @@ nav#mainNav {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-  background-color: #0B3C5D;
+  background-color: #00223e;
   font-family: 'Josefin Sans', sans-serif;
-  font-weight: bold;
-  color: #328CC1;
+  font-size: 1.2em;
+  /*font-weight: bold;*/
+  color: #F8F8F8;
 }
 
 .filter-by-type {
@@ -156,6 +195,7 @@ nav#mainNav {
   flex-direction: row;
   flex-wrap: wrap;
   margin: auto;
+  padding-bottom: 6em;
   width: 100%;
   height: auto;
   justify-content: space-between;
@@ -177,31 +217,48 @@ nav#mainNav {
 
 #graph-1 {
   order: 1;
-  border-color: #4484CE;
+  border-color: #00223e;
 }
 
 #graph-2 {
   order: 2;
-  border-color: #F19F4D;
+  border-color: #D9B310;
 }
 
 #graph-3 {
   order: 3;
-  border-color: #F19F4D;
+  border-color: #D9B310;
 
 }
 
 #graph-4 {
   order: 4;
-  border-color: #4484CE;
+  border-color: #00223e;
 }
 
-.footer {
-  background-color: #0B3C5D;
+footer {
+  position: fixed;
+  width: 100%;
+  bottom: 0%;
+  background-color: #00223e;
   font-family: 'Josefin Sans', sans-serif;
-  font-weight: bold;
-  color: #328CC1;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+}
+
+.footer-text {
+  color: white;
+}
+
+.footer-text:hover {
+  color: #D9B310;
+}
+
+#footer-1 {
+  order: 1;
+}
+
+#footer-2 {
+  order: 2;
 }

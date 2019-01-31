@@ -12,10 +12,10 @@ export default class LandingPage extends React.Component {
 	          <source src="./media/landing-page-video-substitute.png" type="img/png" />
 	        </video>
 	        <div class="overlay">
-	          <div className="intro-lead-in">bikesafeTO -- Mapping a Safer Future for Toronto's Cyclists</div>
-	          <div className="intro-heading text-uppercase">An application to help cyclists and advocates visualize, process and update data to improve bike-related safety</div>
-	          <Button onClick={this.props.toggle} className="landing-button" color="yellow" size="xl">SHOW ME</Button>
+	          <div className="intro-lead-in">Mapping a Safer Future for Toronto's Cyclists</div>
+	          <div className="intro-heading">An application to help cyclists and advocates visualize, process, and update data to improve bike-related safety</div>
 	        </div>
+          <Button onClick={this.props.toggle} className="landing-button" size="xl">SHOW MAP</Button>
 				</div>
 			</header>
 		)
