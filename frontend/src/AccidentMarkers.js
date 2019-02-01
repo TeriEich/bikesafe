@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import { Marker, InfoWindow } from 'react-google-maps'
 
+const coralDot = require ("./media/map-icon-coral.svg");
+
+
 class AccidentMarkers extends Component {
 
   constructor() {
@@ -23,6 +26,7 @@ class AccidentMarkers extends Component {
 
 		return (
 			<Marker
+        icon={{ url: coralDot }}
         position={{ lat, lng }}
         onClick={ () => this.toggle() }>
         { this.state.isOpen && <InfoWindow options={{maxWidth: 150}} onCloseClick={ () => this.toggle() }>

@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
-import { Marker, InfoWindow } from 'react-google-maps'
+import { Marker, InfoWindow } from 'react-google-maps';
+
+const blueDot = require ("./media/map-icon-light-blue.svg");
+
 
 class TheftMarkers extends Component {
 
@@ -21,9 +24,10 @@ class TheftMarkers extends Component {
 		const lat = parseFloat(this.props.lat)
 		const lng = parseFloat(this.props.lng)
 
-		return (
-			<Marker
-        icon={{ url: "./media/map-icon-light-blue.svg"}}
+        // icon={{ url: "./media/map-icon-light-blue.svg"}}
+    return (
+      <Marker
+        icon={{ url: blueDot }}
         position={{ lat, lng }}
         onClick={ () => this.toggle() }>
         { this.state.isOpen && <InfoWindow options={{maxWidth: 150}} onCloseClick={ () => this.toggle() }>
