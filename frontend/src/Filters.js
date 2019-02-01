@@ -26,7 +26,6 @@ export default class Filters extends Component {
 
   toggleAllTheThings = (filter) => this.setState({ [filter]: !this.state[filter] });
 
-
   render() {
 
     return (
