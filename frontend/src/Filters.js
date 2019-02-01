@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button, ButtonGroup, Modal, ModalHeader, ModalBody, ModalFooter, Collapse, CustomInput } from 'reactstrap';
 import AccidentNeighbourhoods from './AccidentNeighbourhoods';
 import TheftNeighbourhoods from './TheftNeighbourhoods';
+import Toggle from 'react-toggle'
 
 export default class Filters extends Component {
   constructor(props) {
