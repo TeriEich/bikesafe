@@ -3,7 +3,7 @@ import Filters from './Filters'
 import MainMap from './Map'
 import Graphs  from './Graphs'
 
-export default class MapGraphAction extends Component {
+export default class MapContainer extends Component {
   constructor() {
     super();
     this.state = {
