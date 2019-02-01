@@ -11,7 +11,7 @@ export default class LandingPage extends React.Component {
 	          <source className="video" src={require("./media/bikesafeto.mp4")} type="video/mp4" />
 	          <source src="./media/landing-page-video-substitute.png" type="img/png" />
 	        </video>
-	        <div class="overlay">
+	        <div className="overlay">
 	          <div className="intro-lead-in">Mapping a Safer Future for Toronto's Cyclists</div>
 	          <div className="intro-heading">An application to help cyclists and advocates visualize, process, and update data to improve bike-related safety</div>
 	        </div>
