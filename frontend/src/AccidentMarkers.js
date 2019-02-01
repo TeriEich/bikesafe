@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
-import { Marker, InfoWindow } from 'react-google-maps'
+import { Marker, InfoWindow } from 'react-google-maps';
+
+const coralDot = require ("./media/map-icon-coral.svg");
+
 
 class AccidentMarkers extends Component {
 
@@ -21,8 +24,11 @@ class AccidentMarkers extends Component {
 		const lat = parseFloat(this.props.lat)
 		const lng = parseFloat(this.props.lng)
 
-		return (
-			<Marker
+  // **SAVE FOR LATER**
+  // animation={window.google.maps.Animation.DROP}
+    return (
+      <Marker
+        icon={{ url: coralDot }}
         position={{ lat, lng }}
         onClick={ () => this.toggle() }>
         { this.state.isOpen && <InfoWindow options={{maxWidth: 150}} onCloseClick={ () => this.toggle() }>
