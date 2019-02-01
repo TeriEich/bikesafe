@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Button, ButtonGroup, Collapse, CustomInput } from 'reactstrap';
+import React from 'react';
+import { Collapse, CustomInput } from 'reactstrap';
 
 
 function TheftNeighbourhoods(props) {
