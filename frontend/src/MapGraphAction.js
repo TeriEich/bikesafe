@@ -32,7 +32,7 @@ export default class MapGraphAction extends Component {
   }
 
 
-// test source filter
+// test sourceFilters
 createFilteredTheftMarkers() {
   let theftMarkers = this.props.theftMarkers
 
@@ -65,7 +65,7 @@ createFilteredTheftMarkers() {
   return theftMarkers
 }
 
-// test source filter
+// test sourceFilters
 createFilteredAccidentMarkers() {
   let accidentMarkers = this.props.accidentMarkers
 
@@ -141,7 +141,7 @@ toggleTheftShow() {
           accidentMarkers={accidentMarkers}
           showThefts={this.state.showThefts}
           theftMarkers={theftMarkers}
-          center={{lat: 43.6532, lng: -79.3832}}
+          center={{lat: 43.653226, lng: -79.3831843}}
           loadingElement={<div style={{ height: `100%` }} />}
           containerElement={<div style={{ height: `700px`, width: `100%` }} />}
           mapElement={<div style={{ height: `100%`}} />}

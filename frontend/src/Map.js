@@ -38,7 +38,7 @@ class MainMap extends Component {
     return (
       // GoogleMap must have perameters defaultZoom + defaultCenter
       <GoogleMap
-        defaultZoom={14}
+        defaultZoom={12}
         defaultCenter={this.props.center}>
         {this.createAccidentMarkers()}
         {this.createTheftMarkers()}
