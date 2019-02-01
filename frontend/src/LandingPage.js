@@ -22,22 +22,3 @@ export default class LandingPage extends React.Component {
 	}
 }
 
-
-
-// class LandingPage extends Component {
-
-//   render() {
-//     return (
-//       <div className="landing-media">
-//         <button className="show-map-btn" type="button">
-//           Go to map
-//         </button>
-//         <video className="video" playsInline autoPlay loop>
-//           <source className="video" src={require("./media/bikesafeto.webm")} type="video/webm" />
-//           <source className="video" src={require("./media/bikesafeto.mp4")} type="video/mp4" />
-//           <source src="./media/landing-page-video-substitute.png" type="img/png" />
-//         </video>
-//       </div>
-//       );
-//   }
-// }
