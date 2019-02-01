@@ -4,10 +4,13 @@ import AccidentNeighbourhoods from './AccidentNeighbourhoods';
 import TheftNeighbourhoods from './TheftNeighbourhoods';
 
 export default class Filters extends Component {
-
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    this.filters = this.filters.bind(this);
+    this.toggle = this.toggle.bind(this);
     this.state = {
+      collapse: false,
+      dropdownOpen: false,
       accidentFilterShow: false,
       theftFilterShow: false,
       accidentYears: false,
@@ -20,15 +23,40 @@ export default class Filters extends Component {
       theftYears: false,
       theftSources: false,
       theftNeighbourhoods: false
-    }
+    };
   }
 
   toggleAllTheThings = (filter) => this.setState({ [filter]: !this.state[filter] });
 
+  
+  filters() {
+    this.setState({ collapse: !this.state.collapse });
+  }
+
+  toggle() {
+    this.setState(prevState => ({
+      dropdownOpen: !prevState.dropdownOpen
+    }));
+  }
 
   render() {
     return (
+
       <div className="filter-bar">
+      <label>
+      <Toggle
+        defaultChecked={this.props.showAccidents}
+        onChange={this.props.toggleAccidentShow} />
+       <span>Accidents</span>
+      </label>
+
+      <label>
+      <Toggle
+        defaultChecked={this.props.showThefts}
+        onChange={this.props.toggleTheftShow} />
+       <span>Thefts</span>
+      </label>
+      
         <CustomInput type="switch" id="accident-filter" label="Accident Data" checked />
         <Button color="danger" onClick={() => this.toggleAllTheThings('accidentFilterShow')}>Set Accident Filters</Button>
         <Modal isOpen={this.state.accidentFilterShow} toggle={() => this.toggleAllTheThings('accidentFilterShow')} className="filter-main-modal">

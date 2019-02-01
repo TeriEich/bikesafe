@@ -50,7 +50,6 @@ app.get("/api", (req, res) => {
     Theft.find((err, thefts) => {
       if (err) return res.json({ success: false, error: err });
       json.theftData = thefts;
-
       res.json(json);
     })
   })

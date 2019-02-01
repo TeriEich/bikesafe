@@ -37,7 +37,8 @@ class AccidentMarkers extends Component {
           <p><strong>Source: </strong>{this.props.source}</p>
           </div>
         </InfoWindow> }
-      </ Marker>)
+      </Marker>
+      )
 	}
 
 }

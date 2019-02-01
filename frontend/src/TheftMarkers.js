@@ -27,14 +27,14 @@ class TheftMarkers extends Component {
         onClick={ () => this.toggle() }>
         { this.state.isOpen && <InfoWindow options={{maxWidth: 150}} onCloseClick={ () => this.toggle() }>
           <div><h5>Theft</h5>
-          <p><strong>Date: </strong>{this.props.month}/{this.props.day}/{this.props.year}</p>
+          <p><strong>Date: </strong>{this.props.occurrenceMonth}/{this.props.occurrenceDay}/{this.props.occurrenceYear}</p>
           <p><strong>Neighbourhood:</strong> {this.props.neighbourhood}</p>
           <p><strong>Location:</strong> ({lat}, {lng})</p>
           <p><strong>Make:</strong> {this.props.bikeMake}</p>
           <p><strong>Model:</strong> {this.props.bikeModel}</p>
           <p><strong>Source: </strong>{this.props.source}</p></div>
         </InfoWindow> }
-      </ Marker>)
+      </Marker>)
 	}
 
 }
