@@ -13,6 +13,7 @@ export default class Filters extends Component {
       accidentFilterShow: false,
       theftFilterShow: false,
       accidentYears: false,
+      accidentYearChoices: [],
       accidentSources: false,
       accidentNeighbourhoods: false,
       visibilities: false,
@@ -27,6 +28,21 @@ export default class Filters extends Component {
 
   toggleAllTheThings = (filter) => this.setState({ [filter]: !this.state[filter] });
 
+  toggleFilter = (event, filter, label) => {
+    if (event.target.checked) {
+      this.setState({
+        [filter]: [...this.state[filter], label]
+      })
+    } else {
+      this.setState({
+        [filter]: this.state[filter].filter(element => {
+          return element !== label
+        })
+      })
+    }
+    console.log('updated state', this.state[filter])
+  }
+
 
   render() {
 
@@ -40,19 +56,19 @@ export default class Filters extends Component {
           <ModalBody>
             <CustomInput type="switch" id="year-filter-accident" label="Year" onClick={() => this.toggleAllTheThings('accidentYears')} />
             <Collapse className="year-checkboxes" isOpen={this.state.accidentYears} >
-              <CustomInput type="checkbox" id="2007-accident" label="2007" />
-              <CustomInput type="checkbox" id="2008-accident" label="2008" />
-              <CustomInput type="checkbox" id="2009-accident" label="2009" />
-              <CustomInput type="checkbox" id="2010-accident" label="2010" />
-              <CustomInput type="checkbox" id="2011-accident" label="2011" />
-              <CustomInput type="checkbox" id="2012-accident" label="2012" />
-              <CustomInput type="checkbox" id="2013-accident" label="2013" />
-              <CustomInput type="checkbox" id="2014-accident" label="2014" />
-              <CustomInput type="checkbox" id="2015-accident" label="2015" />
-              <CustomInput type="checkbox" id="2016-accident" label="2016" />
-              <CustomInput type="checkbox" id="2017-accident" label="2017" />
-              <CustomInput type="checkbox" id="2018-accident" label="2018" />
-              <CustomInput type="checkbox" id="2019-accident" label="2019" />
+              <CustomInput type="checkbox" id="2007-accident" label="2007" onChange={(e) => this.toggleFilter(e, 'accidentYearChoices', '2007')} />
+              <CustomInput type="checkbox" id="2008-accident" label="2008" onChange={(e) => this.toggleFilter(e, 'accidentYearChoices', '2008')} />
+              <CustomInput type="checkbox" id="2009-accident" label="2009" onChange={(e) => this.toggleFilter(e, 'accidentYearChoices')} />
+              <CustomInput type="checkbox" id="2010-accident" label="2010" onChange={(e) => this.toggleFilter(e, 'accidentYearChoices')} />
+              <CustomInput type="checkbox" id="2011-accident" label="2011" onChange={(e) => this.toggleFilter(e, 'accidentYearChoices')} />
+              <CustomInput type="checkbox" id="2012-accident" label="2012" onChange={(e) => this.toggleFilter(e, 'accidentYearChoices')} />
+              <CustomInput type="checkbox" id="2013-accident" label="2013" onChange={(e) => this.toggleFilter(e, 'accidentYearChoices')} />
+              <CustomInput type="checkbox" id="2014-accident" label="2014" onChange={(e) => this.toggleFilter(e, 'accidentYearChoices')} />
+              <CustomInput type="checkbox" id="2015-accident" label="2015" onChange={(e) => this.toggleFilter(e, 'accidentYearChoices')} />
+              <CustomInput type="checkbox" id="2016-accident" label="2016" onChange={(e) => this.toggleFilter(e, 'accidentYearChoices')} />
+              <CustomInput type="checkbox" id="2017-accident" label="2017" onChange={(e) => this.toggleFilter(e, 'accidentYearChoices')} />
+              <CustomInput type="checkbox" id="2018-accident" label="2018" onChange={(e) => this.toggleFilter(e, 'accidentYearChoices')} />
+              <CustomInput type="checkbox" id="2019-accident" label="2019" onChange={(e) => this.toggleFilter(e, 'accidentYearChoices')} />
             </Collapse>
 
             <CustomInput type="switch" id="source-filter-accident" label="Source" onClick={() => this.toggleAllTheThings('accidentSources')} />

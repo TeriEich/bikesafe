@@ -10,8 +10,8 @@ export default class MapGraphAction extends Component {
       showAccidents: true,
       showThefts: true,
       accidentFilters: {
-        status: false,
-        yearFilters: null,
+        status: true,
+        yearFilters: ['2014', '2015'],
         neighbourhoodFilters: null,
         roadConditionsFilters: null,
         lightConditionsFilters: null,
@@ -19,7 +19,7 @@ export default class MapGraphAction extends Component {
         sourceFilters: null
       },
       theftFilters: {
-        status: true,
+        status: false,
         yearFilters: null,
         neighbourhoodFilters: null,
         sourceFilters: null
