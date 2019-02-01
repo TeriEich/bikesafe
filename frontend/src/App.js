@@ -66,9 +66,9 @@ class App extends Component {
         ) : (
           <LandingPage toggle={this.toggle} />
         )}
-        <footer className="footer">
+        <footer>
           <Nav>
-            <NavLink href="#">Contact</NavLink> <NavLink href="#">Privacy</NavLink>
+            <NavLink className="footer-text" id="footer-1" href="#">Contact</NavLink> <NavLink className="footer-text" id="footer-2" href="#">Privacy</NavLink>
           </Nav>
         </footer>
       </div>
