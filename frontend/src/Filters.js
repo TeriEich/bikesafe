@@ -15,14 +15,23 @@ export default class Filters extends Component {
       accidentYears: false,
       accidentYearChoices: [],
       accidentSources: false,
+      accidentSourceChoices: [],
       accidentNeighbourhoods: false,
+      accidentNeighbourhoodChoices: [],
       visibilities: false,
+      visibilityChoices: [],
       roadConditions: false,
+      roadConditionChoices: [],
       lightConditions: false,
+      lightConditionChoices: [],
       injuries: false,
+      injuryChoices: [],
       theftYears: false,
+      theftYearChoices: [],
       theftSources: false,
-      theftNeighbourhoods: false
+      theftSourceChoices: [],
+      theftNeighbourhoods: false,
+      theftNeighbourhoodChoices: []
     };
   }
 
@@ -40,7 +49,7 @@ export default class Filters extends Component {
         })
       })
     }
-    console.log('updated state', this.state[filter])
+    console.log('updated state', this.state)
   }
 
 
@@ -58,56 +67,56 @@ export default class Filters extends Component {
             <Collapse className="year-checkboxes" isOpen={this.state.accidentYears} >
               <CustomInput type="checkbox" id="2007-accident" label="2007" onChange={(e) => this.toggleFilter(e, 'accidentYearChoices', '2007')} />
               <CustomInput type="checkbox" id="2008-accident" label="2008" onChange={(e) => this.toggleFilter(e, 'accidentYearChoices', '2008')} />
-              <CustomInput type="checkbox" id="2009-accident" label="2009" onChange={(e) => this.toggleFilter(e, 'accidentYearChoices')} />
-              <CustomInput type="checkbox" id="2010-accident" label="2010" onChange={(e) => this.toggleFilter(e, 'accidentYearChoices')} />
-              <CustomInput type="checkbox" id="2011-accident" label="2011" onChange={(e) => this.toggleFilter(e, 'accidentYearChoices')} />
-              <CustomInput type="checkbox" id="2012-accident" label="2012" onChange={(e) => this.toggleFilter(e, 'accidentYearChoices')} />
-              <CustomInput type="checkbox" id="2013-accident" label="2013" onChange={(e) => this.toggleFilter(e, 'accidentYearChoices')} />
-              <CustomInput type="checkbox" id="2014-accident" label="2014" onChange={(e) => this.toggleFilter(e, 'accidentYearChoices')} />
-              <CustomInput type="checkbox" id="2015-accident" label="2015" onChange={(e) => this.toggleFilter(e, 'accidentYearChoices')} />
-              <CustomInput type="checkbox" id="2016-accident" label="2016" onChange={(e) => this.toggleFilter(e, 'accidentYearChoices')} />
-              <CustomInput type="checkbox" id="2017-accident" label="2017" onChange={(e) => this.toggleFilter(e, 'accidentYearChoices')} />
-              <CustomInput type="checkbox" id="2018-accident" label="2018" onChange={(e) => this.toggleFilter(e, 'accidentYearChoices')} />
-              <CustomInput type="checkbox" id="2019-accident" label="2019" onChange={(e) => this.toggleFilter(e, 'accidentYearChoices')} />
+              <CustomInput type="checkbox" id="2009-accident" label="2009" onChange={(e) => this.toggleFilter(e, 'accidentYearChoices', '2009')} />
+              <CustomInput type="checkbox" id="2010-accident" label="2010" onChange={(e) => this.toggleFilter(e, 'accidentYearChoices', '2010')} />
+              <CustomInput type="checkbox" id="2011-accident" label="2011" onChange={(e) => this.toggleFilter(e, 'accidentYearChoices', '2011')} />
+              <CustomInput type="checkbox" id="2012-accident" label="2012" onChange={(e) => this.toggleFilter(e, 'accidentYearChoices', '2012')} />
+              <CustomInput type="checkbox" id="2013-accident" label="2013" onChange={(e) => this.toggleFilter(e, 'accidentYearChoices', '2013')} />
+              <CustomInput type="checkbox" id="2014-accident" label="2014" onChange={(e) => this.toggleFilter(e, 'accidentYearChoices', '2014')} />
+              <CustomInput type="checkbox" id="2015-accident" label="2015" onChange={(e) => this.toggleFilter(e, 'accidentYearChoices', '2015')} />
+              <CustomInput type="checkbox" id="2016-accident" label="2016" onChange={(e) => this.toggleFilter(e, 'accidentYearChoices', '2016')} />
+              <CustomInput type="checkbox" id="2017-accident" label="2017" onChange={(e) => this.toggleFilter(e, 'accidentYearChoices', '2017')} />
+              <CustomInput type="checkbox" id="2018-accident" label="2018" onChange={(e) => this.toggleFilter(e, 'accidentYearChoices', '2018')} />
+              <CustomInput type="checkbox" id="2019-accident" label="2019" onChange={(e) => this.toggleFilter(e, 'accidentYearChoices', '2019')} />
             </Collapse>
 
             <CustomInput type="switch" id="source-filter-accident" label="Source" onClick={() => this.toggleAllTheThings('accidentSources')} />
             <Collapse className="source-checkboxes" isOpen={this.state.accidentSources} >
-              <CustomInput type="checkbox" id="TPS-accident" label="Toronto Police Data" />
-              <CustomInput type="checkbox" id="user-reports-accident" label="User Reported Data" />
+              <CustomInput type="checkbox" id="TPS-accident" label="Toronto Police Data" onChange={(e) => this.toggleFilter(e, 'accidentSourceChoices', 'Toronto Police Services')} />
+              <CustomInput type="checkbox" id="user-reports-accident" label="User Submitted Data" onChange={(e) => this.toggleFilter(e, 'accidentSourceChoices', 'User Submitted Data')} />
             </Collapse>
 
             <CustomInput type="switch" id="neighbourhood-filter-accident" label="Neighbourhood" onClick={() => this.toggleAllTheThings('accidentNeighbourhoods')} />
-            <AccidentNeighbourhoods accidentNeighbourhoods={this.state.accidentNeighbourhoods} />
+            <AccidentNeighbourhoods accidentNeighbourhoods={this.state.accidentNeighbourhoods} toggleFilter={this.toggleFilter} />
 
 
             <CustomInput type="switch" id="visibility-filter" label="Visibility" onClick={() => this.toggleAllTheThings('visibilities')} />
             <Collapse className="source-checkboxes" isOpen={this.state.visibilities} >
-              <CustomInput type="checkbox" id="clear-vis" label="Clear" />
-              <CustomInput type="checkbox" id="rain-vis" label="Rain" />
-              <CustomInput type="checkbox" id="other-vis" label="Other" />
+              <CustomInput type="checkbox" id="clear-vis" label="Clear" onChange={(e) => this.toggleFilter(e, 'visibilityChoices', 'Clear')} />
+              <CustomInput type="checkbox" id="rain-vis" label="Rain" onChange={(e) => this.toggleFilter(e, 'visibilityChoices', 'Rain')} />
+              <CustomInput type="checkbox" id="other-vis" label="Other" onChange={(e) => this.toggleFilter(e, 'visibilityChoices', 'Other')} />
             </Collapse>
 
             <CustomInput type="switch" id="road-conditions-filter" label="Road Conditions" onClick={() => this.toggleAllTheThings('roadConditions')} />
             <Collapse className="source-checkboxes" isOpen={this.state.roadConditions} >
-              <CustomInput type="checkbox" id="dry-road" label="Dry" />
-              <CustomInput type="checkbox" id="wet-road" label="Wet" />
+              <CustomInput type="checkbox" id="dry-road" label="Dry" onChange={(e) => this.toggleFilter(e, 'roadConditionChoices', 'Dry')} />
+              <CustomInput type="checkbox" id="wet-road" label="Wet" onChange={(e) => this.toggleFilter(e, 'roadConditionChoices', 'Wet')} />
             </Collapse>
 
             <CustomInput type="switch" id="light-conditions-filter" label="Light Conditions" onClick={() => this.toggleAllTheThings('lightConditions')} />
             <Collapse className="source-checkboxes" isOpen={this.state.lightConditions} >
-              <CustomInput type="checkbox" id="dark-light" label="Dark" />
-              <CustomInput type="checkbox" id="dark-artificial-light" label="Dark, artificial" />
-              <CustomInput type="checkbox" id="daylight-light" label="Daylight" />
-              <CustomInput type="checkbox" id="daylight-artificial-light" label="Daylight, artificial" />
-              <CustomInput type="checkbox" id="dusk-light" label="Dusk" />
+              <CustomInput type="checkbox" id="dark-light" label="Dark" onChange={(e) => this.toggleFilter(e, 'lightConditionChoices', 'Dark')} />
+              <CustomInput type="checkbox" id="dark-artificial-light" label="Dark, artificial" onChange={(e) => this.toggleFilter(e, 'lightConditionChoices', 'Dark, artificial')} />
+              <CustomInput type="checkbox" id="daylight-light" label="Daylight" onChange={(e) => this.toggleFilter(e, 'lightConditionChoices', 'Daylight')} />
+              <CustomInput type="checkbox" id="daylight-artificial-light" label="Daylight, artificial" onChange={(e) => this.toggleFilter(e, 'lightConditionChoices', 'Daylight, artificial')} />
+              <CustomInput type="checkbox" id="dusk-light" label="Dusk" onChange={(e) => this.toggleFilter(e, 'lightConditionChoices', 'Dusk')} />
             </Collapse>
 
             <CustomInput type="switch" id="injury-filter" label="Severity of Injury" onClick={() => this.toggleAllTheThings('injuries')} />
             <Collapse className="source-checkboxes" isOpen={this.state.injuries} >
-              <CustomInput type="checkbox" id="minor-injury" label="Minor" />
-              <CustomInput type="checkbox" id="major-injury" label="Major" />
-              <CustomInput type="checkbox" id="fatal-injury" label="Fatal" />
+              <CustomInput type="checkbox" id="minor-injury" label="Minor" onChange={(e) => this.toggleFilter(e, 'injuryChoices', 'Minor')} />
+              <CustomInput type="checkbox" id="major-injury" label="Major" onChange={(e) => this.toggleFilter(e, 'injuryChoices', 'Major')} />
+              <CustomInput type="checkbox" id="fatal-injury" label="Fatal" onChange={(e) => this.toggleFilter(e, 'injuryChoices', 'Fatal')} />
             </Collapse>
           </ModalBody>
           <ModalFooter>
@@ -124,22 +133,22 @@ export default class Filters extends Component {
           <ModalBody>
             <CustomInput type="switch" id="year-filter-theft" label="Year" onClick={() => this.toggleAllTheThings('theftYears')} />
             <Collapse className="year-checkboxes" isOpen={this.state.theftYears} >
-              <CustomInput type="checkbox" id="2014-theft" label="2014" />
-              <CustomInput type="checkbox" id="2015-theft" label="2015" />
-              <CustomInput type="checkbox" id="2016-theft" label="2016" />
-              <CustomInput type="checkbox" id="2017-theft" label="2017" />
-              <CustomInput type="checkbox" id="2018-theft" label="2018" />
-              <CustomInput type="checkbox" id="2019-theft" label="2019" />
+              <CustomInput type="checkbox" id="2014-theft" label="2014" onChange={(e) => this.toggleFilter(e, 'theftYearChoices', '2014')} />
+              <CustomInput type="checkbox" id="2015-theft" label="2015" onChange={(e) => this.toggleFilter(e, 'theftYearChoices', '2015')} />
+              <CustomInput type="checkbox" id="2016-theft" label="2016" onChange={(e) => this.toggleFilter(e, 'theftYearChoices', '2016')} />
+              <CustomInput type="checkbox" id="2017-theft" label="2017" onChange={(e) => this.toggleFilter(e, 'theftYearChoices', '2017')} />
+              <CustomInput type="checkbox" id="2018-theft" label="2018" onChange={(e) => this.toggleFilter(e, 'theftYearChoices', '2018')} />
+              <CustomInput type="checkbox" id="2019-theft" label="2019" onChange={(e) => this.toggleFilter(e, 'theftYearChoices', '2019')} />
             </Collapse>
 
             <CustomInput type="switch" id="source-filter-theft" label="Source" onClick={() => this.toggleAllTheThings('theftSources')} />
             <Collapse className="source-checkboxes" isOpen={this.state.theftSources} >
-              <CustomInput type="checkbox" id="TPS-theft" label="Toronto Police Data" />
-              <CustomInput type="checkbox" id="user-reports-theft" label="User Reported Data" />
+              <CustomInput type="checkbox" id="TPS-theft" label="Toronto Police Data" onChange={(e) => this.toggleFilter(e, 'theftSourceChoices', 'Toronto Police Services')} />
+              <CustomInput type="checkbox" id="user-reports-theft" label="User Submitted Data" onChange={(e) => this.toggleFilter(e, 'theftSourceChoices', 'User Submitted Data')} />
             </Collapse>
 
             <CustomInput type="switch" id="neighbourhood-filter-theft" label="Neighbourhood" onClick={() => this.toggleAllTheThings('theftNeighbourhoods')} />
-            <TheftNeighbourhoods theftNeighbourhoods={this.state.theftNeighbourhoods} />
+            <TheftNeighbourhoods theftNeighbourhoods={this.state.theftNeighbourhoods} toggleFilter={this.toggleFilter} />
 
           </ModalBody>
           <ModalFooter>
