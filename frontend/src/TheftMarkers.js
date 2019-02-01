@@ -23,6 +23,7 @@ class TheftMarkers extends Component {
 
 		return (
 			<Marker
+        icon={{ url: "./media/map-icon-light-blue.svg"}}
         position={{ lat, lng }}
         onClick={ () => this.toggle() }>
         { this.state.isOpen && <InfoWindow options={{maxWidth: 150}} onCloseClick={ () => this.toggle() }>
