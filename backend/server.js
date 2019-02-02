@@ -39,8 +39,9 @@ app.use(bodyParser.json());
 app.use(logger("dev"));
 
 /*
-this is our get method
-this method fetches all available data in our database*/
+this is our GET method
+this method fetches all available data in our database
+*/
 app.get("/api", (req, res) => {
   const json = {};
   Accident.find((err, accidents) => {
@@ -55,10 +56,27 @@ app.get("/api", (req, res) => {
   })
 });
 
-app.post("/api"), (req, res) => {
-  const json = {};
-
-}
+/*
+this is our POST method
+this method sends user generated data into the database
+*/
+// app.post("/api", (req, res, next) => {
+//   let accident = new Accident({
+//     whatever: req.body.fkdjfkls
+//     // fill in
+//   });
+//   accident.save((err, result) => {
+//     if (err) {
+//       return res..status(500).json({
+//         success: false,
+//         error: err
+//       });
+//     }
+//     res.status(201).json({
+//       obj: result
+//     })
+//   })
+// });
 
 // // this is our update method
 // // this method overwrites existing data in our database

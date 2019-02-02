@@ -253,16 +253,15 @@ export default class NavBar extends React.Component {
 		console.log(this.state.theftInput);
 	}
 
-	handleTheftInputId = event => {this.setState({ theftInput: { id: event.target.value }})}
-	// handleTheftInputLocation = event => {this.setState({ theftInput: location: {coordinates: [lng: ???, lat: ???] }})}
-	handleTheftInputYear = event => {this.setState({ theftInput: { occurrenceYear: event.target.value }})}
-	handleTheftInputMonth = event => {this.setState({ theftInput: { occurrenceMonth: event.target.value }})}
-	handleTheftInputDay = event => {this.setState({ theftInput: { occurrenceDay: event.target.value }})}
-	handleTheftInputTime = event => {this.setState({ theftInput: { occurrenceTime: event.target.value }})}
-	handleTheftInputBikeMake = event => {this.setState({ theftInput: { bikeMake: event.target.value }})}
-	handleTheftInputBikeModel = event => {this.setState({ theftInput: { bikeModel: event.target.value }})}
-	handleTheftInputNeighbourhood = event => {this.setState({ theftInput: { neighbourhood: event.target.value }})}
-	handleTheftInputSource = event => {this.setState({ theftInput: { source: event.target.value }})}
+	handleTheftInputId = event => {this.setState((theftInput) => ({id: event.target.value }))}
+	handleTheftInputYear = event => {this.setState((theftInput) => ({occurrenceYear: event.target.value }))}
+	handleTheftInputMonth = event => {this.setState((theftInput) => ({occurrenceMonth: event.target.value }))}
+	handleTheftInputDay = event => {this.setState((theftInput) => ({occurrenceDay: event.target.value }))}
+	handleTheftInputTime = event => {this.setState((theftInput) => ({occurrenceTime: event.target.value }))}
+	handleTheftInputBikeMake = event => {this.setState((theftInput) => ({bikeMake: event.target.value }))}
+	handleTheftInputBikeModel = event => {this.setState((theftInput) => ({bikeModel: event.target.value }))}
+	handleTheftInputNeighbourhood = event => {this.setState((theftInput) => ({neighbourhood: event.target.value }))}
+
 
 	// handleAccidentInputId = event => {this.accidentInput.setState({ id: event.target.value })}
 	// handleAccidentInputLocation = event => {this.accidentInput.location.setState({ coordinates: [lng: ???, lat: ???] })}
@@ -282,30 +281,14 @@ export default class NavBar extends React.Component {
 
 
 
-	// handleTheftSubmit = event => {
- //    event.preventDefault();
-
- //    axios.post('http://localhost:3001/api',
- //      { id: this.state.theftInput.id,
- //      	location: {
-	// 				type: { type: "point" },
-	// 				coordinates: [this.state.theftInput.???]
-	// 			},
- //      	occurrenceYear: this.state.theftInput.occurrenceYear,
-	// 			occurrenceMonth: this.state.theftInput.occurrenceMonth,
-	// 			occurrenceDay: this.state.theftInput.occurrenceDay,
-	// 			occurrenceTime: this.state.theftInput.occurrenceTime,
-	// 			bikeMake: this.state.theftInput.bikeMake,
-	// 			bikeModel: this.state.theftInput.bikeModel,
-	// 			neighbourhood: this.state.theftInput.neighbourhood,
-	// 			source: "User Submitted Data"
-	// 		  },
-	// 		)
- //      .then(res => {
- //        console.log(res);
- //        console.log(res.data);
- //      })
- //  }
+	handleTheftSubmit = event => {
+    event.preventDefault();
+    axios.post('http://localhost:3001/api', {this.state.theftInput})
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+      })
+  }
 
  //  handleAccidentSubmit = event => {
  //    event.preventDefault();
@@ -409,6 +392,9 @@ export default class NavBar extends React.Component {
 								        <Button type="submit">Submit</Button>
 								      </Form>
 										</Collapse>
+
+
+
 										<Collapse className="theft-report-show" isOpen={this.state.showingForm === 'theftForm'}>
 											<Form onSubmit={this.handleTheftSubmit} >
 								        <FormGroup>
@@ -417,24 +403,24 @@ export default class NavBar extends React.Component {
 								        </FormGroup>
 								        <FormGroup>
 								          <Label for="theft-neighbourhood">Neighbourhood</Label>
-								          <Input type="select" name="neighbourhood" id="theft-neighbourhood">
+								          <Input type="select" name="this.state.theftInput.neighbourhood" onChange={this.handleTheftInputNeighbourhood} id="theft-neighbourhood">
 								          	{NEIGHBORHOODS.map((n) => <option>{n}</option>)}
 								           </Input>
 								        </FormGroup>
 								        <FormGroup>
 								          <Label for="theft-bike-make">Bike Make</Label>
-								          <Input type="textarea" name="bike-make" id="theft-bike-make">
+								          <Input type="textarea" name="this.state.theftInput.bikeMake" onChange={this.handleTheftInputBikeMake} id="theft-bike-make">
 								            <FormText color="muted"></FormText>
 								          </Input>
 								        </FormGroup>
 								        <FormGroup>
 								          <Label for="theft-bike-model">Bike Model</Label>
-								          <Input type="textarea" name="bike-model" id="theft-bike-model">
+								          <Input type="textarea" name="this.state.theftInput.bikeModel" onChange={this.handleTheftInputBikeModel} id="theft-bike-model">
 								            <FormText color="muted"></FormText>
 								          </Input>
 								        </FormGroup>
 								        <FormGroup>
-								        	<Label for="theft-coordinates">Location of Theft</Label>
+								        	<Label for="theft-coordinates" name="this.state.theftInput.location.coordinates">Location of Theft</Label>
 								          	<div style={{ height: '100%' }}>
 							                <Map
 							                	googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9OTpk-gYg9nuQ7R5vsWPpmr7U7pQq6Ow"
