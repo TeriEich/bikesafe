@@ -52,7 +52,6 @@ export default class Filters extends Component {
     console.log('updated state', this.state)
   }
 
-
   render() {
 
     return (
