@@ -39,67 +39,66 @@ export default class Graphs extends Component {
 
     return (
       <div className="container-graphs">
+        <div className="accident-graphs">
+          <h1>Accident Graphs</h1>
+          <LineChart
+            className="graph" id="graph-1" alt="graph"
+            width={800} height={600}
+            data={this.state.ChartData}>
+            <XAxis dataKey="name"/>
+            <YAxis/>
+            <CartesianGrid strokeDasharray="3 3"/>
+            <Tooltip/>
+            <Legend />
+            <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{r: 8}}/>
+            <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+          </LineChart>
 
-        <LineChart
-          className="graph" id="graph-1" alt="graph"
-          width={400} height={300}
-          data={this.state.ChartData}
-          margin={{top: 5, right: 30, left: 20, bottom: 5}}>
-          <XAxis dataKey="name"/>
-          <YAxis/>
-          <CartesianGrid strokeDasharray="3 3"/>
-          <Tooltip/>
-          <Legend />
-          <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{r: 8}}/>
-          <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-        </LineChart>
+          <PieChart
+            className="graph" id="graph-2" alt="graph"
+            width={800} height={600}
+            onMouseEnter={this.onPieEnter}>
+            <Pie
+              data={this.state.PieChartData}
+              labelLine={false}
+              label={renderCustomizedLabel}
+              fill="#8884d8"
+            >
+              {
+                this.state.PieChartData.map((entry, index) => <Cell fill={colours[index % colours.length]}/>)
+              }
+            </Pie>
+          </PieChart>
+        </div>
 
-        <PieChart
-          className="graph" id="graph-2" alt="graph"
-          width={400} height={300}
-          onMouseEnter={this.onPieEnter}>
-          <Pie
-            data={this.state.PieChartData}
-            cx={300}
-            cy={200}
-            labelLine={false}
-            label={renderCustomizedLabel}
-            outerRadius={80}
-            fill="#8884d8"
-          >
-            {
-              this.state.PieChartData.map((entry, index) => <Cell fill={colours[index % colours.length]}/>)
-            }
-          </Pie>
-        </PieChart>
+        <div className="theft-graphs">
+          <h1>Theft Graphs</h1>
+          <BarChart
+            className="graph" id="graph-3" alt="graph"
+            width={800} height={600}
+            data={this.state.ChartData}>
+            <CartesianGrid strokeDasharray="3 3"/>
+            <XAxis dataKey="name"/>
+            <YAxis/>
+            <Tooltip/>
+            <Legend />
+            <Bar dataKey="pv" fill="#8884d8" />
+            <Bar dataKey="uv" fill="#82ca9d" />
+          </BarChart>
 
-        <BarChart
-          className="graph" id="graph-3" alt="graph"
-          width={400} height={300}
-          data={this.state.ChartData}
-          margin={{top: 5, right: 30, left: 20, bottom: 5}}>
-          <CartesianGrid strokeDasharray="3 3"/>
-          <XAxis dataKey="name"/>
-          <YAxis/>
-          <Tooltip/>
-          <Legend />
-          <Bar dataKey="pv" fill="#8884d8" />
-          <Bar dataKey="uv" fill="#82ca9d" />
-        </BarChart>
-
-        <AreaChart
-          className="graph" id="graph-4" alt="graph"
-          width={400} height={300}
-          data={this.state.ChartData}
-          margin={{top: 10, right: 30, left: 0, bottom: 0}}>
-          <CartesianGrid strokeDasharray="3 3"/>
-          <XAxis dataKey="name"/>
-          <YAxis/>
-          <Tooltip/>
-          <Area type='monotone' dataKey='uv' stackId="1" stroke='#8884d8' fill='#8884d8' />
-          <Area type='monotone' dataKey='pv' stackId="1" stroke='#82ca9d' fill='#82ca9d' />
-          <Area type='monotone' dataKey='amt' stackId="1" stroke='#ffc658' fill='#ffc658' />
-        </AreaChart>
+          <AreaChart
+            className="graph" id="graph-4" alt="graph"
+            width={800} height={600}
+            data={this.state.ChartData}>
+            <CartesianGrid strokeDasharray="3 3"/>
+            <XAxis dataKey="name"/>
+            <YAxis/>
+            <Tooltip/>
+            <Area type='monotone' dataKey='uv' stackId="1" stroke='#8884d8' fill='#8884d8' />
+            <Area type='monotone' dataKey='pv' stackId="1" stroke='#82ca9d' fill='#82ca9d' />
+            <Area type='monotone' dataKey='amt' stackId="1" stroke='#ffc658' fill='#ffc658' />
+          </AreaChart>
+        </div>
 
       </div>
       );
