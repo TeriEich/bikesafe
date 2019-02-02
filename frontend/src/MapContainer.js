@@ -9,58 +9,84 @@ export default class MapContainer extends Component {
     this.state = {
       showAccidents: true,
       showThefts: true,
-      accidentFilters: {
-        status: true,
-        yearFilters: ['2014', '2015'],
-        neighbourhoodFilters: null,
-        roadConditionsFilters: null,
-        lightConditionsFilters: null,
-        injuryFilters: null,
-        sourceFilters: null
-      },
-      theftFilters: {
-        status: false,
-        yearFilters: null,
-        neighbourhoodFilters: null,
-        sourceFilters: null
-      }
+      accidentYears: false,
+      accidentYearChoices: [],
+      accidentSources: false,
+      accidentSourceChoices: [],
+      accidentNeighbourhoods: false,
+      accidentNeighbourhoodChoices: [],
+      visibilities: false,
+      visibilityChoices: [],
+      roadConditions: false,
+      roadConditionChoices: [],
+      lightConditions: false,
+      lightConditionChoices: [],
+      injuries: false,
+      injuryChoices: [],
+      theftYears: false,
+      theftYearChoices: [],
+      theftSources: false,
+      theftSourceChoices: [],
+      theftNeighbourhoods: false,
+      theftNeighbourhoodChoices: []
     };
     this.toggleAccidentShow = this.toggleAccidentShow.bind(this)
     this.toggleTheftShow = this.toggleTheftShow.bind(this)
     this.createFilteredAccidentMarkers = this.createFilteredAccidentMarkers.bind(this)
     this.createFilteredTheftMarkers = this.createFilteredTheftMarkers.bind(this)
+    this.applyFilters = this.applyFilters.bind(this)
   }
 
+
+applyFilters(filters) {
+  console.log('apply filters function called')
+  this.setState({
+    accidentYears: filters.accidentYears,
+    accidentYearChoices: filters.accidentYearChoices,
+    accidentSources: filters.accidentSources,
+    accidentSourceChoices: filters.accidentSourceChoices,
+    accidentNeighbourhoods: filters.accidentNeighbourhoods,
+    accidentNeighbourhoodChoices: filters.accidentNeighbourhoodChoices,
+    visibilities: filters.visibilities,
+    visibilityChoices: filters.visibilityChoices,
+    roadConditions: filters.roadConditions,
+    roadConditionChoices: filters.roadConditionChoices,
+    lightConditions: filters.lightConditions,
+    lightConditionChoices: filters.lightConditionChoices,
+    injuries: filters.injuries,
+    injuryChoices: filters.injuryChoices,
+    theftYears: filters.theftYears,
+    theftYearChoices: filters.theftYearChoices,
+    theftSources: filters.theftSources,
+    theftSourceChoices: filters.theftSourceChoices,
+    theftNeighbourhoods: filters.theftNeighbourhoods,
+    theftNeighbourhoodChoices: filters.theftNeighbourhoodChoices 
+  })
+}
 
 // test sourceFilters
 createFilteredTheftMarkers() {
   let theftMarkers = this.props.theftMarkers
 
-  console.log('theft markers inside filter function', theftMarkers)
-
-  if (this.state.theftFilters.status) {
-
-    if (this.state.theftFilters.yearFilters) {
-      theftMarkers = theftMarkers.filter(marker => {
-        console.log('year', marker.occurrenceYear)
-        return this.state.theftFilters.yearFilters.includes(marker.occurrenceYear)
-      })
-    }
-    if (this.state.theftFilters.neighbourhoodFilters) {
-      theftMarkers = theftMarkers.filter(marker => {
-        let neighbourhood = marker.neighbourhood.substring(0, (marker.neighbourhood.indexOf("(") - 1))
-        if (this.state.theftFilters.neighbourhoodFilters.includes(neighbourhood)) {
-          return true
-        }
-      })
-    }
-    if (this.state.theftFilters.sourceFilters) {
-      theftMarkers = theftMarkers.filter(marker => {
-        if (this.state.theftFilters.sourceFilters.includes(marker.source)) {
-          return true
-        }
-      })
-    }
+  if (this.state.theftYears && this.state.theftYearChoices.length > 0) {
+    theftMarkers = theftMarkers.filter(marker => {
+      return this.state.theftYearChoices.includes(marker.occurrenceYear.toString())
+    })
+  }
+  if (this.state.theftNeighbourhoods && this.state.theftNeighbourhoodChoices.length > 0) {
+    theftMarkers = theftMarkers.filter(marker => {
+      let neighbourhood = marker.neighbourhood.substring(0, (marker.neighbourhood.indexOf("(") - 1))
+      if (this.state.theftNeighbourhoodChoices.includes(neighbourhood)) {
+        return true
+      }
+    })
+  }
+  if (this.state.theftSources && this.state.theftSourceChoices.length > 0) {
+    theftMarkers = theftMarkers.filter(marker => {
+      if (this.state.theftSourceChoices.includes(marker.source)) {
+        return true
+      }
+    })
   }
   return theftMarkers
 }
@@ -69,50 +95,56 @@ createFilteredTheftMarkers() {
 createFilteredAccidentMarkers() {
   let accidentMarkers = this.props.accidentMarkers
 
-  if (this.state.accidentFilters.status) {
-    if (this.state.accidentFilters.yearFilters) {
-      accidentMarkers = accidentMarkers.filter(marker => {
-        if (this.state.accidentFilters.yearFilters.includes(marker.date.substring(0,4))) {
-          return true
-        }
-      })
-    }
-    if (this.state.accidentFilters.neighbourhoodFilters) {
-      accidentMarkers = accidentMarkers.filter(marker => {
-        let neighbourhood = marker.neighbourhood.substring(0, (marker.neighbourhood.indexOf("(") - 1))
-        if (this.state.accidentFilters.neighbourhoodFilters.includes(neighbourhood)) {
-          return true
-        }
-      })
-    }
-    if (this.state.accidentFilters.roadConditionsFilters) {
-      accidentMarkers = accidentMarkers.filter(marker => {
-        if (this.state.accidentFilters.roadConditionsFilters.includes(marker.roadConditions)) {
-          return true
-        }
-      })
-    }
-    if (this.state.accidentFilters.lightConditionsFilters) {
-      accidentMarkers = accidentMarkers.filter(marker => {
-        if (this.state.accidentFilters.lightConditionsFilters.includes(marker.light)) {
-          return true
-        }
-      })
-    }
-    if (this.state.accidentFilters.injuryFilters) {
-      accidentMarkers = accidentMarkers.filter(marker => {
-        if (this.state.accidentFilters.injuryFilters.includes(marker.injuryType)) {
-          return true
-        }
-      })
-    }
-    if (this.state.accidentFilters.sourceFilters) {
-      accidentMarkers = accidentMarkers.filter(marker => {
-        if (this.state.accidentFilters.sourceFilters.includes(marker.source)) {
-          return true
-        }
-      })
-    }
+  if (this.state.accidentYears && this.state.accidentYearChoices.length > 0) {
+    accidentMarkers = accidentMarkers.filter(marker => {
+      if (this.state.accidentYearChoices.includes(marker.date.substring(0,4))) {
+        return true
+      }
+    })
+  }
+  if (this.state.accidentNeighbourhoods && this.state.accidentNeighbourhoodChoices.length > 0) {
+    accidentMarkers = accidentMarkers.filter(marker => {
+      let neighbourhood = marker.neighbourhood.substring(0, (marker.neighbourhood.indexOf("(") - 1))
+      if (this.state.accidentNeighbourhoodChoices.includes(neighbourhood)) {
+        return true
+      }
+    })
+  }
+  if (this.state.roadConditions && this.state.roadConditionChoices.length > 0) {
+    accidentMarkers = accidentMarkers.filter(marker => {
+      if (this.state.roadConditionChoices.includes(marker.roadConditions)) {
+        return true
+      }
+    })
+  }
+  if (this.state.lightConditions && this.state.lightConditionChoices.length > 0) {
+    accidentMarkers = accidentMarkers.filter(marker => {
+      if (this.state.lightConditionChoices.includes(marker.light)) {
+        return true
+      }
+    })
+  }
+  if (this.state.injuries && this.state.injuryChoices.length > 0) {
+    accidentMarkers = accidentMarkers.filter(marker => {
+      if (this.state.injuryChoices.includes(marker.injuryType)) {
+        return true
+      }
+    })
+  }
+  if (this.state.visibilities && this.state.visibilityChoices.length > 0) {
+    accidentMarkers = accidentMarkers.filter(marker => {
+      if (this.state.visibilityChoices.includes(marker.visibility)) {
+        return true
+      }
+    })
+  }
+
+  if (this.state.accidentSources && this.state.accidentSourceChoices.length > 0) {
+    accidentMarkers = accidentMarkers.filter(marker => {
+      if (this.state.accidentSourceChoices.includes(marker.source)) {
+        return true
+      }
+    })
   }
   return accidentMarkers
 }
@@ -151,6 +183,7 @@ toggleTheftShow() {
           toggleAccidentShow={this.toggleAccidentShow}
           showThefts={this.state.showThefts}
           toggleTheftShow={this.toggleTheftShow}
+          applyFilters={this.applyFilters}
         />
         <Graphs />
       </div>

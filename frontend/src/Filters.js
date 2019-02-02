@@ -63,9 +63,9 @@ export default class Filters extends Component {
         <Modal isOpen={this.state.accidentFilterShow} toggle={() => this.toggleAllTheThings('accidentFilterShow')} className="filter-main-modal">
           <ModalHeader toggle={() => this.toggleAllTheThings('accidentFilterShow')}>Accident Filters</ModalHeader>
           <ModalBody>
-            <CustomInput type="switch" id="year-filter-accident" label="Year" onClick={() => this.toggleAllTheThings('accidentYears')} />
+            <CustomInput defaultChecked={this.state.accidentYears} type="switch" id="year-filter-accident" label="Year" onClick={() => this.toggleAllTheThings('accidentYears')} />
             <Collapse className="year-checkboxes" isOpen={this.state.accidentYears} >
-              <CustomInput type="checkbox" id="2007-accident" label="2007" onChange={(e) => this.toggleFilter(e, 'accidentYearChoices', '2007')} />
+              <CustomInput type="checkbox" defaultChecked={this.state.accidentYearChoices.includes('2007')} id="2007-accident" label="2007" onChange={(e) => this.toggleFilter(e, 'accidentYearChoices', '2007')} />
               <CustomInput type="checkbox" id="2008-accident" label="2008" onChange={(e) => this.toggleFilter(e, 'accidentYearChoices', '2008')} />
               <CustomInput type="checkbox" id="2009-accident" label="2009" onChange={(e) => this.toggleFilter(e, 'accidentYearChoices', '2009')} />
               <CustomInput type="checkbox" id="2010-accident" label="2010" onChange={(e) => this.toggleFilter(e, 'accidentYearChoices', '2010')} />
@@ -120,7 +120,12 @@ export default class Filters extends Component {
             </Collapse>
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={() => this.toggleAllTheThings('accidentFilterShow')}>Apply Filters</Button>{' '}
+            <Button 
+            color="primary" 
+            onClick={() => {
+              this.props.applyFilters(this.state)
+              this.toggleAllTheThings('accidentFilterShow')
+            }}>Apply Filters</Button>{' '}
             <Button color="secondary" onClick={() => this.toggleAllTheThings('accidentFilterShow')}>Cancel</Button>
           </ModalFooter>
         </Modal>
