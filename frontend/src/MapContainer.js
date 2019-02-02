@@ -60,7 +60,7 @@ applyFilters(filters) {
     theftSources: filters.theftSources,
     theftSourceChoices: filters.theftSourceChoices,
     theftNeighbourhoods: filters.theftNeighbourhoods,
-    theftNeighbourhoodChoices: filters.theftNeighbourhoodChoices 
+    theftNeighbourhoodChoices: filters.theftNeighbourhoodChoices
   })
 }
 
@@ -104,9 +104,11 @@ createFilteredAccidentMarkers() {
   }
   if (this.state.accidentNeighbourhoods && this.state.accidentNeighbourhoodChoices.length > 0) {
     accidentMarkers = accidentMarkers.filter(marker => {
-      let neighbourhood = marker.neighbourhood.substring(0, (marker.neighbourhood.indexOf("(") - 1))
-      if (this.state.accidentNeighbourhoodChoices.includes(neighbourhood)) {
-        return true
+      if (marker.source == "User Submitted Data") {
+        return this.state.accidentNeighbourhoodChoices.includes(marker.neighbourhood)
+      } else {
+        let neighbourhood = marker.neighbourhood.substring(0, (marker.neighbourhood.indexOf("(") - 1))
+        return this.state.accidentNeighbourhoodChoices.includes(neighbourhood)
       }
     })
   }
