@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import NavBar from './NavBar';
 import LandingPage from './LandingPage';
-import MapGraphAction from './MapGraphAction';
+import MapContainer from './MapContainer';
 import axios from 'axios'
 import { Nav, NavLink } from 'reactstrap';
 
@@ -41,8 +41,6 @@ class App extends Component {
   componentDidMount(){
       axios.get('http://localhost:3001/api')
       .then(response => {
-        console.log('accident data', response.data.accidentData)
-        console.log('theft data', response.data.theftData)
         this.setState({ accidentMarkers: response.data.accidentData });
         this.setState({ theftMarkers: response.data.theftData });
       })
@@ -58,11 +56,12 @@ class App extends Component {
     }
 
   render() {
+
     return (
       <div className="main-container">
         <NavBar />
         {this.state.showMap ? (
-          <MapGraphAction accidentMarkers={this.state.accidentMarkers} theftMarkers={this.state.theftMarkers}/>
+          <MapContainer accidentMarkers={this.state.accidentMarkers} theftMarkers={this.state.theftMarkers}/>
         ) : (
           <LandingPage toggle={this.toggle} />
         )}
