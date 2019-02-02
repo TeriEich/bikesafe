@@ -217,6 +217,14 @@ export default class NavBar extends React.Component {
 				neighbourhood: null,
 				source: "User Submitted Data"
 			},
+			accidentLocation: "",
+			accidentDate: "",
+			accidentYear: "",
+			accidentVisibility: "",
+			accidentLight: "",
+			accidentRoadConditions: "",
+			accidentInjuryType: "",
+			accidentNeighbourhood: "",
 			accidentInput: {
 				id: null,
 				location: {
@@ -337,10 +345,12 @@ export default class NavBar extends React.Component {
  //  }
 
 
- 	handleSelect = (e) => {
- 		console.log('event', e)
- 		console.log('event target', e.target)
- 		console.log('event.target', value)
+ 	handleSelect = (e, input) => {
+ 		console.log('before', this.state)
+ 		this.setState({
+ 			[input]: e.target.value
+ 		})
+ 		console.log('after', this.state)
  	}
 
 	render() {
@@ -360,17 +370,19 @@ export default class NavBar extends React.Component {
 											<Form onSubmit={this.handleAccidentSubmit}>
 								        <FormGroup>
 								          <Label for="accident-date">Date</Label>
-								          <Input type="date" name="date" id="accident-date" />
+								          <Input value={this.state.accidentDate} type="date" name="date" id="accident-date" onChange={(e) => this.handleSelect(e, 'accidentDate')} />
 								        </FormGroup>
 								        <FormGroup>
 								          <Label for="accident-neighbourhood">Neighbourhood</Label>
-								          <Input type="select" name="neighbourhood" id="accident-neighbourhood">
+								          <Input type="select" value={this.state.accidentNeighbourhood} name="neighbourhood" id="accident-neighbourhood" onChange={(e) => this.handleSelect(e, 'accidentNeighbourhood')}>
+								          	<option value="">Please select the visibility conditions</option>
 								          	{NEIGHBORHOODS.map((n) => <option>{n}</option>)}
 								          </Input>
 								        </FormGroup>
 								        <FormGroup>
 								          <Label for="accident-visibility">Visibility</Label>
-								          <Input type="select" name="visibility" id="accident-visibility" onSelect={this.handleSelect}>
+								          <Input type="select" value={this.state.accidentVisibility} name="visibility" id="accident-visibility" onChange={(e) => this.handleSelect(e, 'accidentVisibility')}>
+								            <option value="">Please select the visibility conditions</option>
 								            <option>Clear</option>
 								            <option>Rain</option>
 								            <option>Other</option>
@@ -378,7 +390,8 @@ export default class NavBar extends React.Component {
 								        </FormGroup>
 								        <FormGroup>
 								          <Label for="accident-light-conditions">Light Conditions</Label>
-								          <Input type="select" name="light-conditions" id="accident-light-conditions">
+								          <Input type="select" value={this.state.accidentLight} name="light-conditions" id="accident-light-conditions" onChange={(e) => this.handleSelect(e, 'accidentLight')}>
+								            <option value="">Please select the light conditions</option>
 								            <option>Daylight</option>
 								            <option>Daylight, Artificial</option>
 								            <option>Dusk</option>
@@ -388,14 +401,16 @@ export default class NavBar extends React.Component {
 								        </FormGroup>
 								        <FormGroup>
 								          <Label for="accident-road-conditions">Road Conditions</Label>
-								          <Input type="select" name="road-conditions" id="accident-road-conditions">
+								          <Input type="select" value={this.state.accidentRoadConditions} name="road-conditions" id="accident-road-conditions" onChange={(e) => this.handleSelect(e, 'accidentRoadConditions')}>
+								          	<option value="">Please select the road conditions</option>
 								            <option>Dry</option>
 								            <option>Wet</option>
 								          </Input>
 								        </FormGroup>
 								        <FormGroup>
 								          <Label for="accident-injury">Injury Type</Label>
-								          <Input type="select" name="injury" id="accident-injury">
+								          <Input type="select" value={this.state.accidentInjuryType} name="injury" id="accident-injury" onChange={(e) => this.handleSelect(e, 'accidentInjuryType')}>
+								       		<option value="">Please select the injury type</option>
 								            <option>Minor</option>
 								            <option>Major</option>
 								            <option>Fatal</option>
