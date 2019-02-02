@@ -41,8 +41,6 @@ class App extends Component {
   componentDidMount(){
       axios.get('http://localhost:3001/api')
       .then(response => {
-        console.log('accident data', response.data.accidentData)
-        console.log('theft data', response.data.theftData)
         this.setState({ accidentMarkers: response.data.accidentData });
         this.setState({ theftMarkers: response.data.theftData });
       })
@@ -58,6 +56,7 @@ class App extends Component {
     }
 
   render() {
+
     return (
       <div className="main-container">
         <NavBar />
