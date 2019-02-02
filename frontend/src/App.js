@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import NavBar from './NavBar';
 import LandingPage from './LandingPage';
-import MapGraphAction from './MapGraphAction';
+import MapContainer from './MapContainer';
 import axios from 'axios'
 import { Nav, NavLink } from 'reactstrap';
 
@@ -63,7 +63,7 @@ class App extends Component {
       <div className="main-container">
         <NavBar accidentMarkers={this.state.accidentMarkers} theftMarkers={this.state.theftMarkers} />
         {this.state.showMap ? (
-          <MapGraphAction accidentMarkers={this.state.accidentMarkers} theftMarkers={this.state.theftMarkers}/>
+          <MapContainer accidentMarkers={this.state.accidentMarkers} theftMarkers={this.state.theftMarkers}/>
         ) : (
           <LandingPage toggle={this.toggle} />
         )}
