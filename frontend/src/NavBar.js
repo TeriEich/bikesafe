@@ -21,9 +21,6 @@ import { InfoWindow, withGoogleMap, withScriptjs, GoogleMap, Marker } from 'reac
 import { compose, withStateHandlers } from "recompose";
 import axios from 'axios';
 
-// compose(fn, fn, fn)(pureComponent) => <Map prop/> prop => pureComponent
-// (props) => <jsx>
-
 const NEIGHBORHOODS = [
 'Agincourt South-Malvern West',
 'Alderwood',
@@ -202,21 +199,11 @@ export default class NavBar extends React.Component {
 			showingForm: null,
 			theftForm: false,
 			accidentForm: false,
-			theftInput: {
-				id: null,
-				location: {
-					type: { type: "point" },
-					coordinates: {lng: null, lat: null}
-				},
-				occurrenceYear: null,
-				occurrenceMonth: null,
-				occurrenceDay: null,
-				occurrenceTime: null,
-				bikeMake: null,
-				bikeModel: null,
-				neighbourhood: null,
-				source: "User Submitted Data"
-			},
+			theftLocation: "",
+			theftDate: "",
+			theftBikeMake: "",
+			theftBikeModel: "",
+			theftNeighbourhood: "",
 			accidentLocation: "",
 			accidentDate: "",
 			accidentYear: "",
@@ -224,26 +211,7 @@ export default class NavBar extends React.Component {
 			accidentLight: "",
 			accidentRoadConditions: "",
 			accidentInjuryType: "",
-			accidentNeighbourhood: "",
-			accidentInput: {
-				id: null,
-				location: {
-					type: { type: "point" },
-					coordinates: {lng: null, lat: null}
-				},
-				date: null,
-				year: null,
-				time: null,
-				hour: null,
-				street1: null,
-				street2: null,
-				visibility: null,
-				light: null,
-				roadConditions: null,
-				injuryType: null,
-				neighbourhood: null,
-				source: "User Submitted Data"
-			}
+			accidentNeighbourhood: ""
 		}
 	}
 
@@ -253,88 +221,52 @@ export default class NavBar extends React.Component {
 		});
 	}
 
-	handleClickedMap = (e) => {
+	handleClickedMap = (e, input) => {
     let latitude = e.latLng.lat()
-    let longtitude  = e.latLng.lat()
+    let longtitude  = e.latLng.lng()
     console.log(latitude, longtitude)
-    this.setState({ theftInput: {location: {coordinates: {lng: longtitude, lat: latitude} }}})
-		console.log(this.state.theftInput);
+    this.setState({
+    	[input]: {lng: longtitude, lat: latitude}
+    })
+    console.log('after map click', this.state)
 	}
 
-	handleTheftInputId = event => {this.setState((theftInput) => ({id: event.target.value }))}
-	handleTheftInputYear = event => {this.setState((theftInput) => ({occurrenceYear: event.target.value }))}
-	handleTheftInputMonth = event => {this.setState((theftInput) => ({occurrenceMonth: event.target.value }))}
-	handleTheftInputDay = event => {this.setState((theftInput) => ({occurrenceDay: event.target.value }))}
-	handleTheftInputTime = event => {this.setState((theftInput) => ({occurrenceTime: event.target.value }))}
-	handleTheftInputBikeMake = event => {this.setState((theftInput) => ({bikeMake: event.target.value }))}
-	handleTheftInputBikeModel = event => {this.setState((theftInput) => ({bikeModel: event.target.value }))}
-	handleTheftInputNeighbourhood = event => {this.setState((theftInput) => ({neighbourhood: event.target.value }))}
-
-
-	// handleAccidentInputId = event => {this.accidentInput.setState({ id: event.target.value })}
-	// handleAccidentInputLocation = event => {this.accidentInput.location.setState({ coordinates: [lng: ???, lat: ???] })}
-	// handleAccidentInputDate = event => {this.accidentInput.setState({ date: event.target.value })}
-	// handleAccidentInputYear = event => {this.accidentInput.setState({ year: event.target.value })}
-	// handleAccidentInputTime = event => {this.accidentInput.setState({ time: event.target.value })}
-	// handleAccidentInputHour = event => {this.accidentInput.setState({ hour: event.target.value })}
-	// handleAccidentInputStreet1 = event => {this.accidentInput.setState({ street1: event.target.value })}
-	// handleAccidentInputStreet2 = event => {this.accidentInput.setState({ street2: event.target.value })}
-	// handleAccidentInputVisibility = event => {this.accidentInput.setState({ visibility: event.target.value })}
-	// handleAccidentInputLight = event => {this.accidentInput.setState({ light: event.target.value })}
-	// handleAccidentInputRoadConditions = event => {this.accidentInput.setState({ roadConditions: event.target.value })}
-	// handleAccidentInputInjuryType = event => {this.accidentInput.setState({ injuryType: event.target.value })}
-	// handleAccidentInputNeighbourhood = event => {this.accidentInput.setState({ neighbourhood: event.target.value })}
-	// handleAccidentInputSource = event => {this.accidentInput.setState({ source: event.target.value })}
-
-
-
-
-	handleTheftSubmit = event => {
-    event.preventDefault();
-    axios.post('http://localhost:3001/api', {this.state.theftInput})
-      .then(res => {
-        console.log(res);
-        console.log(res.data);
-      })
-  }
-
- //  handleAccidentSubmit = event => {
- //    event.preventDefault();
-
- //    axios.post('http://localhost:3001/api',
- //      { id: this.state.theftInput.id,
- //      	location: {
-	// 				type: { type: "point" },
-	// 				coordinates: [this.state.theftInput.???]
-	// 			},
- //      	date: this.state.accidentInput.date,
-	// 			year: this.state.accidentInput.year,
-	// 			time: this.state.accidentInput.time,
-	// 			hour: this.state.accidentInput.hour,
-	// 			street1: this.state.accidentInput.street1,
-	// 			street2: this.state.accidentInput.street2,
-	// 			visibility: this.state.accidentInput.visibility,
-	// 			light: this.state.accidentInput.light,
-	// 			roadConditions: this.state.accidentInput.roadConditions,
-	// 			injuryType: this.state.accidentInput.injuryType,
-	// 			neighbourhood: this.state.accidentInput.neighbourhood,
-	// 			source: "User Submitted Data"
-	// 		  },
-	// 		)
- //      .then(res => {
- //        console.log(res);
- //        console.log(res.data);
- //      })
- //  }
-
-
- 	handleSelect = (e, input) => {
+	handleSelect = (e, input) => {
  		console.log('before', this.state)
  		this.setState({
  			[input]: e.target.value
  		})
  		console.log('after', this.state)
  	}
+
+	// handleTheftSubmit = event => {
+ //    event.preventDefault();
+ //    axios.post('http://localhost:3001/api', {this.state.theftInput})
+ //      .then(res => {
+ //        console.log(res);
+ //        console.log(res.data);
+ //      })
+ //  }
+
+  handleAccidentSubmit = event => {
+    event.preventDefault();
+
+    axios.post('http://localhost:3001/api/accident',
+      {
+      	location: this.state.accidentLocation,
+				date: this.state.accidentDate,
+				visibility: this.state.accidentVisibility,
+				light: this.state.accidentLight,
+				roadConditions: this.state.accidentRoadConditions,
+				injuryType: this.state.accidentInjuryType,
+				neighbourhood: this.state.accidentNeighbourhood
+			  }
+			)
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+      })
+  }
 
 	render() {
 		return (
@@ -358,7 +290,7 @@ export default class NavBar extends React.Component {
 								        <FormGroup>
 								          <Label for="accident-neighbourhood">Neighbourhood</Label>
 								          <Input type="select" value={this.state.accidentNeighbourhood} name="neighbourhood" id="accident-neighbourhood" onChange={(e) => this.handleSelect(e, 'accidentNeighbourhood')}>
-								          	<option value="">Please select the visibility conditions</option>
+								          	<option value="">Please select the neighbourhood</option>
 								          	{NEIGHBORHOODS.map((n) => <option>{n}</option>)}
 								          </Input>
 								        </FormGroup>
@@ -407,11 +339,11 @@ export default class NavBar extends React.Component {
 					                    loadingElement={<div style={{ height: `100%` }} />}
 					                    containerElement={<div style={{ height: `400px`, width: `475px` }} />}
 					                    mapElement={<div style={{ height: `100%` }} />}
-					                    onSubmit={this.handleClickedMap}
+					                    onSubmit={(e) => this.handleClickedMap(e, 'accidentLocation')}
 						                />
 							            </div>
 							          </FormGroup>
-								        <Button type="submit">Submit</Button>
+								        <Button type="submit" onClick={this.handleAccidentSubmit}>Submit</Button>
 								      </Form>
 										</Collapse>
 
@@ -421,28 +353,29 @@ export default class NavBar extends React.Component {
 											<Form onSubmit={this.handleTheftSubmit} >
 								        <FormGroup>
 								          <Label for="theft-date">Date</Label>
-								          <Input type="date" name="this.state.theftInput.date" id="theft-date" />
+								          <Input type="date" value={this.state.theftDate} name="date" id="theft-date" onChange={(e) => this.handleSelect(e, 'theftDate')}/>
 								        </FormGroup>
 								        <FormGroup>
 								          <Label for="theft-neighbourhood">Neighbourhood</Label>
-								          <Input type="select" name="this.state.theftInput.neighbourhood" onChange={this.handleTheftInputNeighbourhood} id="theft-neighbourhood">
+								          <Input type="select" value={this.state.theftNeighbourhood} name="neighbourhood" id="theft-neighbourhood" onChange={(e) => this.handleSelect(e, 'theftNeighbourhood')}>
+								          	<option value="">Please select the neighbourhood</option>
 								          	{NEIGHBORHOODS.map((n) => <option>{n}</option>)}
 								           </Input>
 								        </FormGroup>
 								        <FormGroup>
 								          <Label for="theft-bike-make">Bike Make</Label>
-								          <Input type="textarea" name="this.state.theftInput.bikeMake" onChange={this.handleTheftInputBikeMake} id="theft-bike-make">
+								          <Input type="textarea" value={this.state.theftBikeMake} name="bikeMake" id="theft-bike-make" onChange={(e) => this.handleSelect(e, 'theftBikeMake')} placeholder="Please input your bike make">
 								            <FormText color="muted"></FormText>
 								          </Input>
 								        </FormGroup>
 								        <FormGroup>
 								          <Label for="theft-bike-model">Bike Model</Label>
-								          <Input type="textarea" name="this.state.theftInput.bikeModel" onChange={this.handleTheftInputBikeModel} id="theft-bike-model">
+								          <Input type="textarea" value={this.state.theftBikeModel} name="bikeModel" id="theft-bike-model" onChange={(e) => this.handleSelect(e, 'theftBikeModel')} placeholder="Please input your bike model">
 								            <FormText color="muted"></FormText>
 								          </Input>
 								        </FormGroup>
 								        <FormGroup>
-								        	<Label for="theft-coordinates" name="this.state.theftInput.location.coordinates">Location of Theft</Label>
+								        	<Label for="theft-coordinates" name="coordinates">Location of Theft</Label>
 								          	<div style={{ height: '100%' }}>
 							                <Map
 							                	googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9OTpk-gYg9nuQ7R5vsWPpmr7U7pQq6Ow"

@@ -60,23 +60,32 @@ app.get("/api", (req, res) => {
 this is our POST method
 this method sends user generated data into the database
 */
-// app.post("/api", (req, res, next) => {
-//   let accident = new Accident({
-//     whatever: req.body.fkdjfkls
-//     // fill in
-//   });
-//   accident.save((err, result) => {
-//     if (err) {
-//       return res..status(500).json({
-//         success: false,
-//         error: err
-//       });
-//     }
-//     res.status(201).json({
-//       obj: result
-//     })
-//   })
-// });
+app.post("/api/accident", (req, res) => {
+
+  const newAccident = {
+    location: {
+      type: 'Point',
+      coordinates: [parseFloat(req.body.location.lng), parseFloat(req.body.location.lat)]
+    },
+    date: req.body.date,
+    year: req.body.date.substring(0, 4),
+    visibility: req.body.visibility,
+    light: req.body.light,
+    roadConditions: req.body.roadConditions,
+    injuryType: req.body.injuryType,
+    neighbourhood: req.body.neighbourhood,
+    source: 'User Submitted Data'
+  }
+
+  const finalAccident = new Accident(newAccident)
+    finalAccident.save({}, (err, success) => {
+    console.log('SAVE?', err)
+    console.log('SAVED', success);
+  });
+
+  console.log(req.body)
+  return res.json({ success: true })
+});
 
 // // this is our update method
 // // this method overwrites existing data in our database
