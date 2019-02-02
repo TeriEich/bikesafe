@@ -239,14 +239,23 @@ export default class NavBar extends React.Component {
  		console.log('after', this.state)
  	}
 
-	// handleTheftSubmit = event => {
- //    event.preventDefault();
- //    axios.post('http://localhost:3001/api', {this.state.theftInput})
- //      .then(res => {
- //        console.log(res);
- //        console.log(res.data);
- //      })
- //  }
+	handleTheftSubmit = event => {
+    event.preventDefault();
+
+    axios.post('http://localhost:3001/api/theft',
+    {
+    	location: this.state.theftLocation,
+    	date: this.state.theftDate,
+    	bikeMake: this.state.theftBikeMake,
+    	bikeModel: this.state.theftBikeModel,
+    	neighbourhood: this.state.theftNeighbourhood
+    	}
+    )
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+      })
+  }
 
   handleAccidentSubmit = event => {
     event.preventDefault();
@@ -382,11 +391,11 @@ export default class NavBar extends React.Component {
 						                    loadingElement={<div style={{ height: `100%` }} />}
 						                    containerElement={<div style={{ height: `400px`, width: `475px` }} />}
 						                    mapElement={<div style={{ height: `100%` }} />}
-						                    onSubmit={this.handleClickedMap}
+						                    onSubmit={(e) => this.handleClickedMap(e, 'theftLocation')}
 							                />
 								            </div>
 								        </FormGroup>
-								        <Button type="submit">Submit</Button>
+								        <Button type="submit" onClick={this.handleTheftSubmit}>Submit</Button>
 								      </Form>
 										</Collapse>
 									</ModalBody>

@@ -58,7 +58,7 @@ app.get("/api", (req, res) => {
 
 /*
 this is our POST method
-this method sends user generated data into the database
+this method sends user generated accident data into the database
 */
 app.post("/api/accident", (req, res) => {
 
@@ -86,6 +86,38 @@ app.post("/api/accident", (req, res) => {
   console.log(req.body)
   return res.json({ success: true })
 });
+
+/*
+this is our POST method
+this method sends user generated theft data into the database
+*/
+app.post("/api/theft", (req, res) => {
+
+  const newTheft = {
+    location: {
+      type: 'Point',
+      coordinates: [parseFloat(req.body.location.lng), parseFloat(req.body.location.lat)]
+    },
+    occurrenceYear: req.body.date.substring(0, 4),
+    occurrenceMonth: req.body.date.substring(5, 7),
+    occurrenceDay: req.body.date.substring(8, 10),
+    bikeMake: req.body.bikeMake,
+    bikeModel: req.body.bikeModel,
+    neighbourhood: req.body.neighbourhood,
+    source: 'User Submitted Data'
+  }
+
+  const finalTheft = new Theft(newTheft)
+    finalTheft.save({}, (err, success) => {
+    console.log('SAVE?', err)
+    console.log('SAVED', success);
+  });
+
+  console.log(req.body)
+  return res.json({ success: true })
+});
+
+
 
 // // this is our update method
 // // this method overwrites existing data in our database

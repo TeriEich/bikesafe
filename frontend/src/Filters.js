@@ -119,8 +119,8 @@ export default class Filters extends Component {
             </Collapse>
           </ModalBody>
           <ModalFooter>
-            <Button 
-            color="primary" 
+            <Button
+            color="primary"
             onClick={() => {
               this.props.applyFilters(this.state)
               this.toggleAllTheThings('accidentFilterShow')
@@ -156,7 +156,12 @@ export default class Filters extends Component {
 
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={() => this.toggleAllTheThings('theftFilterShow')}>Apply Filters</Button>{' '}
+            <Button
+            color="primary"
+            onClick={() => {
+              this.props.applyFilters(this.state)
+              this.toggleAllTheThings('theftFilterShow')
+            }}>Apply Filters</Button>{' '}
             <Button color="secondary" onClick={() => this.toggleAllTheThings('theftFilterShow')}>Cancel</Button>
           </ModalFooter>
         </Modal>
