@@ -19,6 +19,7 @@ import { Navbar,
 			 } from 'reactstrap'
 import { InfoWindow, withGoogleMap, withScriptjs, GoogleMap, Marker } from 'react-google-maps';
 import { compose, withStateHandlers } from "recompose";
+import axios from 'axios';
 
 // compose(fn, fn, fn)(pureComponent) => <Map prop/> prop => pureComponent
 // (props) => <jsx>
@@ -201,6 +202,40 @@ export default class NavBar extends React.Component {
 			showingForm: null,
 			theftForm: false,
 			accidentForm: false,
+			theftInput: {
+				id: null,
+				location: {
+					type: { type: "point" },
+					coordinates: {lng: null, lat: null}
+				},
+				occurrenceYear: null,
+				occurrenceMonth: null,
+				occurrenceDay: null,
+				occurrenceTime: null,
+				bikeMake: null,
+				bikeModel: null,
+				neighbourhood: null,
+				source: "User Submitted Data"
+			},
+			accidentInput: {
+				id: null,
+				location: {
+					type: { type: "point" },
+					coordinates: {lng: null, lat: null}
+				},
+				date: null,
+				year: null,
+				time: null,
+				hour: null,
+				street1: null,
+				street2: null,
+				visibility: null,
+				light: null,
+				roadConditions: null,
+				injuryType: null,
+				neighbourhood: null,
+				source: "User Submitted Data"
+			}
 		}
 	}
 
@@ -211,13 +246,95 @@ export default class NavBar extends React.Component {
 	}
 
 	handleClickedMap = (e) => {
-   let latitude = e.latLng.lat()
-   let longtitude  = e.latLng.lat()
-   console.log(latitude, longtitude)
+    let latitude = e.latLng.lat()
+    let longtitude  = e.latLng.lat()
+    console.log(latitude, longtitude)
+    this.setState({ theftInput: {location: {coordinates: {lng: longtitude, lat: latitude} }}})
+		console.log(this.state.theftInput);
 	}
 
-	// {this.props.accidentMarkers}
-	// {this.props.theftMarkers}
+	handleTheftInputId = event => {this.setState({ theftInput: { id: event.target.value }})}
+	// handleTheftInputLocation = event => {this.setState({ theftInput: location: {coordinates: [lng: ???, lat: ???] }})}
+	handleTheftInputYear = event => {this.setState({ theftInput: { occurrenceYear: event.target.value }})}
+	handleTheftInputMonth = event => {this.setState({ theftInput: { occurrenceMonth: event.target.value }})}
+	handleTheftInputDay = event => {this.setState({ theftInput: { occurrenceDay: event.target.value }})}
+	handleTheftInputTime = event => {this.setState({ theftInput: { occurrenceTime: event.target.value }})}
+	handleTheftInputBikeMake = event => {this.setState({ theftInput: { bikeMake: event.target.value }})}
+	handleTheftInputBikeModel = event => {this.setState({ theftInput: { bikeModel: event.target.value }})}
+	handleTheftInputNeighbourhood = event => {this.setState({ theftInput: { neighbourhood: event.target.value }})}
+	handleTheftInputSource = event => {this.setState({ theftInput: { source: event.target.value }})}
+
+	// handleAccidentInputId = event => {this.accidentInput.setState({ id: event.target.value })}
+	// handleAccidentInputLocation = event => {this.accidentInput.location.setState({ coordinates: [lng: ???, lat: ???] })}
+	// handleAccidentInputDate = event => {this.accidentInput.setState({ date: event.target.value })}
+	// handleAccidentInputYear = event => {this.accidentInput.setState({ year: event.target.value })}
+	// handleAccidentInputTime = event => {this.accidentInput.setState({ time: event.target.value })}
+	// handleAccidentInputHour = event => {this.accidentInput.setState({ hour: event.target.value })}
+	// handleAccidentInputStreet1 = event => {this.accidentInput.setState({ street1: event.target.value })}
+	// handleAccidentInputStreet2 = event => {this.accidentInput.setState({ street2: event.target.value })}
+	// handleAccidentInputVisibility = event => {this.accidentInput.setState({ visibility: event.target.value })}
+	// handleAccidentInputLight = event => {this.accidentInput.setState({ light: event.target.value })}
+	// handleAccidentInputRoadConditions = event => {this.accidentInput.setState({ roadConditions: event.target.value })}
+	// handleAccidentInputInjuryType = event => {this.accidentInput.setState({ injuryType: event.target.value })}
+	// handleAccidentInputNeighbourhood = event => {this.accidentInput.setState({ neighbourhood: event.target.value })}
+	// handleAccidentInputSource = event => {this.accidentInput.setState({ source: event.target.value })}
+
+
+
+
+	// handleTheftSubmit = event => {
+ //    event.preventDefault();
+
+ //    axios.post('http://localhost:3001/api',
+ //      { id: this.state.theftInput.id,
+ //      	location: {
+	// 				type: { type: "point" },
+	// 				coordinates: [this.state.theftInput.???]
+	// 			},
+ //      	occurrenceYear: this.state.theftInput.occurrenceYear,
+	// 			occurrenceMonth: this.state.theftInput.occurrenceMonth,
+	// 			occurrenceDay: this.state.theftInput.occurrenceDay,
+	// 			occurrenceTime: this.state.theftInput.occurrenceTime,
+	// 			bikeMake: this.state.theftInput.bikeMake,
+	// 			bikeModel: this.state.theftInput.bikeModel,
+	// 			neighbourhood: this.state.theftInput.neighbourhood,
+	// 			source: "User Submitted Data"
+	// 		  },
+	// 		)
+ //      .then(res => {
+ //        console.log(res);
+ //        console.log(res.data);
+ //      })
+ //  }
+
+ //  handleAccidentSubmit = event => {
+ //    event.preventDefault();
+
+ //    axios.post('http://localhost:3001/api',
+ //      { id: this.state.theftInput.id,
+ //      	location: {
+	// 				type: { type: "point" },
+	// 				coordinates: [this.state.theftInput.???]
+	// 			},
+ //      	date: this.state.accidentInput.date,
+	// 			year: this.state.accidentInput.year,
+	// 			time: this.state.accidentInput.time,
+	// 			hour: this.state.accidentInput.hour,
+	// 			street1: this.state.accidentInput.street1,
+	// 			street2: this.state.accidentInput.street2,
+	// 			visibility: this.state.accidentInput.visibility,
+	// 			light: this.state.accidentInput.light,
+	// 			roadConditions: this.state.accidentInput.roadConditions,
+	// 			injuryType: this.state.accidentInput.injuryType,
+	// 			neighbourhood: this.state.accidentInput.neighbourhood,
+	// 			source: "User Submitted Data"
+	// 		  },
+	// 		)
+ //      .then(res => {
+ //        console.log(res);
+ //        console.log(res.data);
+ //      })
+ //  }
 
 	render() {
 		return (
@@ -233,7 +350,7 @@ export default class NavBar extends React.Component {
 										<Button color="primary" onClick={() => this.setState({ 'showingForm': 'accidentForm' })}>Report a Bike Accident</Button>{' '}
 										<Button color="primary" onClick={() => this.setState({'showingForm' : 'theftForm' })}>Report a Bike Theft</Button>
 										<Collapse className="accident-report-show" isOpen={this.state.showingForm === 'accidentForm'}>
-											<Form>
+											<Form onSubmit={this.handleAccidentSubmit}>
 								        <FormGroup>
 								          <Label for="accident-date">Date</Label>
 								          <Input type="date" name="date" id="accident-date" />
@@ -289,14 +406,14 @@ export default class NavBar extends React.Component {
 						                />
 							            </div>
 							          </FormGroup>
-								        <Button>Submit</Button>
+								        <Button type="submit">Submit</Button>
 								      </Form>
 										</Collapse>
 										<Collapse className="theft-report-show" isOpen={this.state.showingForm === 'theftForm'}>
-											<Form>
+											<Form onSubmit={this.handleTheftSubmit} >
 								        <FormGroup>
 								          <Label for="theft-date">Date</Label>
-								          <Input type="date" name="date" id="theft-date" />
+								          <Input type="date" name="this.state.theftInput.date" id="theft-date" />
 								        </FormGroup>
 								        <FormGroup>
 								          <Label for="theft-neighbourhood">Neighbourhood</Label>
@@ -328,7 +445,7 @@ export default class NavBar extends React.Component {
 							                />
 								            </div>
 								        </FormGroup>
-								        <Button>Submit</Button>
+								        <Button type="submit">Submit</Button>
 								      </Form>
 										</Collapse>
 									</ModalBody>

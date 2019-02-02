@@ -55,6 +55,11 @@ app.get("/api", (req, res) => {
   })
 });
 
+app.post("/api"), (req, res) => {
+  const json = {};
+
+}
+
 // // this is our update method
 // // this method overwrites existing data in our database
 // router.post("/updateData", (req, res) => {
