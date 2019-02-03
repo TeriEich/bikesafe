@@ -1,42 +1,25 @@
 import React, { Component } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart, Pie, Cell, BarChart, Bar, AreaChart, Area } from 'recharts';
+import { Button, ButtonGroup } from 'reactstrap';
 
 export default class Graphs extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ChartData: [
-        {name: '2013', uv: 4000, pv: 2400, amt: 2400},
-        {name: '2014', uv: 3000, pv: 1398, amt: 2210},
-        {name: '2015', uv: 2000, pv: 9800, amt: 2290},
-        {name: '2016', uv: 2780, pv: 3908, amt: 2000},
-        {name: '2017', uv: 1890, pv: 4800, amt: 2181},
-        {name: '2018', uv: 2390, pv: 3800, amt: 2500},
-        {name: '2019', uv: 3490, pv: 4300, amt: 2100},
-        ],
-      BarChartData: [
-        {year: '2013', uv: 4000, pv: 2400, amt: 2400},
-        {year: '2014', uv: 3000, pv: 1398, amt: 2210},
-        {year: '2015', uv: 2000, pv: 9800, amt: 2290},
-        {year: '2016', uv: 2780, pv: 3908, amt: 2000},
-        {year: '2017', uv: 1890, pv: 4800, amt: 2181},
-        {year: '2018', uv: 2390, pv: 3800, amt: 2500},
-        {year: '2019', uv: 3490, pv: 4300, amt: 2100},
-        ],
-      PieChartData: [
-        {name: 'Group A', value: 400}, {name: 'Group B', value: 300},
-        {name: 'Group C', value: 300}, {name: 'Group D', value: 200}
-        ]
+      accidentRoadConditionsShow: true,
+      accidentLightConditionsShow: false,
+      accidentVisibilityShow: false
     }
   }
 
-
-
-
-
-
-
-
+toggleMap = (event, firstMap, secondMap, thirdMap) => {
+  this.setState({
+        [firstMap]: true,
+        [secondMap]: false,
+        [thirdMap]: false
+      })
+    } 
+  }
 
   render() {
 
@@ -62,6 +45,27 @@ export default class Graphs extends Component {
       { name: 'Major', value: 0 },
       { name: 'Fatal', value: 0 }
     ]
+
+
+    const accidentVisibilityData = [
+      { name: 'Clear', value: 0 },
+      { name: 'Rain', value: 0 },
+      { name: 'Other', value: 0 }
+    ]
+
+    const accidentRoadCondiitionsData = [
+      { name: 'Dry', value: 0 },
+      { name: 'Wet', value: 0 }
+    ]
+
+    const accidentLightConditionsData = [
+      { name: 'Dark', value: 0 },
+      { name: 'Dark, artificial', value: 0 },
+      { name: 'Daylight', value: 0 },
+      { name: 'Daylight, artificial', value: 0 },
+      { name: 'Dusk', value: 0 }
+    ]
+    
 
     this.props.accidentMarkers.forEach(accident => {
       switch (accident.year) {
@@ -115,6 +119,51 @@ export default class Graphs extends Component {
         case 'Fatal':
           accidentInjuryData[2].value = accidentInjuryData[2].value + 1;
         break;
+      }
+
+      if (this.state.accidentRoadConditionsShow) {
+        switch (accident.roadConditions) {
+          case 'Dry':
+            accidentRoadConditionsData[0].value = accidentInjuryData[0].value + 1;
+          break;
+          case 'Wet':
+            accidentRoadConditionsData[1].value = accidentInjuryData[1].value + 1;
+          break
+        }
+      }
+
+      if (this.state.accidentVisibilityShow) {
+        switch (accident.visibility) {
+          case 'Clear':
+            accidentVisibilityData[0].value = accidentInjuryData[0].value + 1;
+          break;
+          case 'Rain':
+            accidentVisibilityData[1].value = accidentInjuryData[1].value + 1;
+          break;
+          case 'Other':
+            accidentVisibilityData[2].value = accidentInjuryData[1].value + 1;
+          break;          
+        }
+      }
+
+      if (this.state.accidentLightConditionsShow) {
+        switch (accident.light) {
+          case 'Dark':
+            accidentLightConditionsData[0].value = accidentInjuryData[0].value + 1;
+          break;
+          case 'Dark, artificial':
+            accidentLightConditionsData[1].value = accidentInjuryData[1].value + 1;
+          break;
+          case 'Daylight':
+            accidentLightConditionsData[2].value = accidentInjuryData[1].value + 1;
+          break;  
+          case 'Daylight, artificial':
+            accidentLightConditionsData[3].value = accidentInjuryData[1].value + 1;
+          break; 
+            case 'Dusk':
+            accidentLightConditionsData[4].value = accidentInjuryData[1].value + 1;
+          break;         
+        }
       }
     })
 
@@ -181,6 +230,66 @@ export default class Graphs extends Component {
               }
             </Pie>
           </PieChart>
+
+          <ButtonGroup>
+            <Button onClick={(e) => this.toggleMap(e, 'accidentRoadConditionsShow', 'accidentVisibilityShow', 'accidentLightConditionsShow')}>Road Conditions</Button>
+            <Button onClick={(e) => this.toggleMap(e, 'accidentLightConditionsShow', 'accidentVisibilityShow', 'accidentRoadConditionsShow')}>Light Conditions</Button>
+            <Button onClick={(e) => this.toggleMap(e, 'accidentVisibilityShow', 'accidentLightConditionsShow', 'accidentRoadConditionsShow')}>Visibility</Button>
+          </ButtonGroup>
+
+          {this.state.accidentRoadConditionsShow && 
+          <PieChart
+            className="graph" id="graph-4" alt="graph"
+            width={800} height={600}
+            onMouseEnter={this.onPieEnter}>
+            <Pie
+              data={accidentRoadConditionsData}
+              labelLine={false}
+              label={accidentRoadConditionsData.name}
+              fill="#8884d8"
+            >
+              {
+                accidentRoadConditionsData.map((entry, index) => <Cell fill={colours[index % colours.length]}/>)
+              }
+            </Pie>
+          </PieChart>
+          }
+
+          {this.state.accidentLightConditionsShow && 
+          <PieChart
+            className="graph" id="graph-5" alt="graph"
+            width={800} height={600}
+            onMouseEnter={this.onPieEnter}>
+            <Pie
+              data={accidentLightConditionsData}
+              labelLine={false}
+              label={accidentLightConditionsData.name}
+              fill="#8884d8"
+            >
+              {
+                accidentLightConditionsData.map((entry, index) => <Cell fill={colours[index % colours.length]}/>)
+              }
+            </Pie>
+          </PieChart>
+          }
+
+          {this.state.accidentVisibilityShow && 
+          <PieChart
+            className="graph" id="graph-6" alt="graph"
+            width={800} height={600}
+            onMouseEnter={this.onPieEnter}>
+            <Pie
+              data={accidentVisibilityData}
+              labelLine={false}
+              label={accidentVisibilityData.name}
+              fill="#8884d8"
+            >
+              {
+                accidentVisibilityData.map((entry, index) => <Cell fill={colours[index % colours.length]}/>)
+              }
+            </Pie>
+          </PieChart>
+          }
         </div>
 
         <div className="theft-graphs">
