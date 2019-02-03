@@ -185,7 +185,10 @@ toggleTheftShow() {
           toggleTheftShow={this.toggleTheftShow}
           applyFilters={this.applyFilters}
         />
-        <Graphs />
+        <Graphs
+          accidentMarkers={accidentMarkers}
+          theftMarkers={theftMarkers}
+        />
       </div>
     );
   }

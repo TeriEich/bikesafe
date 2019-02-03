@@ -207,7 +207,7 @@ dusky turquoise: rgb(100, 170, 180);
 .accident-graphs {
   order: 1;
   width: 49%;
-  height: 99%;
+  /*height: 99%;*/
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -217,7 +217,7 @@ dusky turquoise: rgb(100, 170, 180);
 .theft-graphs {
   order: 2;
   width: 49%;
-  height: 99%;
+  /*height: 99%;*/
   display: flex;
   flex-direction: column;
   justify-content: center;
