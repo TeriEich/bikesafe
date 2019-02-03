@@ -22,6 +22,68 @@ export default class Graphs extends Component {
   }
 
   render() {
+    const accidentYearsData = [
+      {name: '2007', number: 0},
+      {name: '2008', number: 0},
+      {name: '2009', number: 0},
+      {name: '2010', number: 0},
+      {name: '2011', number: 0},
+      {name: '2012', number: 0},
+      {name: '2013', number: 0},
+      {name: '2014', number: 0},
+      {name: '2015', number: 0},
+      {name: '2016', number: 0},
+      {name: '2017', number: 0},
+      {name: '2018', number: 0},
+      {name: '2019', number: 0}
+    ]
+
+    accidentMarkers.forEach(accident => {
+      switch (accident.year{
+        case 2007:
+          accidentYearsData[0].number = accidentYearsData[0].number + 1;
+          break;
+        case 2008:
+          accidentYearsData[1].number = accidentYearsData[0].number + 1;
+          break;
+        case 2009:
+          accidentYearsData[2].number = accidentYearsData[0].number + 1;
+          break;
+        case 2010:
+          accidentYearsData[3].number = accidentYearsData[0].number + 1;
+          break;
+        case 2011:
+          accidentYearsData[4].number = accidentYearsData[0].number + 1;
+          break;
+        case 2012:
+          accidentYearsData[5].number = accidentYearsData[0].number + 1;
+          break;
+        case 2013:
+          accidentYearsData[6].number = accidentYearsData[0].number + 1;
+          break;
+        case 2014:
+          accidentYearsData[7].number = accidentYearsData[0].number + 1;
+          break;
+        case 2015:
+          accidentYearsData[8].number = accidentYearsData[0].number + 1;
+          break;
+        case 2016:
+          accidentYearsData[9].number = accidentYearsData[0].number + 1;
+          break;
+        case 2017:
+          accidentYearsData[10].number = accidentYearsData[0].number + 1;
+          break;
+        case 2018:
+          accidentYearsData[11].number = accidentYearsData[0].number + 1;
+          break;
+        case 2019:
+          accidentYearsData[12].number = accidentYearsData[0].number + 1;
+          break;
+      })
+    })
+
+    console.log(accidentYearsData)
+
     const colours = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
     const RADIAN = Math.PI / 180;
 
