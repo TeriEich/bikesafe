@@ -194,6 +194,8 @@ export default class NavBar extends React.Component {
 	constructor() {
 		super()
 		this.toggle = this.toggle.bind(this)
+    this.handleTheftValidation = this.handleTheftValidation.bind(this)
+    this.handleAccidentValidation = this.handleAccidentValidation.bind(this)
 		this.state = {
 			isOpen: false,
 			showingForm: null,
@@ -211,7 +213,8 @@ export default class NavBar extends React.Component {
 			accidentLight: "",
 			accidentRoadConditions: "",
 			accidentInjuryType: "",
-			accidentNeighbourhood: ""
+			accidentNeighbourhood: "",
+      errors: {}
 		}
 	}
 
@@ -239,27 +242,95 @@ export default class NavBar extends React.Component {
  		console.log('after', this.state)
  	}
 
+  handleTheftValidation(event) {
+    let errors = {};
+    let formIsValid = true;
+
+    // accidentLocation
+    if(!this.state.accidentLocation || this.state.accidentLocation === undefined) {
+      formIsValid = false;
+      errors["accidentLocation"] = "You must choose a location on the map";
+    }
+    // accidentDate
+    if(!this.state.accidentDate || this.state.accidentDate === undefined) {
+      formIsValid = false;
+      errors["accidentDate"] = "You must select a date";
+    }
+    // theftNeighbourhood
+    if(!this.state.theftNeighbourhood || this.state.theftNeighbourhood === undefined) {
+      formIsValid = false;
+      errors["theftNeighbourhood"] = "You must select a neighbourhood";
+    }
+
+    this.setState.errors({ errors : errors })
+    return formIsValid
+  }
+
+  handleAccidentValidation(event) {
+    let errors = {};
+    let formIsValid = true;
+
+    //accidentLocation
+    if(!this.state.accidentLocation || this.state.accidentLocation === undefined) {
+      formIsValid = false;
+      errors["accidentLocation"] = "You must choose a location on the map";
+    }
+    // accidentDate
+    if(!this.state.accidentDate || this.state.accidentDate === undefined) {
+      formIsValid = false;
+      errors["accidentDate"] = "You must select a date";
+    }
+    // accidentVisibility
+    if(!this.state.accidentVisibility || this.state.accidentVisibility === undefined) {
+      formIsValid = false;
+      errors["accidentVisibility"] = "You must select a visibility type";
+    }
+    // accidentLight
+    if(!this.state.accidentLight || this.state.accidentLight === undefined) {
+      formIsValid = false;
+      errors["accidentLight"] = "You must select the light conditions";
+    }
+    // accidentRoadConditions
+    if(!this.state.accidentRoadConditions || this.state.accidentRoadConditions === undefined) {
+      formIsValid = false;
+      errors["accidentRoadConditions"] = "You must select the road conditions";
+    }
+    // accidentNeighbourhood
+    if(!this.state.accidentNeighbourhood || this.state.accidentNeighbourhood === undefined) {
+      formIsValid = false;
+      errors["accidentNeighbourhood"] = "You must select a neighbourhood";
+    }
+
+    this.setState.errors({ errors : errors })
+    return formIsValid
+  }
+
 	handleTheftSubmit = event => {
     event.preventDefault();
-
-    axios.post('http://localhost:3001/api/theft',
-    {
-    	location: this.state.theftLocation,
-    	date: this.state.theftDate,
-    	bikeMake: this.state.theftBikeMake,
-    	bikeModel: this.state.theftBikeModel,
-    	neighbourhood: this.state.theftNeighbourhood
-    	}
-    )
-      .then(res => {
-        console.log(res);
-        console.log(res.data);
-      })
+    if(this.handleTheftValidation()) {
+      alert("Form Submitted!")
+      axios.post('http://localhost:3001/api/theft',
+      {
+      	location: this.state.theftLocation,
+      	date: this.state.theftDate,
+      	bikeMake: this.state.theftBikeMake,
+      	bikeModel: this.state.theftBikeModel,
+      	neighbourhood: this.state.theftNeighbourhood
+      	}
+      )
+        .then(res => {
+          console.log(res);
+          console.log(res.data);
+        })
+    } else {
+      alert("Form has errors!")
+    }
   }
 
   handleAccidentSubmit = event => {
     event.preventDefault();
-
+    if(this.handleAccidentValidation()) {
+      alert("Form Submitted!")
     axios.post('http://localhost:3001/api/accident',
       {
       	location: this.state.accidentLocation,
@@ -275,6 +346,9 @@ export default class NavBar extends React.Component {
         console.log(res);
         console.log(res.data);
       })
+    } else {
+      alert("Form has errors!")
+    }
   }
 
 	render() {
@@ -290,7 +364,9 @@ export default class NavBar extends React.Component {
 									<ModalBody>
 										<Button color="primary" onClick={() => this.setState({ 'showingForm': 'accidentForm' })}>Report a Bike Accident</Button>{' '}
 										<Button color="primary" onClick={() => this.setState({'showingForm' : 'theftForm' })}>Report a Bike Theft</Button>
-										<Collapse className="accident-report-show" isOpen={this.state.showingForm === 'accidentForm'}>
+
+
+                    <Collapse className="accident-report-show" isOpen={this.state.showingForm === 'accidentForm'}>
 											<Form onSubmit={this.handleAccidentSubmit}>
 								        <FormGroup>
 								          <Label for="accident-date">Date</Label>
