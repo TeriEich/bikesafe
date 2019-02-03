@@ -246,15 +246,15 @@ export default class NavBar extends React.Component {
     let errors = {};
     let formIsValid = true;
 
-    // accidentLocation
-    if(!this.state.accidentLocation || this.state.accidentLocation === undefined) {
+    // theftLocation
+    if(!this.state.theftLocation || this.state.theftLocation === undefined) {
       formIsValid = false;
-      errors["accidentLocation"] = "You must choose a location on the map";
+      errors["theftLocation"] = "You must choose a location on the map";
     }
-    // accidentDate
-    if(!this.state.accidentDate || this.state.accidentDate === undefined) {
+    // theftDate
+    if(!this.state.theftDate || this.state.theftDate === undefined) {
       formIsValid = false;
-      errors["accidentDate"] = "You must select a date";
+      errors["theftDate"] = "You must select a date";
     }
     // theftNeighbourhood
     if(!this.state.theftNeighbourhood || this.state.theftNeighbourhood === undefined) {
@@ -262,7 +262,7 @@ export default class NavBar extends React.Component {
       errors["theftNeighbourhood"] = "You must select a neighbourhood";
     }
 
-    this.setState.errors({ errors : errors })
+    this.setState({errors : errors})
     return formIsValid
   }
 
@@ -295,33 +295,38 @@ export default class NavBar extends React.Component {
       formIsValid = false;
       errors["accidentRoadConditions"] = "You must select the road conditions";
     }
+    // accidentInjuryType
+    if(!this.state.accidentInjuryType || this.state.accidentInjuryType === undefined) {
+      formIsValid = false;
+      errors["accidentInjuryType"] = "You must select an injuryType";
+    }
     // accidentNeighbourhood
     if(!this.state.accidentNeighbourhood || this.state.accidentNeighbourhood === undefined) {
       formIsValid = false;
       errors["accidentNeighbourhood"] = "You must select a neighbourhood";
     }
 
-    this.setState.errors({ errors : errors })
+    this.setState({errors : errors})
     return formIsValid
   }
 
 	handleTheftSubmit = event => {
     event.preventDefault();
     if(this.handleTheftValidation()) {
-      alert("Form Submitted!")
       axios.post('http://localhost:3001/api/theft',
-      {
-      	location: this.state.theftLocation,
-      	date: this.state.theftDate,
-      	bikeMake: this.state.theftBikeMake,
-      	bikeModel: this.state.theftBikeModel,
-      	neighbourhood: this.state.theftNeighbourhood
+        {
+        	location: this.state.theftLocation,
+        	date: this.state.theftDate,
+        	bikeMake: this.state.theftBikeMake,
+        	bikeModel: this.state.theftBikeModel,
+        	neighbourhood: this.state.theftNeighbourhood
       	}
       )
-        .then(res => {
-          console.log(res);
-          console.log(res.data);
-        })
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+      })
+      alert("Form has been submitted!")
     } else {
       alert("Form has errors!")
     }
@@ -330,22 +335,22 @@ export default class NavBar extends React.Component {
   handleAccidentSubmit = event => {
     event.preventDefault();
     if(this.handleAccidentValidation()) {
-      alert("Form Submitted!")
-    axios.post('http://localhost:3001/api/accident',
-      {
-      	location: this.state.accidentLocation,
-				date: this.state.accidentDate,
-				visibility: this.state.accidentVisibility,
-				light: this.state.accidentLight,
-				roadConditions: this.state.accidentRoadConditions,
-				injuryType: this.state.accidentInjuryType,
-				neighbourhood: this.state.accidentNeighbourhood
-			  }
-			)
+      axios.post('http://localhost:3001/api/accident',
+        {
+        	location: this.state.accidentLocation,
+  				date: this.state.accidentDate,
+  				visibility: this.state.accidentVisibility,
+  				light: this.state.accidentLight,
+  				roadConditions: this.state.accidentRoadConditions,
+  				injuryType: this.state.accidentInjuryType,
+  				neighbourhood: this.state.accidentNeighbourhood
+  			 }
+  		)
       .then(res => {
         console.log(res);
         console.log(res.data);
       })
+      alert("Form has been submitted!")
     } else {
       alert("Form has errors!")
     }
@@ -369,27 +374,30 @@ export default class NavBar extends React.Component {
                     <Collapse className="accident-report-show" isOpen={this.state.showingForm === 'accidentForm'}>
 											<Form onSubmit={this.handleAccidentSubmit}>
 								        <FormGroup>
-								          <Label for="accident-date">Date</Label>
+								          <Label for="accident-date">Date</Label><span style={{ color: 'red', fontSize: '11px', fontStyle: 'italic'}}> *field required</span>
 								          <Input value={this.state.accidentDate} type="date" name="date" id="accident-date" onChange={(e) => this.handleSelect(e, 'accidentDate')} />
-								        </FormGroup>
+								          <span className="error" style={{ color: 'red', fontSize: '13px', fontWeight: 'bold'}}>{this.state.errors["accidentDate"]}</span>
+                        </FormGroup>
 								        <FormGroup>
-								          <Label for="accident-neighbourhood">Neighbourhood</Label>
+								          <Label for="accident-neighbourhood">Neighbourhood</Label><span style={{ color: 'red', fontSize: '11px', fontStyle: 'italic'}}> *field required</span>
 								          <Input type="select" value={this.state.accidentNeighbourhood} name="neighbourhood" id="accident-neighbourhood" onChange={(e) => this.handleSelect(e, 'accidentNeighbourhood')}>
 								          	<option value="">Please select the neighbourhood</option>
 								          	{NEIGHBORHOODS.map((n) => <option>{n}</option>)}
 								          </Input>
+                          <span className="error" style={{ color: 'red', fontSize: '13px', fontWeight: 'bold'}}>{this.state.errors["accidentNeighbourhood"]}</span>
 								        </FormGroup>
 								        <FormGroup>
-								          <Label for="accident-visibility">Visibility</Label>
+								          <Label for="accident-visibility">Visibility</Label><span style={{ color: 'red', fontSize: '11px', fontStyle: 'italic'}}> *field required</span>
 								          <Input type="select" value={this.state.accidentVisibility} name="visibility" id="accident-visibility" onChange={(e) => this.handleSelect(e, 'accidentVisibility')}>
 								            <option value="">Please select the visibility conditions</option>
 								            <option>Clear</option>
 								            <option>Rain</option>
 								            <option>Other</option>
 								          </Input>
+                          <span className="error" style={{ color: 'red', fontSize: '13px', fontWeight: 'bold'}}>{this.state.errors["accidentVisibility"]}</span>
 								        </FormGroup>
 								        <FormGroup>
-								          <Label for="accident-light-conditions">Light Conditions</Label>
+								          <Label for="accident-light-conditions">Light Conditions</Label><span style={{ color: 'red', fontSize: '11px', fontStyle: 'italic'}}> *field required</span>
 								          <Input type="select" value={this.state.accidentLight} name="light-conditions" id="accident-light-conditions" onChange={(e) => this.handleSelect(e, 'accidentLight')}>
 								            <option value="">Please select the light conditions</option>
 								            <option>Daylight</option>
@@ -398,26 +406,29 @@ export default class NavBar extends React.Component {
 								            <option>Dark</option>
 								            <option>Dark, Artifical</option>
 								          </Input>
+                          <span className="error" style={{ color: 'red', fontSize: '13px', fontWeight: 'bold'}}>{this.state.errors["accidentLight"]}</span>
 								        </FormGroup>
 								        <FormGroup>
-								          <Label for="accident-road-conditions">Road Conditions</Label>
+								          <Label for="accident-road-conditions">Road Conditions</Label><span style={{ color: 'red', fontSize: '11px', fontStyle: 'italic'}}> *field required</span>
 								          <Input type="select" value={this.state.accidentRoadConditions} name="road-conditions" id="accident-road-conditions" onChange={(e) => this.handleSelect(e, 'accidentRoadConditions')}>
 								          	<option value="">Please select the road conditions</option>
 								            <option>Dry</option>
 								            <option>Wet</option>
 								          </Input>
+                          <span className="error" style={{ color: 'red', fontSize: '13px', fontWeight: 'bold'}}>{this.state.errors["accidentRoadConditions"]}</span>
 								        </FormGroup>
 								        <FormGroup>
-								          <Label for="accident-injury">Injury Type</Label>
+								          <Label for="accident-injury">Injury Type</Label><span style={{ color: 'red', fontSize: '11px', fontStyle: 'italic'}}> *field required</span>
 								          <Input type="select" value={this.state.accidentInjuryType} name="injury" id="accident-injury" onChange={(e) => this.handleSelect(e, 'accidentInjuryType')}>
 								       		<option value="">Please select the injury type</option>
 								            <option>Minor</option>
 								            <option>Major</option>
 								            <option>Fatal</option>
 								          </Input>
+                          <span className="error" style={{ color: 'red', fontSize: '13px', fontWeight: 'bold'}}>{this.state.errors["accidentInjuryType"]}</span>
 								        </FormGroup>
 							          <FormGroup>
-							          	<Label for="accident-coordinates">Location of Accident</Label>
+							          	<Label for="accident-coordinates">Location of Accident</Label><span style={{ color: 'red', fontSize: '11px', fontStyle: 'italic'}}> *field required</span>
 							          	<div style={{ height: '100%' }}>
 						                <Map
 						                	googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9OTpk-gYg9nuQ7R5vsWPpmr7U7pQq6Ow"
@@ -427,6 +438,7 @@ export default class NavBar extends React.Component {
 					                    onSubmit={(e) => this.handleClickedMap(e, 'accidentLocation')}
 						                />
 							            </div>
+                          <span className="error" style={{ color: 'red', fontSize: '13px', fontWeight: 'bold'}}>{this.state.errors["accidentLocation"]}</span>
 							          </FormGroup>
 								        <Button type="submit" onClick={this.handleAccidentSubmit}>Submit</Button>
 								      </Form>
@@ -437,15 +449,17 @@ export default class NavBar extends React.Component {
 										<Collapse className="theft-report-show" isOpen={this.state.showingForm === 'theftForm'}>
 											<Form onSubmit={this.handleTheftSubmit} >
 								        <FormGroup>
-								          <Label for="theft-date">Date</Label>
+								          <Label for="theft-date">Date</Label><span style={{ color: 'red', fontSize: '11px', fontStyle: 'italic'}}> *field required</span>
 								          <Input type="date" value={this.state.theftDate} name="date" id="theft-date" onChange={(e) => this.handleSelect(e, 'theftDate')}/>
-								        </FormGroup>
+								          <span className="error" style={{ color: 'red', fontSize: '13px', fontWeight: 'bold'}}>{this.state.errors["theftDate"]}</span>
+                        </FormGroup>
 								        <FormGroup>
-								          <Label for="theft-neighbourhood">Neighbourhood</Label>
+								          <Label for="theft-neighbourhood">Neighbourhood</Label><span style={{ color: 'red', fontSize: '11px', fontStyle: 'italic'}}> *field required</span>
 								          <Input type="select" value={this.state.theftNeighbourhood} name="neighbourhood" id="theft-neighbourhood" onChange={(e) => this.handleSelect(e, 'theftNeighbourhood')}>
 								          	<option value="">Please select the neighbourhood</option>
 								          	{NEIGHBORHOODS.map((n) => <option>{n}</option>)}
 								           </Input>
+                           <span className="error" style={{ color: 'red', fontSize: '13px', fontWeight: 'bold'}}>{this.state.errors["theftNeighbourhood"]}</span>
 								        </FormGroup>
 								        <FormGroup>
 								          <Label for="theft-bike-make">Bike Make</Label>
@@ -460,7 +474,7 @@ export default class NavBar extends React.Component {
 								          </Input>
 								        </FormGroup>
 								        <FormGroup>
-								        	<Label for="theft-coordinates" name="coordinates">Location of Theft</Label>
+								        	<Label for="theft-coordinates" name="coordinates">Location of Theft</Label><span style={{ color: 'red', fontSize: '11px', fontStyle: 'italic'}}> *field required</span>
 								          	<div style={{ height: '100%' }}>
 							                <Map
 							                	googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9OTpk-gYg9nuQ7R5vsWPpmr7U7pQq6Ow"
@@ -470,6 +484,7 @@ export default class NavBar extends React.Component {
 						                    onSubmit={(e) => this.handleClickedMap(e, 'theftLocation')}
 							                />
 								            </div>
+                            <span className="error" style={{ color: 'red', fontSize: '13px', fontWeight: 'bold'}}>{this.state.errors["theftLocation"]}</span>
 								        </FormGroup>
 								        <Button type="submit" onClick={this.handleTheftSubmit}>Submit</Button>
 								      </Form>
@@ -484,59 +499,3 @@ export default class NavBar extends React.Component {
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-// constructor(props) {
-//     super(props);
-//     this.state = {
-//       isHidden: true
-//     };
-//   }
-
-//   _openForm = () => this.setState({ isHidden: !this.state.isHidden });
-
-//   render() {
-//     return (
-//       <nav className="nav-bar">
-//         <h2 className="nav-brand">bikesafeTO</h2>
-//         <button className="report-form-btn" type="button" onClick={() => this._openForm()}>
-//           Submit a Report
-//         </button>
-//         { !this.state.isHidden &&
-//         <div id="report-form" placement="right" container={this}>
-//           <form>
-//             <div className="container-incident-type">
-//               <p>Are you reporting a theft or an accident?</p>
-//               <br/>
-//               <input type="radio" id="radio-theft" name="radioGroup" inline="true" />
-//               <label htmlFor="radio-theft">Theft</label>
-//               {' '}
-//               <input type="radio" id="radio-accident" name="radioGroup" inline="true" />
-//               <label htmlFor="radio-accident">Traffic Accident</label>
-//               {' '}
-//             </div>
-//             <div id="form-date-time">
-//               <label htmlFor="form-date-time">Select the date and approximate time of the incident</label>
-//               <br/>
-//               <input type="datetime-local" name="incident-datetime" />
-//             </div>
-//             <div className="form-submit">
-//               <button type="submit">Submit Report</button>
-//               <p>The submission of this form *DOES NOT* send any information to the Toronto Police.</p>
-//               <p>To file an official police report, please contact your local precinct for assistance.</p>
-//             </div>
-//           </form>
-//         </div> }
-//       </nav>
-//       );
-
-//   }
-// }
