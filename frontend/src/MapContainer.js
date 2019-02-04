@@ -46,7 +46,6 @@ export default class MapContainer extends Component {
 applyAccidentFilters(filters, initialCount) {
   console.log('apply filters function called');
   this.setState({
-    initialTheftCount: initialCount,
     initialAccidentCount: initialCount,
     accidentYear: filters.accidentYear,
     accidentYearChoices: filters.accidentYearChoices,
