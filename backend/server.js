@@ -51,8 +51,9 @@ app.get("/api", (req, res) => {
     Theft.find((err, thefts) => {
       if (err) return res.json({ success: false, error: err });
       json.theftData = thefts;
+      console.log('theft data', json.theftData)
       res.json(json);
-    }).limit(4000)
+    })
   })
 });
 
