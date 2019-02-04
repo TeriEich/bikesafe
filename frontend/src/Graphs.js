@@ -23,7 +23,6 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
 
   render() {
 
-
     const accidentYearsData = [
       {name: '2007', number_of_accidents: 0},
       {name: '2008', number_of_accidents: 0},
@@ -38,25 +37,24 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
       {name: '2017', number_of_accidents: 0},
       {name: '2018', number_of_accidents: 0},
       {name: '2019', number_of_accidents: 0}
-    ]
+    ];
 
     const accidentInjuryData = [
       { name: 'Minor', value: 0 },
       { name: 'Major', value: 0 },
       { name: 'Fatal', value: 0 }
-    ]
-
+    ];
 
     const accidentVisibilityData = [
       { name: 'Clear', value: 0 },
       { name: 'Rain', value: 0 },
       { name: 'Other', value: 0 }
-    ]
+    ];
 
     const accidentRoadCondiitionsData = [
       { name: 'Dry', value: 0 },
       { name: 'Wet', value: 0 }
-    ]
+    ];
 
     const accidentLightConditionsData = [
       { name: 'Dark', value: 0 },
@@ -64,8 +62,7 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
       { name: 'Daylight', value: 0 },
       { name: 'Daylight, artificial', value: 0 },
       { name: 'Dusk', value: 0 }
-    ]
-    
+    ];
 
     this.props.accidentMarkers.forEach(accident => {
       switch (accident.year) {
@@ -108,7 +105,7 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
         case 2019:
           accidentYearsData[12].number_of_accidents = accidentYearsData[12].number_of_accidents + 1;
           break;
-      }
+      };
       switch (accident.injuryType) {
         case 'Minor':
           accidentInjuryData[0].value = accidentInjuryData[0].value + 1;
@@ -119,7 +116,7 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
         case 'Fatal':
           accidentInjuryData[2].value = accidentInjuryData[2].value + 1;
         break;
-      }
+      };
 
       if (this.state.accidentRoadConditionsShow) {
         switch (accident.roadConditions) {
@@ -128,9 +125,9 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
           break;
           case 'Wet':
             accidentRoadConditionsData[1].value = accidentInjuryData[1].value + 1;
-          break
+          break;
         }
-      }
+      };
 
       if (this.state.accidentVisibilityShow) {
         switch (accident.visibility) {
@@ -144,7 +141,7 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
             accidentVisibilityData[2].value = accidentInjuryData[1].value + 1;
           break;          
         }
-      }
+      };
 
       if (this.state.accidentLightConditionsShow) {
         switch (accident.light) {
@@ -163,26 +160,24 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
             case 'Dusk':
             accidentLightConditionsData[4].value = accidentInjuryData[1].value + 1;
           break;         
-        }
-      }
-    })
-
-    console.log('accidentInjuryData: ', accidentInjuryData);
+        };
+      };
+    });
 
     const colours = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
-    const RADIAN = Math.PI / 180;
+    // const RADIAN = Math.PI / 180;
 
-    const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
-      const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-      const x  = cx + radius * Math.cos(-midAngle * RADIAN);
-      const y = cy  + radius * Math.sin(-midAngle * RADIAN);
+    // const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
+    //   const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+    //   const x  = cx + radius * Math.cos(-midAngle * RADIAN);
+    //   const y = cy  + radius * Math.sin(-midAngle * RADIAN);
 
-      return (
-        <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'}  dominantBaseline="central">
-          {`${(percent * 100).toFixed(0)}%`}
-        </text>
-      );
-    };
+    //   return (
+    //     <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'}  dominantBaseline="central">
+    //       {`${(percent * 100).toFixed(0)}%`}
+    //     </text>
+    //   );
+    // };
 
     return (
       <div className="container-graphs">
@@ -238,58 +233,59 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
           </ButtonGroup>
 
           {this.state.accidentRoadConditionsShow && 
-          <PieChart
-            className="graph" id="graph-4" alt="graph"
-            width={800} height={600}
-            onMouseEnter={this.onPieEnter}>
-            <Pie
-              data={accidentRoadConditionsData}
-              labelLine={false}
-              label={accidentRoadConditionsData.name}
-              fill="#8884d8"
-            >
-              {
-                accidentRoadConditionsData.map((entry, index) => <Cell fill={colours[index % colours.length]}/>)
-              }
-            </Pie>
-          </PieChart>
-          }
+            <PieChart
+              className="graph" id="graph-4" alt="graph"
+              width={800} height={600}
+              onMouseEnter={this.onPieEnter}>
+              <Pie
+                data={accidentRoadConditionsData}
+                labelLine={false}
+                label={accidentRoadConditionsData.name}
+                fill="#8884d8"
+              >
+                {
+                  accidentRoadConditionsData.map((entry, index) => <Cell fill={colours[index % colours.length]}/>)
+                }
+              </Pie>
+            </PieChart>
+          };
 
           {this.state.accidentLightConditionsShow && 
-          <PieChart
-            className="graph" id="graph-5" alt="graph"
-            width={800} height={600}
-            onMouseEnter={this.onPieEnter}>
-            <Pie
-              data={accidentLightConditionsData}
-              labelLine={false}
-              label={accidentLightConditionsData.name}
-              fill="#8884d8"
-            >
-              {
-                accidentLightConditionsData.map((entry, index) => <Cell fill={colours[index % colours.length]}/>)
-              }
-            </Pie>
-          </PieChart>
-          }
+            <PieChart
+              className="graph" id="graph-5" alt="graph"
+              width={800} height={600}
+              onMouseEnter={this.onPieEnter}>
+              <Pie
+                data={accidentLightConditionsData}
+                labelLine={false}
+                label={accidentLightConditionsData.name}
+                fill="#8884d8"
+              >
+                {
+                  accidentLightConditionsData.map((entry, index) => <Cell fill={colours[index % colours.length]}/>)
+                }
+              </Pie>
+            </PieChart>
+          };
 
           {this.state.accidentVisibilityShow && 
-          <PieChart
-            className="graph" id="graph-6" alt="graph"
-            width={800} height={600}
-            onMouseEnter={this.onPieEnter}>
-            <Pie
-              data={accidentVisibilityData}
-              labelLine={false}
-              label={accidentVisibilityData.name}
-              fill="#8884d8"
-            >
-              {
-                accidentVisibilityData.map((entry, index) => <Cell fill={colours[index % colours.length]}/>)
-              }
-            </Pie>
-          </PieChart>
-          }
+            <PieChart
+              className="graph" id="graph-6" alt="graph"
+              width={800} height={600}
+              onMouseEnter={this.onPieEnter}>
+              <Pie
+                data={accidentVisibilityData}
+                labelLine={false}
+                label={accidentVisibilityData.name}
+                fill="#8884d8"
+              >
+                {
+                  accidentVisibilityData.map((entry, index) => <Cell fill={colours[index % colours.length]}/>)
+                }
+              </Pie>
+            </PieChart>
+          };
+
         </div>
 
         <div className="theft-graphs">
@@ -323,6 +319,6 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
         </div>
 
       </div>
-      );
+      )
   }
 }
