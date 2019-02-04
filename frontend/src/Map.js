@@ -12,7 +12,20 @@ class MainMap extends Component {
 
     if (showAccidents) {
       markers = this.props.accidentMarkers.map(marker => {
-        return <AccidentMarkers key = {marker._id} date = {marker.date} lat = {marker.location.coordinates[1]} lng = {marker.location.coordinates[0]} injuryType = {marker.injuryType} neighbourhood = {marker.neighbourhood} roadConditions = {marker.roadConditions} visibility = {marker.visibility} street1 = {marker.street1} street2 = {marker.street2} source = {marker.source} light = {marker.light} />
+        return <AccidentMarkers
+                  key={marker._id}
+                  date={marker.date}
+                  lat={marker.location.coordinates[1]}
+                  lng={marker.location.coordinates[0]}
+                  injuryType={marker.injuryType}
+                  neighbourhood={marker.neighbourhood}
+                  roadConditions={marker.roadConditions}
+                  visibility={marker.visibility}
+                  street1={marker.street1}
+                  street2={marker.street2}
+                  source={marker.source}
+                  light={marker.light}
+                />
       });
     }
 
@@ -25,7 +38,19 @@ class MainMap extends Component {
 
     if (showThefts) {
       markers = this.props.theftMarkers.map(marker => {
-        return <TheftMarkers key = {marker._id} occurrenceDay = {marker.occurrenceDay} occurrenceMonth = {marker.occurrenceMonth} occurrenceYear = {marker.occurrenceYear} lat = {marker.location.coordinates[1]} lng = {marker.location.coordinates[0]} neighbourhood = {marker.neighbourhood} bikeMake = {marker.bikeMake} bikeModel = {marker.bikeModel} source = {marker.source} />
+        return <TheftMarkers
+                  key={marker._id}
+                  occurrenceDay={marker.occurrenceDay}
+                  occurrenceMonth={marker.occurrenceMonth}
+                  occurrenceYear={marker.occurrenceYear}
+                  lat={marker.location.coordinates[1]}
+                  lng={marker.location.coordinates[0]}
+                  neighbourhood={marker.neighbourhood}
+                  bikeType={marker.bikeType}
+                  bikeMake={marker.bikeMake}
+                  bikeModel={marker.bikeModel}
+                  source={marker.source}
+                />
       });
     }
 

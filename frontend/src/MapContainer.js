@@ -27,6 +27,8 @@ export default class MapContainer extends Component {
       theftYearChoices: [],
       theftSource: false,
       theftSourceChoices: [],
+      theftBikeType: false,
+      theftBikeTypeChoices: [],
       theftNeighbourhood: false,
       theftNeighbourhoodChoices: [],
       initialAccidentCount: 0,
@@ -76,6 +78,8 @@ applyTheftFilters(filters, initialCount) {
     theftYearChoices: filters.theftYearChoices,
     theftSource: filters.theftSource,
     theftSourceChoices: filters.theftSourceChoices,
+    theftBikeType: filters.theftBikeType,
+    theftBikeTypeChoices: filters.theftBikeTypeChoices,
     theftNeighbourhood: filters.theftNeighbourhood,
     theftNeighbourhoodChoices: filters.theftNeighbourhoodChoices
   })
@@ -94,6 +98,13 @@ createFilteredTheftMarkers() {
     theftMarkers = theftMarkers.filter(marker => {
       let neighbourhood = marker.neighbourhood.substring(0, (marker.neighbourhood.indexOf("(") - 1));
       if (this.state.theftNeighbourhoodChoices.includes(neighbourhood)) {
+        return true
+      }
+    })
+  }
+  if (this.state.theftBikeType && this.state.theftBikeTypeChoices.length > 0) {
+    theftMarkers = theftMarkers.filter(marker => {
+      if (this.state.theftBikeTypeChoices.includes(marker.bikeType)) {
         return true
       }
     })
