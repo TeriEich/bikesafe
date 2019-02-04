@@ -126,7 +126,7 @@ export default class Filters extends Component {
             <Button
               color="primary"
               onClick={ () => {
-                this.props.applyFilters(this.state)
+                this.props.applyAccidentFilters(this.state, this.props.accidentMarkers.length)
                 this.toggleAllTheThings('accidentFilterShow')
               } } >Apply Filters</Button>{' '}
             <Button color="secondary" onClick={() => this.toggleAllTheThings('accidentFilterShow')}>Cancel</Button>
@@ -163,7 +163,7 @@ export default class Filters extends Component {
             <Button
               color="primary"
               onClick={ () => {
-                this.props.applyFilters(this.state)
+                this.props.applyTheftFilters(this.state, this.props.theftMarkers.length)
                 this.toggleAllTheThings('theftFilterShow')
               } } >Apply Filters</Button>{' '}
             <Button color="secondary" onClick={() => this.toggleAllTheThings('theftFilterShow')}>Cancel</Button>
