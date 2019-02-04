@@ -148,8 +148,6 @@ dusky turquoise: rgb(100, 170, 180);
 }
 
 .map-container {
-  /*margin: auto;*/
-  /*width: 99%;*/
   margin-top: 4.5em;
 }
 
@@ -170,7 +168,6 @@ dusky turquoise: rgb(100, 170, 180);
   background-color: #00223e;
   font-family: 'Josefin Sans', sans-serif;
   font-size: 1.2em;
-  /*font-weight: bold;*/
   color: #F8F8F8;
 }
 
@@ -199,7 +196,7 @@ dusky turquoise: rgb(100, 170, 180);
   flex-direction: row;
   flex-wrap: wrap;
   margin: auto;
-  padding-bottom: 6em;
+  padding: 2em 2em 6em 2em;
   width: 100%;
   height: auto;
   justify-content: space-between;
@@ -207,10 +204,31 @@ dusky turquoise: rgb(100, 170, 180);
 
 }
 
+.accident-graphs {
+  order: 1;
+  width: 49%;
+  /*height: 99%;*/
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.theft-graphs {
+  order: 2;
+  width: 49%;
+  /*height: 99%;*/
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
 .graph {
   flex-grow: 1;
-  width: 40%;
-  height: 44%;
+  width: 99%;
+  height: 49%;
   object-fit: contain;
   margin: 2em;
   padding: 1em;
@@ -230,13 +248,13 @@ dusky turquoise: rgb(100, 170, 180);
 }
 
 #graph-3 {
-  order: 3;
+  order: 1;
   border-color: #D9B310;
 
 }
 
 #graph-4 {
-  order: 4;
+  order: 2;
   border-color: #00223e;
 }
 

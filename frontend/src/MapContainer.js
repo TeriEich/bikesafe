@@ -28,19 +28,36 @@ export default class MapContainer extends Component {
       theftSource: false,
       theftSourceChoices: [],
       theftNeighbourhood: false,
-      theftNeighbourhoodChoices: []
+      theftNeighbourhoodChoices: [],
+      initialAccidentCount: 0,
+      initialTheftCount: 0
     };
     this.toggleAccidentShow = this.toggleAccidentShow.bind(this)
     this.toggleTheftShow = this.toggleTheftShow.bind(this)
     this.createFilteredAccidentMarkers = this.createFilteredAccidentMarkers.bind(this)
     this.createFilteredTheftMarkers = this.createFilteredTheftMarkers.bind(this)
-    this.applyFilters = this.applyFilters.bind(this)
+    this.applyAccidentFilters = this.applyAccidentFilters.bind(this)
+    this.applyTheftFilters = this.applyTheftFilters.bind(this)
   }
 
 
-applyFilters(filters) {
+applyAccidentFilters(filters, initialCount) {
   console.log('apply filters function called');
   this.setState({
+    initialTheftCount: initialCount,
+    theftYear: filters.theftYear,
+    theftYearChoices: filters.theftYearChoices,
+    theftSource: filters.theftSource,
+    theftSourceChoices: filters.theftSourceChoices,
+    theftNeighbourhood: filters.theftNeighbourhood,
+    theftNeighbourhoodChoices: filters.theftNeighbourhoodChoices
+  })
+};
+
+applyTheftFilters(filters, initialCount) {
+  console.log('apply filters function called');
+  this.setState({
+    initialAccidentCount: initialCount,
     accidentYear: filters.accidentYear,
     accidentYearChoices: filters.accidentYearChoices,
     accidentSource: filters.accidentSource,
@@ -62,7 +79,7 @@ applyFilters(filters) {
     theftNeighbourhood: filters.theftNeighbourhood,
     theftNeighbourhoodChoices: filters.theftNeighbourhoodChoices
   })
-}
+};
 
 // test sourceFilters
 createFilteredTheftMarkers() {
@@ -183,9 +200,17 @@ toggleTheftShow() {
           toggleAccidentShow={this.toggleAccidentShow}
           showThefts={this.state.showThefts}
           toggleTheftShow={this.toggleTheftShow}
-          applyFilters={this.applyFilters}
+          applyTheftFilters={this.applyTheftFilters}
+          applyAccidentFilters={this.applyAccidentFilters}
+          accidentMarkers={accidentMarkers}
+          theftMarkers={theftMarkers}
         />
-        <Graphs />
+        <Graphs
+          accidentMarkers={accidentMarkers}
+          theftMarkers={theftMarkers}
+          initialAccidentCount={this.state.initialAccidentCount}
+          initialTheftCount={this.state.initialTheftCount}
+        />
       </div>
     );
   }

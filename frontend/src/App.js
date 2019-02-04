@@ -49,6 +49,7 @@ class App extends Component {
       })
     }
 
+
     toggle = () => {
       this.setState({
         showMap: true
@@ -59,7 +60,7 @@ class App extends Component {
 
     return (
       <div className="main-container">
-        <NavBar />
+        <NavBar accidentMarkers={this.state.accidentMarkers} theftMarkers={this.state.theftMarkers} />
         {this.state.showMap ? (
           <MapContainer accidentMarkers={this.state.accidentMarkers} theftMarkers={this.state.theftMarkers}/>
         ) : (
