@@ -340,10 +340,11 @@ export default class NavBar extends React.Component {
         {
         	location: this.state.theftLocation,
         	date: this.state.theftDate,
-          bikeType: this.state.bikeType,
+          bikeType: this.state.theftBikeType,
         	bikeMake: this.state.theftBikeMake,
         	bikeModel: this.state.theftBikeModel,
-        	neighbourhood: this.state.theftNeighbourhood
+        	neighbourhood: this.state.theftNeighbourhood,
+          source: "User Submitted Data"
       	}
       )
       .then(res => {
@@ -353,10 +354,9 @@ export default class NavBar extends React.Component {
       this.setState({
         isOpen: false
       })
-    } else {
-      alert("Form has errors!")
     }
   }
+
 
   handleAccidentSubmit = event => {
     event.preventDefault();
@@ -369,7 +369,8 @@ export default class NavBar extends React.Component {
   				light: this.state.accidentLight,
   				roadConditions: this.state.accidentRoadConditions,
   				injuryType: this.state.accidentInjuryType,
-  				neighbourhood: this.state.accidentNeighbourhood
+  				neighbourhood: this.state.accidentNeighbourhood,
+          source: "User Submitted Data"
   			 }
   		)
       .then(res => {
@@ -379,8 +380,6 @@ export default class NavBar extends React.Component {
       this.setState({
         isOpen: false
       })
-    } else {
-      alert("Form has errors!")
     }
   }
 

@@ -52,7 +52,7 @@ app.get("/api", (req, res) => {
       if (err) return res.json({ success: false, error: err });
       json.theftData = thefts;
       res.json(json);
-    }).limit(4000)
+    })
   })
 });
 
@@ -101,6 +101,7 @@ app.post("/api/theft", (req, res) => {
     occurrenceYear: req.body.date.substring(0, 4),
     occurrenceMonth: req.body.date.substring(5, 7),
     occurrenceDay: req.body.date.substring(8, 10),
+    bikeType: req.body.bikeType,
     bikeMake: req.body.bikeMake,
     bikeModel: req.body.bikeModel,
     neighbourhood: req.body.neighbourhood,
