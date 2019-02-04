@@ -39,8 +39,9 @@ app.use(bodyParser.json());
 app.use(logger("dev"));
 
 /*
-this is our get method
-this method fetches all available data in our database*/
+this is our GET method
+this method fetches all available data in our database
+*/
 app.get("/api", (req, res) => {
   const json = {};
   Accident.find((err, accidents) => {
@@ -55,10 +56,68 @@ app.get("/api", (req, res) => {
   })
 });
 
-app.post("/api"), (req, res) => {
-  const json = {};
+/*
+this is our POST method
+this method sends user generated accident data into the database
+*/
+app.post("/api/accident", (req, res) => {
 
-}
+  const newAccident = {
+    location: {
+      type: 'Point',
+      coordinates: [parseFloat(req.body.location.lng), parseFloat(req.body.location.lat)]
+    },
+    date: req.body.date,
+    year: req.body.date.substring(0, 4),
+    visibility: req.body.visibility,
+    light: req.body.light,
+    roadConditions: req.body.roadConditions,
+    injuryType: req.body.injuryType,
+    neighbourhood: req.body.neighbourhood,
+    source: 'User Submitted Data'
+  }
+
+  const finalAccident = new Accident(newAccident)
+    finalAccident.save({}, (err, success) => {
+    console.log('SAVE?', err)
+    console.log('SAVED', success);
+  });
+
+  console.log(req.body)
+  return res.json({ success: true })
+});
+
+/*
+this is our POST method
+this method sends user generated theft data into the database
+*/
+app.post("/api/theft", (req, res) => {
+
+  const newTheft = {
+    location: {
+      type: 'Point',
+      coordinates: [parseFloat(req.body.location.lng), parseFloat(req.body.location.lat)]
+    },
+    occurrenceYear: req.body.date.substring(0, 4),
+    occurrenceMonth: req.body.date.substring(5, 7),
+    occurrenceDay: req.body.date.substring(8, 10),
+    bikeMake: req.body.bikeMake,
+    bikeModel: req.body.bikeModel,
+    neighbourhood: req.body.neighbourhood,
+    source: 'User Submitted Data'
+  }
+
+  const finalTheft = new Theft(newTheft)
+    finalTheft.save({}, (err, success) => {
+    console.log('SAVE?', err)
+    console.log('SAVED', success);
+  });
+
+  console.log(req.body)
+  return res.json({ success: true })
+});
+
+
 
 // // this is our update method
 // // this method overwrites existing data in our database

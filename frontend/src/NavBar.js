@@ -21,9 +21,6 @@ import { InfoWindow, withGoogleMap, withScriptjs, GoogleMap, Marker } from 'reac
 import { compose, withStateHandlers } from "recompose";
 import axios from 'axios';
 
-// compose(fn, fn, fn)(pureComponent) => <Map prop/> prop => pureComponent
-// (props) => <jsx>
-
 const NEIGHBORHOODS = [
 'Agincourt South-Malvern West',
 'Alderwood',
@@ -163,6 +160,23 @@ const NEIGHBORHOODS = [
 'Yorkdale-Glen Park'
 ]
 
+const TYPES = [
+"BMX",
+"Electric",
+"Folding",
+"Mountain",
+"Other",
+"Racer",
+"Recumbant",
+"Regular",
+"Scooter",
+"Tandem",
+"Touring",
+"Tricycle",
+"Unicycle",
+"Type Unknown"
+]
+
 const Map = compose(
     withStateHandlers(() => ({
 	      isMarkerShown: false,
@@ -184,7 +198,7 @@ const Map = compose(
 	}
 
 	return <GoogleMap
-    defaultZoom={12}
+    defaultZoom={14}
     defaultCenter={{ lat: 43.653226, lng: -79.3831843 }}
     onClick={handleClick}
   >
@@ -197,26 +211,19 @@ export default class NavBar extends React.Component {
 	constructor() {
 		super()
 		this.toggle = this.toggle.bind(this)
+    this.handleTheftValidation = this.handleTheftValidation.bind(this)
+    this.handleAccidentValidation = this.handleAccidentValidation.bind(this)
 		this.state = {
 			isOpen: false,
 			showingForm: null,
 			theftForm: false,
 			accidentForm: false,
-			theftInput: {
-				id: null,
-				location: {
-					type: { type: "point" },
-					coordinates: {lng: null, lat: null}
-				},
-				occurrenceYear: null,
-				occurrenceMonth: null,
-				occurrenceDay: null,
-				occurrenceTime: null,
-				bikeMake: null,
-				bikeModel: null,
-				neighbourhood: null,
-				source: "User Submitted Data"
-			},
+			theftLocation: "",
+			theftDate: "",
+      theftBikeType: "",
+			theftBikeMake: "",
+			theftBikeModel: "",
+			theftNeighbourhood: "",
 			accidentLocation: "",
 			accidentDate: "",
 			accidentYear: "",
@@ -225,25 +232,7 @@ export default class NavBar extends React.Component {
 			accidentRoadConditions: "",
 			accidentInjuryType: "",
 			accidentNeighbourhood: "",
-			accidentInput: {
-				id: null,
-				location: {
-					type: { type: "point" },
-					coordinates: {lng: null, lat: null}
-				},
-				date: null,
-				year: null,
-				time: null,
-				hour: null,
-				street1: null,
-				street2: null,
-				visibility: null,
-				light: null,
-				roadConditions: null,
-				injuryType: null,
-				neighbourhood: null,
-				source: "User Submitted Data"
-			}
+      errors: {}
 		}
 	}
 
@@ -253,105 +242,147 @@ export default class NavBar extends React.Component {
 		});
 	}
 
-	handleClickedMap = (e) => {
+	handleClickedMap = (e, input) => {
     let latitude = e.latLng.lat()
-    let longtitude  = e.latLng.lat()
+    let longtitude  = e.latLng.lng()
     console.log(latitude, longtitude)
-    this.setState({ theftInput: {location: {coordinates: {lng: longtitude, lat: latitude} }}})
-		console.log(this.state.theftInput);
+    this.setState({
+    	[input]: {lng: longtitude, lat: latitude}
+    })
+    console.log('after map click', this.state)
 	}
 
-	handleTheftInputId = event => {this.setState({ theftInput: { id: event.target.value }})}
-	// handleTheftInputLocation = event => {this.setState({ theftInput: location: {coordinates: [lng: ???, lat: ???] }})}
-	handleTheftInputYear = event => {this.setState({ theftInput: { occurrenceYear: event.target.value }})}
-	handleTheftInputMonth = event => {this.setState({ theftInput: { occurrenceMonth: event.target.value }})}
-	handleTheftInputDay = event => {this.setState({ theftInput: { occurrenceDay: event.target.value }})}
-	handleTheftInputTime = event => {this.setState({ theftInput: { occurrenceTime: event.target.value }})}
-	handleTheftInputBikeMake = event => {this.setState({ theftInput: { bikeMake: event.target.value }})}
-	handleTheftInputBikeModel = event => {this.setState({ theftInput: { bikeModel: event.target.value }})}
-	handleTheftInputNeighbourhood = event => {this.setState({ theftInput: { neighbourhood: event.target.value }})}
-	handleTheftInputSource = event => {this.setState({ theftInput: { source: event.target.value }})}
-
-	// handleAccidentInputId = event => {this.accidentInput.setState({ id: event.target.value })}
-	// handleAccidentInputLocation = event => {this.accidentInput.location.setState({ coordinates: [lng: ???, lat: ???] })}
-	// handleAccidentInputDate = event => {this.accidentInput.setState({ date: event.target.value })}
-	// handleAccidentInputYear = event => {this.accidentInput.setState({ year: event.target.value })}
-	// handleAccidentInputTime = event => {this.accidentInput.setState({ time: event.target.value })}
-	// handleAccidentInputHour = event => {this.accidentInput.setState({ hour: event.target.value })}
-	// handleAccidentInputStreet1 = event => {this.accidentInput.setState({ street1: event.target.value })}
-	// handleAccidentInputStreet2 = event => {this.accidentInput.setState({ street2: event.target.value })}
-	// handleAccidentInputVisibility = event => {this.accidentInput.setState({ visibility: event.target.value })}
-	// handleAccidentInputLight = event => {this.accidentInput.setState({ light: event.target.value })}
-	// handleAccidentInputRoadConditions = event => {this.accidentInput.setState({ roadConditions: event.target.value })}
-	// handleAccidentInputInjuryType = event => {this.accidentInput.setState({ injuryType: event.target.value })}
-	// handleAccidentInputNeighbourhood = event => {this.accidentInput.setState({ neighbourhood: event.target.value })}
-	// handleAccidentInputSource = event => {this.accidentInput.setState({ source: event.target.value })}
-
-
-
-
-	// handleTheftSubmit = event => {
- //    event.preventDefault();
-
- //    axios.post('http://localhost:3001/api',
- //      { id: this.state.theftInput.id,
- //      	location: {
-	// 				type: { type: "point" },
-	// 				coordinates: [this.state.theftInput.???]
-	// 			},
- //      	occurrenceYear: this.state.theftInput.occurrenceYear,
-	// 			occurrenceMonth: this.state.theftInput.occurrenceMonth,
-	// 			occurrenceDay: this.state.theftInput.occurrenceDay,
-	// 			occurrenceTime: this.state.theftInput.occurrenceTime,
-	// 			bikeMake: this.state.theftInput.bikeMake,
-	// 			bikeModel: this.state.theftInput.bikeModel,
-	// 			neighbourhood: this.state.theftInput.neighbourhood,
-	// 			source: "User Submitted Data"
-	// 		  },
-	// 		)
- //      .then(res => {
- //        console.log(res);
- //        console.log(res.data);
- //      })
- //  }
-
- //  handleAccidentSubmit = event => {
- //    event.preventDefault();
-
- //    axios.post('http://localhost:3001/api',
- //      { id: this.state.theftInput.id,
- //      	location: {
-	// 				type: { type: "point" },
-	// 				coordinates: [this.state.theftInput.???]
-	// 			},
- //      	date: this.state.accidentInput.date,
-	// 			year: this.state.accidentInput.year,
-	// 			time: this.state.accidentInput.time,
-	// 			hour: this.state.accidentInput.hour,
-	// 			street1: this.state.accidentInput.street1,
-	// 			street2: this.state.accidentInput.street2,
-	// 			visibility: this.state.accidentInput.visibility,
-	// 			light: this.state.accidentInput.light,
-	// 			roadConditions: this.state.accidentInput.roadConditions,
-	// 			injuryType: this.state.accidentInput.injuryType,
-	// 			neighbourhood: this.state.accidentInput.neighbourhood,
-	// 			source: "User Submitted Data"
-	// 		  },
-	// 		)
- //      .then(res => {
- //        console.log(res);
- //        console.log(res.data);
- //      })
- //  }
-
-
- 	handleSelect = (e, input) => {
+	handleSelect = (e, input) => {
  		console.log('before', this.state)
  		this.setState({
  			[input]: e.target.value
  		})
  		console.log('after', this.state)
  	}
+
+  handleTheftValidation(event) {
+    let errors = {};
+    let formIsValid = true;
+
+    // theftLocation
+    if(!this.state.theftLocation || this.state.theftLocation === undefined) {
+      formIsValid = false;
+      errors["theftLocation"] = "You must choose a location on the map";
+    }
+    // theftDate
+    if(!this.state.theftDate || this.state.theftDate === undefined) {
+      formIsValid = false;
+      errors["theftDate"] = "You must select a date";
+    }
+    // theftBikeType
+    if(!this.state.theftBikeType || this.state.theftBikeType === undefined) {
+      formIsValid = false;
+      errors["theftBikeType"] = "You must select a bike type";
+    }
+    // theftNeighbourhood
+    if(!this.state.theftNeighbourhood || this.state.theftNeighbourhood === undefined) {
+      formIsValid = false;
+      errors["theftNeighbourhood"] = "You must select a neighbourhood";
+    }
+
+    this.setState({errors : errors})
+    return formIsValid
+  }
+
+  handleAccidentValidation(event) {
+    let errors = {};
+    let formIsValid = true;
+
+    //accidentLocation
+    if(!this.state.accidentLocation || this.state.accidentLocation === undefined) {
+      formIsValid = false;
+      errors["accidentLocation"] = "You must choose a location on the map";
+    }
+    // accidentDate
+    if(!this.state.accidentDate || this.state.accidentDate === undefined) {
+      formIsValid = false;
+      errors["accidentDate"] = "You must select a date";
+    }
+    // accidentVisibility
+    if(!this.state.accidentVisibility || this.state.accidentVisibility === undefined) {
+      formIsValid = false;
+      errors["accidentVisibility"] = "You must select a visibility type";
+    }
+    // accidentLight
+    if(!this.state.accidentLight || this.state.accidentLight === undefined) {
+      formIsValid = false;
+      errors["accidentLight"] = "You must select the light conditions";
+    }
+    // accidentRoadConditions
+    if(!this.state.accidentRoadConditions || this.state.accidentRoadConditions === undefined) {
+      formIsValid = false;
+      errors["accidentRoadConditions"] = "You must select the road conditions";
+    }
+    // accidentInjuryType
+    if(!this.state.accidentInjuryType || this.state.accidentInjuryType === undefined) {
+      formIsValid = false;
+      errors["accidentInjuryType"] = "You must select an injuryType";
+    }
+    // accidentNeighbourhood
+    if(!this.state.accidentNeighbourhood || this.state.accidentNeighbourhood === undefined) {
+      formIsValid = false;
+      errors["accidentNeighbourhood"] = "You must select a neighbourhood";
+    }
+
+    this.setState({errors : errors})
+    return formIsValid
+  }
+
+	handleTheftSubmit = event => {
+    event.preventDefault();
+    if(this.handleTheftValidation()) {
+      axios.post('http://localhost:3001/api/theft',
+        {
+        	location: this.state.theftLocation,
+        	date: this.state.theftDate,
+          bikeType: this.state.bikeType,
+        	bikeMake: this.state.theftBikeMake,
+        	bikeModel: this.state.theftBikeModel,
+        	neighbourhood: this.state.theftNeighbourhood
+      	}
+      )
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+      })
+      this.setState({
+        isOpen: false
+      })
+    } else {
+      alert("Form has errors!")
+    }
+  }
+
+  handleAccidentSubmit = event => {
+    event.preventDefault();
+    if(this.handleAccidentValidation()) {
+      axios.post('http://localhost:3001/api/accident',
+        {
+        	location: this.state.accidentLocation,
+  				date: this.state.accidentDate,
+  				visibility: this.state.accidentVisibility,
+  				light: this.state.accidentLight,
+  				roadConditions: this.state.accidentRoadConditions,
+  				injuryType: this.state.accidentInjuryType,
+  				neighbourhood: this.state.accidentNeighbourhood
+  			 }
+  		)
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+      })
+      this.setState({
+        isOpen: false
+      })
+    } else {
+      alert("Form has errors!")
+    }
+  }
 
 	render() {
 		return (
@@ -366,30 +397,35 @@ export default class NavBar extends React.Component {
 									<ModalBody>
 										<Button color="primary" onClick={() => this.setState({ 'showingForm': 'accidentForm' })}>Report a Bike Accident</Button>{' '}
 										<Button color="primary" onClick={() => this.setState({'showingForm' : 'theftForm' })}>Report a Bike Theft</Button>
-										<Collapse className="accident-report-show" isOpen={this.state.showingForm === 'accidentForm'}>
+
+
+                    <Collapse className="accident-report-show" isOpen={this.state.showingForm === 'accidentForm'}>
 											<Form onSubmit={this.handleAccidentSubmit}>
 								        <FormGroup>
-								          <Label for="accident-date">Date</Label>
+								          <Label for="accident-date">Date</Label><span style={{ color: 'red', fontSize: '11px', fontStyle: 'italic'}}> *field required</span>
 								          <Input value={this.state.accidentDate} type="date" name="date" id="accident-date" onChange={(e) => this.handleSelect(e, 'accidentDate')} />
-								        </FormGroup>
+								          <span className="error" style={{ color: 'red', fontSize: '13px', fontWeight: 'bold'}}>{this.state.errors["accidentDate"]}</span>
+                        </FormGroup>
 								        <FormGroup>
-								          <Label for="accident-neighbourhood">Neighbourhood</Label>
+								          <Label for="accident-neighbourhood">Neighbourhood</Label><span style={{ color: 'red', fontSize: '11px', fontStyle: 'italic'}}> *field required</span>
 								          <Input type="select" value={this.state.accidentNeighbourhood} name="neighbourhood" id="accident-neighbourhood" onChange={(e) => this.handleSelect(e, 'accidentNeighbourhood')}>
-								          	<option value="">Please select the visibility conditions</option>
+								          	<option value="">Please select the neighbourhood</option>
 								          	{NEIGHBORHOODS.map((n) => <option>{n}</option>)}
 								          </Input>
+                          <span className="error" style={{ color: 'red', fontSize: '13px', fontWeight: 'bold'}}>{this.state.errors["accidentNeighbourhood"]}</span>
 								        </FormGroup>
 								        <FormGroup>
-								          <Label for="accident-visibility">Visibility</Label>
+								          <Label for="accident-visibility">Visibility</Label><span style={{ color: 'red', fontSize: '11px', fontStyle: 'italic'}}> *field required</span>
 								          <Input type="select" value={this.state.accidentVisibility} name="visibility" id="accident-visibility" onChange={(e) => this.handleSelect(e, 'accidentVisibility')}>
 								            <option value="">Please select the visibility conditions</option>
 								            <option>Clear</option>
 								            <option>Rain</option>
 								            <option>Other</option>
 								          </Input>
+                          <span className="error" style={{ color: 'red', fontSize: '13px', fontWeight: 'bold'}}>{this.state.errors["accidentVisibility"]}</span>
 								        </FormGroup>
 								        <FormGroup>
-								          <Label for="accident-light-conditions">Light Conditions</Label>
+								          <Label for="accident-light-conditions">Light Conditions</Label><span style={{ color: 'red', fontSize: '11px', fontStyle: 'italic'}}> *field required</span>
 								          <Input type="select" value={this.state.accidentLight} name="light-conditions" id="accident-light-conditions" onChange={(e) => this.handleSelect(e, 'accidentLight')}>
 								            <option value="">Please select the light conditions</option>
 								            <option>Daylight</option>
@@ -398,76 +434,95 @@ export default class NavBar extends React.Component {
 								            <option>Dark</option>
 								            <option>Dark, Artifical</option>
 								          </Input>
+                          <span className="error" style={{ color: 'red', fontSize: '13px', fontWeight: 'bold'}}>{this.state.errors["accidentLight"]}</span>
 								        </FormGroup>
 								        <FormGroup>
-								          <Label for="accident-road-conditions">Road Conditions</Label>
+								          <Label for="accident-road-conditions">Road Conditions</Label><span style={{ color: 'red', fontSize: '11px', fontStyle: 'italic'}}> *field required</span>
 								          <Input type="select" value={this.state.accidentRoadConditions} name="road-conditions" id="accident-road-conditions" onChange={(e) => this.handleSelect(e, 'accidentRoadConditions')}>
 								          	<option value="">Please select the road conditions</option>
 								            <option>Dry</option>
 								            <option>Wet</option>
 								          </Input>
+                          <span className="error" style={{ color: 'red', fontSize: '13px', fontWeight: 'bold'}}>{this.state.errors["accidentRoadConditions"]}</span>
 								        </FormGroup>
 								        <FormGroup>
-								          <Label for="accident-injury">Injury Type</Label>
+								          <Label for="accident-injury">Injury Type</Label><span style={{ color: 'red', fontSize: '11px', fontStyle: 'italic'}}> *field required</span>
 								          <Input type="select" value={this.state.accidentInjuryType} name="injury" id="accident-injury" onChange={(e) => this.handleSelect(e, 'accidentInjuryType')}>
 								       		<option value="">Please select the injury type</option>
 								            <option>Minor</option>
 								            <option>Major</option>
 								            <option>Fatal</option>
 								          </Input>
+                          <span className="error" style={{ color: 'red', fontSize: '13px', fontWeight: 'bold'}}>{this.state.errors["accidentInjuryType"]}</span>
 								        </FormGroup>
 							          <FormGroup>
-							          	<Label for="accident-coordinates">Location of Accident</Label>
+							          	<Label for="accident-coordinates">Location of Accident</Label><span style={{ color: 'red', fontSize: '11px', fontStyle: 'italic'}}> *field required</span>
 							          	<div style={{ height: '100%' }}>
 						                <Map
 						                	googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9OTpk-gYg9nuQ7R5vsWPpmr7U7pQq6Ow"
 					                    loadingElement={<div style={{ height: `100%` }} />}
 					                    containerElement={<div style={{ height: `400px`, width: `475px` }} />}
 					                    mapElement={<div style={{ height: `100%` }} />}
-					                    onSubmit={this.handleClickedMap}
+					                    onSubmit={(e) => this.handleClickedMap(e, 'accidentLocation')}
 						                />
 							            </div>
+                          <span className="error" style={{ color: 'red', fontSize: '13px', fontWeight: 'bold'}}>{this.state.errors["accidentLocation"]}</span>
 							          </FormGroup>
-								        <Button type="submit">Submit</Button>
+								        <Button type="submit" onClick={this.handleAccidentSubmit}>Submit</Button>
 								      </Form>
 										</Collapse>
+
+
+
 										<Collapse className="theft-report-show" isOpen={this.state.showingForm === 'theftForm'}>
 											<Form onSubmit={this.handleTheftSubmit} >
 								        <FormGroup>
-								          <Label for="theft-date">Date</Label>
-								          <Input type="date" name="this.state.theftInput.date" id="theft-date" />
-								        </FormGroup>
+								          <Label for="theft-date">Date</Label><span style={{ color: 'red', fontSize: '11px', fontStyle: 'italic'}}> *field required</span>
+								          <Input type="date" value={this.state.theftDate} name="date" id="theft-date" onChange={(e) => this.handleSelect(e, 'theftDate')}/>
+								          <span className="error" style={{ color: 'red', fontSize: '13px', fontWeight: 'bold'}}>{this.state.errors["theftDate"]}</span>
+                        </FormGroup>
 								        <FormGroup>
-								          <Label for="theft-neighbourhood">Neighbourhood</Label>
-								          <Input type="select" name="neighbourhood" id="theft-neighbourhood">
+								          <Label for="theft-neighbourhood">Neighbourhood</Label><span style={{ color: 'red', fontSize: '11px', fontStyle: 'italic'}}> *field required</span>
+								          <Input type="select" value={this.state.theftNeighbourhood} name="neighbourhood" id="theft-neighbourhood" onChange={(e) => this.handleSelect(e, 'theftNeighbourhood')}>
+								          	<option value="">Please select the neighbourhood</option>
 								          	{NEIGHBORHOODS.map((n) => <option>{n}</option>)}
 								           </Input>
+                           <span className="error" style={{ color: 'red', fontSize: '13px', fontWeight: 'bold'}}>{this.state.errors["theftNeighbourhood"]}</span>
 								        </FormGroup>
+                        <FormGroup>
+                        <Label for="theft-bike-types">Bike Type</Label><span style={{ color: 'red', fontSize: '11px', fontStyle: 'italic'}}> *field required</span>
+                          <Input type="select" value={this.state.theftBikeType} name="bike-type" id="theft-bike-type" onChange={(e) => this.handleSelect(e, 'theftBikeType')}>
+                            <option value="">Please select the bike type</option>
+                            {TYPES.map((n) => <option>{n}</option>)}
+                           </Input>
+                           <span className="error" style={{ color: 'red', fontSize: '13px', fontWeight: 'bold'}}>{this.state.errors["theftBikeType"]}</span>
+                        </FormGroup>
 								        <FormGroup>
 								          <Label for="theft-bike-make">Bike Make</Label>
-								          <Input type="textarea" name="bike-make" id="theft-bike-make">
+								          <Input type="textarea" value={this.state.theftBikeMake} name="bikeMake" id="theft-bike-make" onChange={(e) => this.handleSelect(e, 'theftBikeMake')} placeholder="Please input your bike make">
 								            <FormText color="muted"></FormText>
 								          </Input>
 								        </FormGroup>
 								        <FormGroup>
 								          <Label for="theft-bike-model">Bike Model</Label>
-								          <Input type="textarea" name="bike-model" id="theft-bike-model">
+								          <Input type="textarea" value={this.state.theftBikeModel} name="bikeModel" id="theft-bike-model" onChange={(e) => this.handleSelect(e, 'theftBikeModel')} placeholder="Please input your bike model">
 								            <FormText color="muted"></FormText>
 								          </Input>
 								        </FormGroup>
 								        <FormGroup>
-								        	<Label for="theft-coordinates">Location of Theft</Label>
+								        	<Label for="theft-coordinates" name="coordinates">Location of Theft</Label><span style={{ color: 'red', fontSize: '11px', fontStyle: 'italic'}}> *field required</span>
 								          	<div style={{ height: '100%' }}>
 							                <Map
 							                	googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9OTpk-gYg9nuQ7R5vsWPpmr7U7pQq6Ow"
 						                    loadingElement={<div style={{ height: `100%` }} />}
 						                    containerElement={<div style={{ height: `400px`, width: `475px` }} />}
 						                    mapElement={<div style={{ height: `100%` }} />}
-						                    onSubmit={this.handleClickedMap}
+						                    onSubmit={(e) => this.handleClickedMap(e, 'theftLocation')}
 							                />
 								            </div>
+                            <span className="error" style={{ color: 'red', fontSize: '13px', fontWeight: 'bold'}}>{this.state.errors["theftLocation"]}</span>
 								        </FormGroup>
-								        <Button type="submit">Submit</Button>
+								        <Button type="submit" onClick={this.handleTheftSubmit}>Submit</Button>
 								      </Form>
 										</Collapse>
 									</ModalBody>
@@ -480,59 +535,3 @@ export default class NavBar extends React.Component {
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-// constructor(props) {
-//     super(props);
-//     this.state = {
-//       isHidden: true
-//     };
-//   }
-
-//   _openForm = () => this.setState({ isHidden: !this.state.isHidden });
-
-//   render() {
-//     return (
-//       <nav className="nav-bar">
-//         <h2 className="nav-brand">bikesafeTO</h2>
-//         <button className="report-form-btn" type="button" onClick={() => this._openForm()}>
-//           Submit a Report
-//         </button>
-//         { !this.state.isHidden &&
-//         <div id="report-form" placement="right" container={this}>
-//           <form>
-//             <div className="container-incident-type">
-//               <p>Are you reporting a theft or an accident?</p>
-//               <br/>
-//               <input type="radio" id="radio-theft" name="radioGroup" inline="true" />
-//               <label htmlFor="radio-theft">Theft</label>
-//               {' '}
-//               <input type="radio" id="radio-accident" name="radioGroup" inline="true" />
-//               <label htmlFor="radio-accident">Traffic Accident</label>
-//               {' '}
-//             </div>
-//             <div id="form-date-time">
-//               <label htmlFor="form-date-time">Select the date and approximate time of the incident</label>
-//               <br/>
-//               <input type="datetime-local" name="incident-datetime" />
-//             </div>
-//             <div className="form-submit">
-//               <button type="submit">Submit Report</button>
-//               <p>The submission of this form *DOES NOT* send any information to the Toronto Police.</p>
-//               <p>To file an official police report, please contact your local precinct for assistance.</p>
-//             </div>
-//           </form>
-//         </div> }
-//       </nav>
-//       );
-
-//   }
-// }

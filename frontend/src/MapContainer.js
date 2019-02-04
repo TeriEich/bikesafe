@@ -132,9 +132,11 @@ createFilteredAccidentMarkers() {
   }
   if (this.state.accidentNeighbourhood && this.state.accidentNeighbourhoodChoices.length > 0) {
     accidentMarkers = accidentMarkers.filter(marker => {
-      let neighbourhood = marker.neighbourhood.substring(0, (marker.neighbourhood.indexOf("(") - 1))
-      if (this.state.accidentNeighbourhoodChoices.includes(neighbourhood)) {
-        return true
+      if (marker.source == "User Submitted Data") {
+        return this.state.accidentNeighbourhoodChoices.includes(marker.neighbourhood)
+      } else {
+        let neighbourhood = marker.neighbourhood.substring(0, (marker.neighbourhood.indexOf("(") - 1))
+        return this.state.accidentNeighbourhoodChoices.includes(neighbourhood)
       }
     })
   }
