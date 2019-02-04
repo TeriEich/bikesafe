@@ -160,6 +160,23 @@ const NEIGHBORHOODS = [
 'Yorkdale-Glen Park'
 ]
 
+const TYPES = [
+"BMX",
+"Electric",
+"Folding",
+"Mountain",
+"Other",
+"Racer",
+"Recumbant",
+"Regular",
+"Scooter",
+"Tandem",
+"Touring",
+"Tricycle",
+"Unicycle",
+"Type Unknown"
+]
+
 const Map = compose(
     withStateHandlers(() => ({
 	      isMarkerShown: false,
@@ -203,6 +220,7 @@ export default class NavBar extends React.Component {
 			accidentForm: false,
 			theftLocation: "",
 			theftDate: "",
+      theftBikeType: "",
 			theftBikeMake: "",
 			theftBikeModel: "",
 			theftNeighbourhood: "",
@@ -255,6 +273,11 @@ export default class NavBar extends React.Component {
     if(!this.state.theftDate || this.state.theftDate === undefined) {
       formIsValid = false;
       errors["theftDate"] = "You must select a date";
+    }
+    // theftBikeType
+    if(!this.state.theftBikeType || this.state.theftBikeType === undefined) {
+      formIsValid = false;
+      errors["theftBikeType"] = "You must select a bike type";
     }
     // theftNeighbourhood
     if(!this.state.theftNeighbourhood || this.state.theftNeighbourhood === undefined) {
@@ -317,6 +340,7 @@ export default class NavBar extends React.Component {
         {
         	location: this.state.theftLocation,
         	date: this.state.theftDate,
+          bikeType: this.state.bikeType,
         	bikeMake: this.state.theftBikeMake,
         	bikeModel: this.state.theftBikeModel,
         	neighbourhood: this.state.theftNeighbourhood
@@ -326,7 +350,9 @@ export default class NavBar extends React.Component {
         console.log(res);
         console.log(res.data);
       })
-      alert("Form has been submitted!")
+      this.setState({
+        isOpen: false
+      })
     } else {
       alert("Form has errors!")
     }
@@ -350,7 +376,9 @@ export default class NavBar extends React.Component {
         console.log(res);
         console.log(res.data);
       })
-      alert("Form has been submitted!")
+      this.setState({
+        isOpen: false
+      })
     } else {
       alert("Form has errors!")
     }
@@ -461,6 +489,14 @@ export default class NavBar extends React.Component {
 								           </Input>
                            <span className="error" style={{ color: 'red', fontSize: '13px', fontWeight: 'bold'}}>{this.state.errors["theftNeighbourhood"]}</span>
 								        </FormGroup>
+                        <FormGroup>
+                        <Label for="theft-bike-types">Bike Type</Label><span style={{ color: 'red', fontSize: '11px', fontStyle: 'italic'}}> *field required</span>
+                          <Input type="select" value={this.state.theftBikeType} name="bike-type" id="theft-bike-type" onChange={(e) => this.handleSelect(e, 'theftBikeType')}>
+                            <option value="">Please select the bike type</option>
+                            {TYPES.map((n) => <option>{n}</option>)}
+                           </Input>
+                           <span className="error" style={{ color: 'red', fontSize: '13px', fontWeight: 'bold'}}>{this.state.errors["theftBikeType"]}</span>
+                        </FormGroup>
 								        <FormGroup>
 								          <Label for="theft-bike-make">Bike Make</Label>
 								          <Input type="textarea" value={this.state.theftBikeMake} name="bikeMake" id="theft-bike-make" onChange={(e) => this.handleSelect(e, 'theftBikeMake')} placeholder="Please input your bike make">
