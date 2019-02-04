@@ -29,6 +29,8 @@ export default class Filters extends Component {
       theftYearChoices: [],
       theftSource: false,
       theftSourceChoices: [],
+      theftBikeType: false,
+      theftBikeTypeChoices: [],
       theftNeighbourhood: false,
       theftNeighbourhoodChoices: []
     };
@@ -154,6 +156,24 @@ export default class Filters extends Component {
             <Collapse className="source-checkboxes" isOpen={this.state.theftSource} >
               <CustomInput type="checkbox" defaultChecked={this.state.theftSourceChoices.includes('Toronto Police Data')} id="TPS-theft" label="Toronto Police Data" onChange={(e) => this.toggleFilter(e, 'theftSourceChoices', 'Toronto Police Services')} />
               <CustomInput type="checkbox" defaultChecked={this.state.theftSourceChoices.includes('User Submitted Data')} id="user-reports-theft" label="User Submitted Data" onChange={(e) => this.toggleFilter(e, 'theftSourceChoices', 'User Submitted Data')} />
+            </Collapse>
+
+            <CustomInput type="switch" id="type-filter-theft" label="Bike Type" onClick={() => this.toggleFilterCategory('theftBikeType')} defaultChecked={this.state.theftBikeType} />
+            <Collapse className="bike-type-checkboxes" isOpen={this.state.theftBikeType} >
+              <CustomInput type="checkbox" defaultChecked={this.state.theftBikeTypeChoices.includes('BMX')} id="bmx-theft" label="BMX" onChange={(e) => this.toggleFilter(e, 'theftBikeTypeChoices', 'BMX')} />
+              <CustomInput type="checkbox" defaultChecked={this.state.theftBikeTypeChoices.includes('Electric')} id="electric-theft" label="Electric" onChange={(e) => this.toggleFilter(e, 'theftBikeTypeChoices', 'Electric')} />
+              <CustomInput type="checkbox" defaultChecked={this.state.theftBikeTypeChoices.includes('Folding')} id="folding-theft" label="Folding" onChange={(e) => this.toggleFilter(e, 'theftBikeTypeChoices', 'Folding')} />
+              <CustomInput type="checkbox" defaultChecked={this.state.theftBikeTypeChoices.includes('Mountain')} id="mountain-theft" label="Mountain" onChange={(e) => this.toggleFilter(e, 'theftBikeTypeChoices', 'Mountain')} />
+              <CustomInput type="checkbox" defaultChecked={this.state.theftBikeTypeChoices.includes('Racer')} id="racer-theft" label="Racer" onChange={(e) => this.toggleFilter(e, 'theftBikeTypeChoices', 'Racer')} />
+              <CustomInput type="checkbox" defaultChecked={this.state.theftBikeTypeChoices.includes('Recumbant')} id="recumbant-theft" label="Recumbant" onChange={(e) => this.toggleFilter(e, 'theftBikeTypeChoices', 'Recumbant')} />
+              <CustomInput type="checkbox" defaultChecked={this.state.theftBikeTypeChoices.includes('Regular')} id="regular-theft" label="Regular" onChange={(e) => this.toggleFilter(e, 'theftBikeTypeChoices', 'Regular')} />
+              <CustomInput type="checkbox" defaultChecked={this.state.theftBikeTypeChoices.includes('Scooter')} id="scooter-theft" label="Scooter" onChange={(e) => this.toggleFilter(e, 'theftBikeTypeChoices', 'Scooter')} />
+              <CustomInput type="checkbox" defaultChecked={this.state.theftBikeTypeChoices.includes('Tandem')} id="tandem-theft" label="Tandem" onChange={(e) => this.toggleFilter(e, 'theftBikeTypeChoices', 'Tandem')} />
+              <CustomInput type="checkbox" defaultChecked={this.state.theftBikeTypeChoices.includes('Touring')} id="touring-theft" label="Touring" onChange={(e) => this.toggleFilter(e, 'theftBikeTypeChoices', 'Touring')} />
+              <CustomInput type="checkbox" defaultChecked={this.state.theftBikeTypeChoices.includes('Tricycle')} id="tricycle-theft" label="Tricycle" onChange={(e) => this.toggleFilter(e, 'theftBikeTypeChoices', 'Tricycle')} />
+              <CustomInput type="checkbox" defaultChecked={this.state.theftBikeTypeChoices.includes('Unicycle')} id="unicycle-theft" label="Unicycle" onChange={(e) => this.toggleFilter(e, 'theftBikeTypeChoices', 'Unicycle')} />
+              <CustomInput type="checkbox" defaultChecked={this.state.theftBikeTypeChoices.includes('Type Unknown')} id="unknown-theft" label="Type Unknown" onChange={(e) => this.toggleFilter(e, 'theftBikeTypeChoices', 'Type Unknown')} />
+              <CustomInput type="checkbox" defaultChecked={this.state.theftBikeTypeChoices.includes('Other')} id="other-theft" label="Other" onChange={(e) => this.toggleFilter(e, 'theftBikeTypeChoices', 'Other')} />
             </Collapse>
 
             <CustomInput type="switch" id="neighbourhood-filter-theft" label="Neighbourhood" onClick={() => this.toggleFilterCategory('theftNeighbourhood')} defaultChecked={this.state.theftNeighbourhood} />
