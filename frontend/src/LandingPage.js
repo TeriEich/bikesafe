@@ -16,11 +16,13 @@ export default class LandingPage extends React.Component {
 	          <source className="video" src={landingVideoMp4} type="video/mp4" />
 	          <source src="./media/landing-page-video-substitute.png" type="img/png" />
 	        </video>
-	        <div className="overlay">
-	          <div className="intro-lead-in">Mapping a Safer Future for Toronto's Cyclists</div>
-	          <div className="intro-heading">An application to help cyclists and advocates visualize, process, and update data to improve bike-related safety</div>
+	        <div className="overlay" onClick={this.props.clickAnywhere} >
+	        	<div className="overlay-text">
+		          <h2 className="intro-lead-in">Mapping a Safer Future for Toronto's Cyclists</h2>
+		          <h3 className="intro-heading">An application to help cyclists and advocates visualize, process, and update data to improve bike-related safety</h3>
+		          <h4 className="intro-click-anywhere">Click anywhere to begin</h4>
+	          </div>
 	        </div>
-          <Button onClick={this.props.toggle} className="landing-button" size="xl">SHOW MAP</Button>
 				</div>
 			</header>
 		)

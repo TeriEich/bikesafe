@@ -64,7 +64,7 @@ class App extends Component {
         {this.state.showMap ? (
           <MapGraphAction accidentMarkers={this.state.accidentMarkers} theftMarkers={this.state.theftMarkers}/>
         ) : (
-          <LandingPage toggle={this.toggle} />
+          <LandingPage clickAnywhere={this.toggle} />
         )}
         <footer>
           <Nav>
