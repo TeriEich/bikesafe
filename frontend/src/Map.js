@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import TheftMarkers from './TheftMarkers';
 import AccidentMarkers from './AccidentMarkers';
 import { withGoogleMap, GoogleMap } from 'react-google-maps';
+import { Row, Col } from 'reactstrap';
+
 
 class MainMap extends Component {
 
@@ -62,12 +64,15 @@ class MainMap extends Component {
 
     return (
       // GoogleMap must have perameters defaultZoom + defaultCenter
-      <GoogleMap
+      <Row>
+      <Col><GoogleMap
         defaultZoom={14}
         defaultCenter={this.props.center}>
         {this.createAccidentMarkers()}
         {this.createTheftMarkers()}
       </GoogleMap>
+      </Col>
+      </Row>
 
     )
   }

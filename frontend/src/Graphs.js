@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart, Pie, Cell, BarChart, Bar, AreaChart, Area } from 'recharts';
-import { Button, ButtonGroup } from 'reactstrap';
+import { Button, ButtonGroup, Row, Col } from 'reactstrap';
 import CountUp, {startAnimation} from 'react-countup';
 import VisibilitySensor from 'react-visibility-sensor';
-
 
 export default class Graphs extends Component {
   constructor(props) {
@@ -318,119 +317,130 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
     };
 
     return (
-      <div className="container-graphs">
-        <div className="accident-graphs">
+        <Row>
+        <Col m="auto" className="accident-graphs">
           <h1>Accident Graphs</h1>
           
-
+          {this.props.showAccidents ? (
           <div>
-            <VisibilitySensor onChange={this.onAccidentVisibilityChange} offset={{
-              top:
-                10
-            }} delayedCall>
-              <CountUp decimals={0} start={this.props.initialAccidentCount} end={this.state.didAccidentViewCountUp ? this.props.accidentMarkers.length : 0}
-                       duration={5} />
-            </VisibilitySensor>
+              <div>
+              <VisibilitySensor onChange={this.onAccidentVisibilityChange} offset={{
+                top:
+                  10
+              }} delayedCall>
+                <CountUp decimals={0} start={this.props.initialAccidentCount} end={this.state.didAccidentViewCountUp ? this.props.accidentMarkers.length : 0}
+                         duration={5} />
+              </VisibilitySensor>
+              </div>
+            
+            
+
+            <BarChart
+              className="graph" id="acc-graphs-years" alt="bar chart"
+              width={800} height={600}
+              data={accidentYearsData}>
+              <CartesianGrid strokeDasharray="3 3"/>
+              <XAxis dataKey="name"/>
+              <YAxis/>
+              <Bar dataKey="number_of_accidents" fill="#6a7172" />
+              <Tooltip/>
+              <Line type="monotone" dataKey="number_of_accidents" stroke="#6a7172" />
+              <Legend />
+            </BarChart>
+
+
+
+            <PieChart
+              className="graph" id="acc-graphs-injury" alt="graph"
+              width={800} height={600}
+              onMouseEnter={this.onPieEnter}>
+              <Pie
+                data={accidentInjuryData}
+                labelLine={false}
+                label={accidentInjuryData.name}
+                fill="#8884d8"
+              >
+                {
+                  accidentInjuryData.map((entry, index) => <Cell fill={colours[index % colours.length]}/>)
+                }
+              </Pie>
+            </PieChart>
+
+            <ButtonGroup>
+              <Button onClick={(e) => this.toggleMap(e, 'accidentRoadConditionsShow', 'accidentVisibilityShow', 'accidentLightConditionsShow')}>Road Conditions</Button>
+              <Button onClick={(e) => this.toggleMap(e, 'accidentLightConditionsShow', 'accidentVisibilityShow', 'accidentRoadConditionsShow')}>Light Conditions</Button>
+              <Button onClick={(e) => this.toggleMap(e, 'accidentVisibilityShow', 'accidentLightConditionsShow', 'accidentRoadConditionsShow')}>Visibility</Button>
+            </ButtonGroup>
+
+            {this.state.accidentRoadConditionsShow && 
+              <PieChart
+                className="graph" id="graph-4" alt="graph"
+                width={800} height={600}
+                onMouseEnter={this.onPieEnter}>
+                <Pie
+                  data={accidentRoadConditionsData}
+                  labelLine={false}
+                  label={accidentRoadConditionsData.name}
+                  fill="#8884d8"
+                >
+                  {
+                    accidentRoadConditionsData.map((entry, index) => <Cell fill={colours[index % colours.length]}/>)
+                  }
+                </Pie>
+              </PieChart>
+            }
+
+            {this.state.accidentLightConditionsShow && 
+              <PieChart
+                className="graph" id="graph-5" alt="graph"
+                width={800} height={600}
+                onMouseEnter={this.onPieEnter}>
+                <Pie
+                  data={accidentLightConditionsData}
+                  labelLine={false}
+                  label={accidentLightConditionsData.name}
+                  fill="#8884d8"
+                >
+                  {
+                    accidentLightConditionsData.map((entry, index) => <Cell fill={colours[index % colours.length]}/>)
+                  }
+                </Pie>
+              </PieChart>
+            }
+
+            {this.state.accidentVisibilityShow && 
+              <PieChart
+                className="graph" id="graph-6" alt="graph"
+                width={800} height={600}
+                onMouseEnter={this.onPieEnter}>
+                <Pie
+                  data={accidentVisibilityData}
+                  labelLine={false}
+                  label={accidentVisibilityData.name}
+                  fill="#8884d8"
+                >
+                  {
+                    accidentVisibilityData.map((entry, index) => <Cell fill={colours[index % colours.length]}/>)
+                  }
+                </Pie>
+              </PieChart>
+            }
           </div>
-          
+          ) : (
+            <div>
+              <p>There is no accident data currently showing on the map. Please click the toggle button above to see data regarding accidents.</p>
+            </div>            
+          )
+        }
 
-          <BarChart
-            className="graph" id="acc-graphs-years" alt="bar chart"
-            width={800} height={600}
-            data={accidentYearsData}>
-            <CartesianGrid strokeDasharray="3 3"/>
-            <XAxis dataKey="name"/>
-            <YAxis/>
-            <Bar dataKey="number_of_accidents" fill="#6a7172" />
-            <Tooltip/>
-            <Line type="monotone" dataKey="number_of_accidents" stroke="#6a7172" />
-            <Legend />
-          </BarChart>
+        </Col>
 
-
-
-          <PieChart
-            className="graph" id="acc-graphs-injury" alt="graph"
-            width={800} height={600}
-            onMouseEnter={this.onPieEnter}>
-            <Pie
-              data={accidentInjuryData}
-              labelLine={false}
-              label={accidentInjuryData.name}
-              fill="#8884d8"
-            >
-              {
-                accidentInjuryData.map((entry, index) => <Cell fill={colours[index % colours.length]}/>)
-              }
-            </Pie>
-          </PieChart>
-
-          <ButtonGroup>
-            <Button onClick={(e) => this.toggleMap(e, 'accidentRoadConditionsShow', 'accidentVisibilityShow', 'accidentLightConditionsShow')}>Road Conditions</Button>
-            <Button onClick={(e) => this.toggleMap(e, 'accidentLightConditionsShow', 'accidentVisibilityShow', 'accidentRoadConditionsShow')}>Light Conditions</Button>
-            <Button onClick={(e) => this.toggleMap(e, 'accidentVisibilityShow', 'accidentLightConditionsShow', 'accidentRoadConditionsShow')}>Visibility</Button>
-          </ButtonGroup>
-
-          {this.state.accidentRoadConditionsShow && 
-            <PieChart
-              className="graph" id="graph-4" alt="graph"
-              width={800} height={600}
-              onMouseEnter={this.onPieEnter}>
-              <Pie
-                data={accidentRoadConditionsData}
-                labelLine={false}
-                label={accidentRoadConditionsData.name}
-                fill="#8884d8"
-              >
-                {
-                  accidentRoadConditionsData.map((entry, index) => <Cell fill={colours[index % colours.length]}/>)
-                }
-              </Pie>
-            </PieChart>
-          }
-
-          {this.state.accidentLightConditionsShow && 
-            <PieChart
-              className="graph" id="graph-5" alt="graph"
-              width={800} height={600}
-              onMouseEnter={this.onPieEnter}>
-              <Pie
-                data={accidentLightConditionsData}
-                labelLine={false}
-                label={accidentLightConditionsData.name}
-                fill="#8884d8"
-              >
-                {
-                  accidentLightConditionsData.map((entry, index) => <Cell fill={colours[index % colours.length]}/>)
-                }
-              </Pie>
-            </PieChart>
-          }
-
-          {this.state.accidentVisibilityShow && 
-            <PieChart
-              className="graph" id="graph-6" alt="graph"
-              width={800} height={600}
-              onMouseEnter={this.onPieEnter}>
-              <Pie
-                data={accidentVisibilityData}
-                labelLine={false}
-                label={accidentVisibilityData.name}
-                fill="#8884d8"
-              >
-                {
-                  accidentVisibilityData.map((entry, index) => <Cell fill={colours[index % colours.length]}/>)
-                }
-              </Pie>
-            </PieChart>
-          }
-
-        </div>
-
-        <div className="theft-graphs">
+        <Col m="auto" className="theft-graphs">
           <h1>Theft Graphs</h1>
           
+          {this.props.showThefts ? (
           <div>
+            <div>
             <VisibilitySensor onChange={this.onTheftVisibilityChange} offset={{
               top:
                 10
@@ -438,52 +448,57 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
               <CountUp decimals={0} start={this.props.initialTheftCount} end={this.state.didTheftViewCountUp ? this.props.theftMarkers.length : 0}
                         duration={5} />
             </VisibilitySensor>
+            </div>
+            <BarChart
+              className="graph" id="acc-graphs-years" alt="bar chart"
+              width={800} height={600}
+              data={theftYearsData}>
+              <CartesianGrid strokeDasharray="3 3"/>
+              <XAxis dataKey="name"/>
+              <YAxis/>
+              <Bar dataKey="number_of_accidents" fill="#6a7172" />
+              <Tooltip/>
+              <Line type="monotone" dataKey="number_of_accidents" stroke="#6a7172" />
+              <Legend />
+            </BarChart>
+
+
+            <LineChart
+              className="graph" id="graph-1" alt="graph"
+              width={800} height={600}
+              data={theftBikeTypeData}>
+              <XAxis dataKey="name"/>
+              <YAxis/>
+              <CartesianGrid strokeDasharray="3 3"/>
+              <Tooltip/>
+              <Legend />
+              <Line type="monotone" dataKey="value" stroke="#8884d8" activeDot={{r: 8}}/>
+            </LineChart>
+
+            <PieChart
+              className="graph" id="graph-6" alt="graph"
+              width={800} height={600}
+              onMouseEnter={this.onPieEnter}>
+              <Pie
+                data={theftTimeOfDayData}
+                labelLine={false}
+                label={theftTimeOfDayData.name}
+                fill="#8884d8"
+              >
+                {
+                  theftTimeOfDayData.map((entry, index) => <Cell fill={colours[index % colours.length]}/>)
+                }
+              </Pie>
+            </PieChart>
           </div>
-          <BarChart
-            className="graph" id="acc-graphs-years" alt="bar chart"
-            width={800} height={600}
-            data={theftYearsData}>
-            <CartesianGrid strokeDasharray="3 3"/>
-            <XAxis dataKey="name"/>
-            <YAxis/>
-            <Bar dataKey="number_of_accidents" fill="#6a7172" />
-            <Tooltip/>
-            <Line type="monotone" dataKey="number_of_accidents" stroke="#6a7172" />
-            <Legend />
-          </BarChart>
-
-
-          <LineChart
-            className="graph" id="graph-1" alt="graph"
-            width={800} height={600}
-            data={theftBikeTypeData}>
-            <XAxis dataKey="name"/>
-            <YAxis/>
-            <CartesianGrid strokeDasharray="3 3"/>
-            <Tooltip/>
-            <Legend />
-            <Line type="monotone" dataKey="value" stroke="#8884d8" activeDot={{r: 8}}/>
-          </LineChart>
-
-          <PieChart
-            className="graph" id="graph-6" alt="graph"
-            width={800} height={600}
-            onMouseEnter={this.onPieEnter}>
-            <Pie
-              data={theftTimeOfDayData}
-              labelLine={false}
-              label={theftTimeOfDayData.name}
-              fill="#8884d8"
-            >
-              {
-                theftTimeOfDayData.map((entry, index) => <Cell fill={colours[index % colours.length]}/>)
-              }
-            </Pie>
-          </PieChart>
-
-        </div>
-
-      </div>
+            ) : (
+            <div>
+              <p>There is no theft data currently showing on the map. Please click the toggle button above to see data regarding thefts.</p>
+            </div> 
+          )
+        }
+        </Col>
+      </Row>
       )
   }
 }

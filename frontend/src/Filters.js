@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Collapse, CustomInput } from 'reactstrap';
 import AccidentNeighbourhoods from './AccidentNeighbourhoods';
 import TheftNeighbourhoods from './TheftNeighbourhoods';
+import { Row, Col } from 'reactstrap';
+
 
 export default class Filters extends Component {
   constructor(props) {
@@ -62,9 +64,11 @@ export default class Filters extends Component {
 
     return (
 
-      <div className="filter-bar">
+      
+      <Row className="filter-bar">
+        <Col m="auto">
         <CustomInput type="switch" id="accident-filter" label="Accident Data" onChange={this.props.toggleAccidentShow} defaultChecked={this.props.showAccidents} />
-        <Button color="danger" onClick={() => this.toggleAllTheThings('accidentFilterShow')}>Set Accident Filters</Button>
+        {this.props.showAccidents && <Button color="danger" onClick={() => this.toggleAllTheThings('accidentFilterShow')}>Set Accident Filters</Button>}
         <Modal isOpen={this.state.accidentFilterShow} toggle={() => this.toggleAllTheThings('accidentFilterShow')} className="filter-main-modal">
           <ModalHeader toggle={() => this.toggleAllTheThings('accidentFilterShow')}>Accident Filters</ModalHeader>
           <ModalBody>
@@ -134,10 +138,12 @@ export default class Filters extends Component {
             <Button color="secondary" onClick={() => this.toggleAllTheThings('accidentFilterShow')}>Cancel</Button>
           </ModalFooter>
         </Modal>
+        </Col>
 
 
-        <CustomInput type="switch" id="theft-filter" label="Theft Data" onChange={this.props.toggleTheftShow} defaultChecked={this.props.showThefts} />
-        <Button color="danger" onClick={() => this.toggleAllTheThings('theftFilterShow')}>Set Theft Filters</Button>
+       <Col m="auto">
+       <CustomInput type="switch" id="theft-filter" label="Theft Data" onChange={this.props.toggleTheftShow} defaultChecked={this.props.showThefts} />
+       {this.props.showThefts && <Button color="danger" onClick={() => this.toggleAllTheThings('theftFilterShow')}>Set Theft Filters</Button>}
         <Modal isOpen={this.state.theftFilterShow} toggle={() => this.toggleAllTheThings('theftFilterShow')} className="filter-main-modal">
           <ModalHeader toggle={() => this.toggleAllTheThings('theftFilterShow')}>Theft Filters</ModalHeader>
           <ModalBody>
@@ -189,7 +195,8 @@ export default class Filters extends Component {
             <Button color="secondary" onClick={() => this.toggleAllTheThings('theftFilterShow')}>Cancel</Button>
           </ModalFooter>
         </Modal>
-      </div>
+        </Col>
+      </Row>
       );
   }
 }

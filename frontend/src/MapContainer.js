@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import Filters from './Filters';
 import MainMap from './Map';
 import Graphs  from './Graphs';
+import { Button, ButtonGroup, Container, Row } from 'reactstrap';
+import './App.css';
+
+
 
 export default class MapContainer extends Component {
   constructor() {
@@ -191,7 +195,7 @@ toggleTheftShow() {
     const accidentMarkers = this.createFilteredAccidentMarkers();
 
     return (
-      <div className="map-container">
+      <Container className="container-full">
         <MainMap
           showAccidents={this.state.showAccidents}
           accidentMarkers={accidentMarkers}
@@ -202,6 +206,7 @@ toggleTheftShow() {
           containerElement={<div style={{ height: `700px`, width: `100%` }} />}
           mapElement={<div style={{ height: `100%`}} />}
         />
+
         <Filters
           showAccidents={this.state.showAccidents}
           toggleAccidentShow={this.toggleAccidentShow}
@@ -212,13 +217,16 @@ toggleTheftShow() {
           accidentMarkers={accidentMarkers}
           theftMarkers={theftMarkers}
         />
+        
         <Graphs
           accidentMarkers={accidentMarkers}
           theftMarkers={theftMarkers}
           initialAccidentCount={this.state.initialAccidentCount}
           initialTheftCount={this.state.initialTheftCount}
+          showAccidents={this.state.showAccidents}
+          showThefts={this.state.showThefts}
         />
-      </div>
+      </Container>
     );
   }
 }
