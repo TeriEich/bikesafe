@@ -43,20 +43,8 @@ export default class MapContainer extends Component {
   }
 
 
-applyAccidentFilters(filters, initialCount) {
-  console.log('apply filters function called');
-  this.setState({
-    initialTheftCount: initialCount,
-    theftYear: filters.theftYear,
-    theftYearChoices: filters.theftYearChoices,
-    theftSource: filters.theftSource,
-    theftSourceChoices: filters.theftSourceChoices,
-    theftNeighbourhood: filters.theftNeighbourhood,
-    theftNeighbourhoodChoices: filters.theftNeighbourhoodChoices
-  })
-};
 
-applyTheftFilters(filters, initialCount) {
+applyAccidentFilters(filters, initialCount) {
   console.log('apply filters function called');
   this.setState({
     initialAccidentCount: initialCount,
@@ -74,6 +62,13 @@ applyTheftFilters(filters, initialCount) {
     lightConditionChoices: filters.lightConditionChoices,
     injury: filters.injury,
     injuryChoices: filters.injuryChoices,
+  })
+};
+
+applyTheftFilters(filters, initialCount) {
+  console.log('apply filters function called');
+  this.setState({
+    initialTheftCount: initialCount,
     theftYear: filters.theftYear,
     theftYearChoices: filters.theftYearChoices,
     theftSource: filters.theftSource,
