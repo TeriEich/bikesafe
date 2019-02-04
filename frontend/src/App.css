@@ -17,7 +17,12 @@ dusky turquoise: rgb(100, 170, 180);
 #mainNav {
     background-color: #00223e!important;
     font-family: 'Josefin Sans', sans-serif;
+    color: #D9B310;
     /*font-weight: bold*/
+}
+
+#mainNav:hover {
+  color: white;
 }
 
 /*.bg-dark {*/

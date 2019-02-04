@@ -387,7 +387,7 @@ export default class NavBar extends React.Component {
 					<NavbarBrand href="/">bikesafeTO</NavbarBrand>
 						<Nav className="ml-auto" navbar>
 							<NavItem>
-								<Button color="dark" dark expand="lg" fixed="top" id="mainNav" className="nav-link" onClick={this.toggle}>Incident Submission</Button>
+								<Button color="dark" dark expand="lg" fixed="top" id="mainNav" onClick={this.toggle}>Incident Submission</Button>
 								<Modal isOpen={this.state.isOpen} toggle={this.toggle} className="filter-main-modal">
 								<ModalHeader toggle={this.toggle}>Incident Submission Forms</ModalHeader>
 									<ModalBody>
