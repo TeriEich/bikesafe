@@ -198,7 +198,7 @@ const Map = compose(
 	}
 
 	return <GoogleMap
-    defaultZoom={12}
+    defaultZoom={14}
     defaultCenter={{ lat: 43.653226, lng: -79.3831843 }}
     onClick={handleClick}
   >
