@@ -47,18 +47,6 @@ applyAccidentFilters(filters, initialCount) {
   console.log('apply filters function called');
   this.setState({
     initialTheftCount: initialCount,
-    theftYear: filters.theftYear,
-    theftYearChoices: filters.theftYearChoices,
-    theftSource: filters.theftSource,
-    theftSourceChoices: filters.theftSourceChoices,
-    theftNeighbourhood: filters.theftNeighbourhood,
-    theftNeighbourhoodChoices: filters.theftNeighbourhoodChoices
-  })
-};
-
-applyTheftFilters(filters, initialCount) {
-  console.log('apply filters function called');
-  this.setState({
     initialAccidentCount: initialCount,
     accidentYear: filters.accidentYear,
     accidentYearChoices: filters.accidentYearChoices,
@@ -73,7 +61,14 @@ applyTheftFilters(filters, initialCount) {
     lightCondition: filters.lightCondition,
     lightConditionChoices: filters.lightConditionChoices,
     injury: filters.injury,
-    injuryChoices: filters.injuryChoices,
+    injuryChoices: filters.injuryChoices
+  })
+};
+
+applyTheftFilters(filters, initialCount) {
+  console.log('apply filters function called');
+  this.setState({
+    initialTheftCount: initialCount,
     theftYear: filters.theftYear,
     theftYearChoices: filters.theftYearChoices,
     theftSource: filters.theftSource,

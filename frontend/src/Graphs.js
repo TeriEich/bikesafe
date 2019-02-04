@@ -115,6 +115,8 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
 
     this.props.theftMarkers.forEach(theft => {
       switch (theft.bikeType) {
+        case undefined:
+          break;
         case 'BMX':
           theftBikeTypeData[0].value = theftBikeTypeData[0].value + 1;
           break;
@@ -180,22 +182,24 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
           break;
       };
 
-      if (theft.occurrenceTime.startsWith("23") || theft.occurrenceTime.startsWith("00") || theft.occurrenceTime.startsWith("01") || theft.occurrenceTime.startsWith("02") || theft.occurrenceTime.startsWith("03") || theft.occurrenceTime.startsWith("04") || theft.occurrenceTime.startsWith("22")) {
-        theftTimeOfDayData[0].value = theftTimeOfDayData[0].value + 1;
-      };
+      
+      if (theft.occurrenceTime) {
+        if (theft.occurrenceTime.startsWith("23") || theft.occurrenceTime.startsWith("00") || theft.occurrenceTime.startsWith("01") || theft.occurrenceTime.startsWith("02") || theft.occurrenceTime.startsWith("03") || theft.occurrenceTime.startsWith("04") || theft.occurrenceTime.startsWith("22")) {
+          theftTimeOfDayData[0].value = theftTimeOfDayData[0].value + 1;
+        };
 
-      if (theft.occurrenceTime.startsWith("05") || theft.occurrenceTime.startsWith("06") || theft.occurrenceTime.startsWith("07") || theft.occurrenceTime.startsWith("08") || theft.occurrenceTime.startsWith("09") || theft.occurrenceTime.startsWith("10") || theft.occurrenceTime.startsWith("11")) {
-        theftTimeOfDayData[1].value = theftTimeOfDayData[1].value + 1;
-      };
+        if (theft.occurrenceTime.startsWith("05") || theft.occurrenceTime.startsWith("06") || theft.occurrenceTime.startsWith("07") || theft.occurrenceTime.startsWith("08") || theft.occurrenceTime.startsWith("09") || theft.occurrenceTime.startsWith("10") || theft.occurrenceTime.startsWith("11")) {
+          theftTimeOfDayData[1].value = theftTimeOfDayData[1].value + 1;
+        };
 
-      if (theft.occurrenceTime.startsWith("12") || theft.occurrenceTime.startsWith("13") || theft.occurrenceTime.startsWith("14") || theft.occurrenceTime.startsWith("15") || theft.occurrenceTime.startsWith("16") || theft.occurrenceTime.startsWith("17")) {
-        theftTimeOfDayData[2].value = theftTimeOfDayData[2].value + 1;
-      };
+        if (theft.occurrenceTime.startsWith("12") || theft.occurrenceTime.startsWith("13") || theft.occurrenceTime.startsWith("14") || theft.occurrenceTime.startsWith("15") || theft.occurrenceTime.startsWith("16") || theft.occurrenceTime.startsWith("17")) {
+          theftTimeOfDayData[2].value = theftTimeOfDayData[2].value + 1;
+        };
 
-      if (theft.occurrenceTime.startsWith("18") || theft.occurrenceTime.startsWith("19") || theft.occurrenceTime.startsWith("20") || theft.occurrenceTime.startsWith("21")) {
-        theftTimeOfDayData[3].value = theftTimeOfDayData[3].value + 1;
+        if (theft.occurrenceTime.startsWith("18") || theft.occurrenceTime.startsWith("19") || theft.occurrenceTime.startsWith("20") || theft.occurrenceTime.startsWith("21")) {
+          theftTimeOfDayData[3].value = theftTimeOfDayData[3].value + 1;
+        };
       };
-
     });
 
     this.props.accidentMarkers.forEach(accident => {
