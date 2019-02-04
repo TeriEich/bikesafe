@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Filters from './Filters'
-import MainMap from './Map'
-import Graphs  from './Graphs'
+import Filters from './Filters';
+import MainMap from './Map';
+import Graphs  from './Graphs';
 
 export default class MapContainer extends Component {
   constructor() {
@@ -9,79 +9,107 @@ export default class MapContainer extends Component {
     this.state = {
       showAccidents: true,
       showThefts: true,
-      accidentYears: false,
+      accidentYear: false,
       accidentYearChoices: [],
-      accidentSources: false,
+      accidentSource: false,
       accidentSourceChoices: [],
-      accidentNeighbourhoods: false,
+      accidentNeighbourhood: false,
       accidentNeighbourhoodChoices: [],
-      visibilities: false,
+      visibility: false,
       visibilityChoices: [],
-      roadConditions: false,
+      roadCondition: false,
       roadConditionChoices: [],
-      lightConditions: false,
+      lightCondition: false,
       lightConditionChoices: [],
-      injuries: false,
+      injury: false,
       injuryChoices: [],
-      theftYears: false,
+      theftYear: false,
       theftYearChoices: [],
-      theftSources: false,
+      theftSource: false,
       theftSourceChoices: [],
-      theftNeighbourhoods: false,
-      theftNeighbourhoodChoices: []
+      theftBikeType: false,
+      theftBikeTypeChoices: [],
+      theftNeighbourhood: false,
+      theftNeighbourhoodChoices: [],
+      initialAccidentCount: 0,
+      initialTheftCount: 0
     };
     this.toggleAccidentShow = this.toggleAccidentShow.bind(this)
     this.toggleTheftShow = this.toggleTheftShow.bind(this)
     this.createFilteredAccidentMarkers = this.createFilteredAccidentMarkers.bind(this)
     this.createFilteredTheftMarkers = this.createFilteredTheftMarkers.bind(this)
-    this.applyFilters = this.applyFilters.bind(this)
+    this.applyAccidentFilters = this.applyAccidentFilters.bind(this)
+    this.applyTheftFilters = this.applyTheftFilters.bind(this)
   }
 
 
-applyFilters(filters) {
-  console.log('apply filters function called')
+applyAccidentFilters(filters, initialCount) {
+  console.log('apply filters function called');
   this.setState({
-    accidentYears: filters.accidentYears,
-    accidentYearChoices: filters.accidentYearChoices,
-    accidentSources: filters.accidentSources,
-    accidentSourceChoices: filters.accidentSourceChoices,
-    accidentNeighbourhoods: filters.accidentNeighbourhoods,
-    accidentNeighbourhoodChoices: filters.accidentNeighbourhoodChoices,
-    visibilities: filters.visibilities,
-    visibilityChoices: filters.visibilityChoices,
-    roadConditions: filters.roadConditions,
-    roadConditionChoices: filters.roadConditionChoices,
-    lightConditions: filters.lightConditions,
-    lightConditionChoices: filters.lightConditionChoices,
-    injuries: filters.injuries,
-    injuryChoices: filters.injuryChoices,
-    theftYears: filters.theftYears,
+    initialTheftCount: initialCount,
+    theftYear: filters.theftYear,
     theftYearChoices: filters.theftYearChoices,
-    theftSources: filters.theftSources,
+    theftSource: filters.theftSource,
     theftSourceChoices: filters.theftSourceChoices,
-    theftNeighbourhoods: filters.theftNeighbourhoods,
+    theftNeighbourhood: filters.theftNeighbourhood,
     theftNeighbourhoodChoices: filters.theftNeighbourhoodChoices
   })
-}
+};
+
+applyTheftFilters(filters, initialCount) {
+  console.log('apply filters function called');
+  this.setState({
+    initialAccidentCount: initialCount,
+    accidentYear: filters.accidentYear,
+    accidentYearChoices: filters.accidentYearChoices,
+    accidentSource: filters.accidentSource,
+    accidentSourceChoices: filters.accidentSourceChoices,
+    accidentNeighbourhood: filters.accidentNeighbourhood,
+    accidentNeighbourhoodChoices: filters.accidentNeighbourhoodChoices,
+    visibility: filters.visibility,
+    visibilityChoices: filters.visibilityChoices,
+    roadCondition: filters.roadCondition,
+    roadConditionChoices: filters.roadConditionChoices,
+    lightCondition: filters.lightCondition,
+    lightConditionChoices: filters.lightConditionChoices,
+    injury: filters.injury,
+    injuryChoices: filters.injuryChoices,
+    theftYear: filters.theftYear,
+    theftYearChoices: filters.theftYearChoices,
+    theftSource: filters.theftSource,
+    theftSourceChoices: filters.theftSourceChoices,
+    theftBikeType: filters.theftBikeType,
+    theftBikeTypeChoices: filters.theftBikeTypeChoices,
+    theftNeighbourhood: filters.theftNeighbourhood,
+    theftNeighbourhoodChoices: filters.theftNeighbourhoodChoices
+  })
+};
 
 // test sourceFilters
 createFilteredTheftMarkers() {
-  let theftMarkers = this.props.theftMarkers
+  let theftMarkers = this.props.theftMarkers;
 
-  if (this.state.theftYears && this.state.theftYearChoices.length > 0) {
+  if (this.state.theftYear && this.state.theftYearChoices.length > 0) {
     theftMarkers = theftMarkers.filter(marker => {
       return this.state.theftYearChoices.includes(marker.occurrenceYear.toString())
     })
   }
-  if (this.state.theftNeighbourhoods && this.state.theftNeighbourhoodChoices.length > 0) {
+  if (this.state.theftNeighbourhood && this.state.theftNeighbourhoodChoices.length > 0) {
     theftMarkers = theftMarkers.filter(marker => {
-      let neighbourhood = marker.neighbourhood.substring(0, (marker.neighbourhood.indexOf("(") - 1))
+      let neighbourhood = marker.neighbourhood.substring(0, (marker.neighbourhood.indexOf("(") - 1));
       if (this.state.theftNeighbourhoodChoices.includes(neighbourhood)) {
         return true
       }
     })
   }
-  if (this.state.theftSources && this.state.theftSourceChoices.length > 0) {
+  if (this.state.theftBikeType && this.state.theftBikeTypeChoices.length > 0) {
+    theftMarkers = theftMarkers.filter(marker => {
+      if (this.state.theftBikeTypeChoices.includes(marker.bikeType)) {
+        return true
+      }
+    })
+  }
+  if (this.state.theftSource && this.state.theftSourceChoices.length > 0) {
     theftMarkers = theftMarkers.filter(marker => {
       if (this.state.theftSourceChoices.includes(marker.source)) {
         return true
@@ -95,14 +123,14 @@ createFilteredTheftMarkers() {
 createFilteredAccidentMarkers() {
   let accidentMarkers = this.props.accidentMarkers
 
-  if (this.state.accidentYears && this.state.accidentYearChoices.length > 0) {
+  if (this.state.accidentYear && this.state.accidentYearChoices.length > 0) {
     accidentMarkers = accidentMarkers.filter(marker => {
       if (this.state.accidentYearChoices.includes(marker.date.substring(0,4))) {
         return true
       }
     })
   }
-  if (this.state.accidentNeighbourhoods && this.state.accidentNeighbourhoodChoices.length > 0) {
+  if (this.state.accidentNeighbourhood && this.state.accidentNeighbourhoodChoices.length > 0) {
     accidentMarkers = accidentMarkers.filter(marker => {
       if (marker.source == "User Submitted Data") {
         return this.state.accidentNeighbourhoodChoices.includes(marker.neighbourhood)
@@ -112,28 +140,28 @@ createFilteredAccidentMarkers() {
       }
     })
   }
-  if (this.state.roadConditions && this.state.roadConditionChoices.length > 0) {
+  if (this.state.roadCondition && this.state.roadConditionChoices.length > 0) {
     accidentMarkers = accidentMarkers.filter(marker => {
       if (this.state.roadConditionChoices.includes(marker.roadConditions)) {
         return true
       }
     })
   }
-  if (this.state.lightConditions && this.state.lightConditionChoices.length > 0) {
+  if (this.state.lightCondition && this.state.lightConditionChoices.length > 0) {
     accidentMarkers = accidentMarkers.filter(marker => {
       if (this.state.lightConditionChoices.includes(marker.light)) {
         return true
       }
     })
   }
-  if (this.state.injuries && this.state.injuryChoices.length > 0) {
+  if (this.state.injury && this.state.injuryChoices.length > 0) {
     accidentMarkers = accidentMarkers.filter(marker => {
       if (this.state.injuryChoices.includes(marker.injuryType)) {
         return true
       }
     })
   }
-  if (this.state.visibilities && this.state.visibilityChoices.length > 0) {
+  if (this.state.visibility && this.state.visibilityChoices.length > 0) {
     accidentMarkers = accidentMarkers.filter(marker => {
       if (this.state.visibilityChoices.includes(marker.visibility)) {
         return true
@@ -141,7 +169,7 @@ createFilteredAccidentMarkers() {
     })
   }
 
-  if (this.state.accidentSources && this.state.accidentSourceChoices.length > 0) {
+  if (this.state.accidentSource && this.state.accidentSourceChoices.length > 0) {
     accidentMarkers = accidentMarkers.filter(marker => {
       if (this.state.accidentSourceChoices.includes(marker.source)) {
         return true
@@ -164,10 +192,10 @@ toggleTheftShow() {
 }
 
   render() {
-    const theftMarkers = this.createFilteredTheftMarkers()
-    console.log('final theft markers', theftMarkers)
+    console.log('MapContainer rendered');
+    const theftMarkers = this.createFilteredTheftMarkers();
+    const accidentMarkers = this.createFilteredAccidentMarkers();
 
-    const accidentMarkers = this.createFilteredAccidentMarkers()
     return (
       <div className="map-container">
         <MainMap
@@ -185,9 +213,17 @@ toggleTheftShow() {
           toggleAccidentShow={this.toggleAccidentShow}
           showThefts={this.state.showThefts}
           toggleTheftShow={this.toggleTheftShow}
-          applyFilters={this.applyFilters}
+          applyTheftFilters={this.applyTheftFilters}
+          applyAccidentFilters={this.applyAccidentFilters}
+          accidentMarkers={accidentMarkers}
+          theftMarkers={theftMarkers}
         />
-        <Graphs />
+        <Graphs
+          accidentMarkers={accidentMarkers}
+          theftMarkers={theftMarkers}
+          initialAccidentCount={this.state.initialAccidentCount}
+          initialTheftCount={this.state.initialTheftCount}
+        />
       </div>
     );
   }

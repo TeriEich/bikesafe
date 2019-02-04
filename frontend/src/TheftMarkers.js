@@ -35,6 +35,7 @@ class TheftMarkers extends Component {
           <p><strong>Date: </strong>{this.props.occurrenceMonth}/{this.props.occurrenceDay}/{this.props.occurrenceYear}</p>
           <p><strong>Neighbourhood:</strong> {this.props.neighbourhood}</p>
           <p><strong>Location:</strong> ({lat}, {lng})</p>
+          <p><strong>Bike Type:</strong> {this.props.bikeType}</p>
           <p><strong>Make:</strong> {this.props.bikeMake}</p>
           <p><strong>Model:</strong> {this.props.bikeModel}</p>
           <p><strong>Source: </strong>{this.props.source}</p></div>

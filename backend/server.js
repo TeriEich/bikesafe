@@ -52,7 +52,7 @@ app.get("/api", (req, res) => {
       if (err) return res.json({ success: false, error: err });
       json.theftData = thefts;
       res.json(json);
-    })
+    }).limit(4000)
   })
 });
 

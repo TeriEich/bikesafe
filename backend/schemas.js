@@ -34,6 +34,7 @@ const TheftSchema = new Schema(
 	occurrenceMonth: Number,
 	occurrenceDay: Number,
 	occurrenceTime: String,
+	bikeType: String,
 	bikeMake: String,
 	bikeModel: String,
 	neighbourhood: String,
