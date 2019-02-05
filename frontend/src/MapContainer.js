@@ -37,9 +37,7 @@ export default class MapContainer extends Component {
     };
     this.toggleAccidentShow = this.toggleAccidentShow.bind(this)
     this.toggleTheftShow = this.toggleTheftShow.bind(this)
-
     this.toggleBikeLanesShow = this.toggleBikeLanesShow.bind(this)
-
     this.createFilteredAccidentMarkers = this.createFilteredAccidentMarkers.bind(this)
     this.createFilteredTheftMarkers = this.createFilteredTheftMarkers.bind(this)
     this.applyAccidentFilters = this.applyAccidentFilters.bind(this)
@@ -204,7 +202,6 @@ toggleBikeLanesShow() {
       <div className="map-container">
         <MainMap
           showBikeLanes={this.state.showBikeLanes}
-
           showAccidents={this.state.showAccidents}
           accidentMarkers={accidentMarkers}
           showThefts={this.state.showThefts}

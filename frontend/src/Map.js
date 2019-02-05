@@ -28,7 +28,6 @@ class MainMap extends Component {
                 />
       });
     }
-
     return markers
   }
 
@@ -53,7 +52,6 @@ class MainMap extends Component {
                 />
       });
     }
-
     return markers
   }
 
