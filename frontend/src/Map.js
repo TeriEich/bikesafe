@@ -2,9 +2,25 @@ import React, { Component } from 'react';
 import TheftMarkers from './TheftMarkers';
 import AccidentMarkers from './AccidentMarkers';
 import { withGoogleMap, GoogleMap } from 'react-google-maps';
+import Loading from './Loading'
+
 
 class MainMap extends Component {
 
+  constructor() {
+    super();
+    this.state = {
+      isLoading: true
+    }
+    this.changeState = this.changeState.bind(this)
+  }
+  
+  changeState() {
+   console.log('change state function called!')
+   this.setState({
+      isLoading: false
+    })
+  }
 
   createAccidentMarkers() {
     const showAccidents = this.props.showAccidents
@@ -28,11 +44,10 @@ class MainMap extends Component {
                 />
       });
     }
-
     return markers
   }
 
-  createTheftMarkers() {
+  createTheftMarkers(isLoading, markersDone) {
     const showThefts = this.props.showThefts
     let markers
 
@@ -51,9 +66,12 @@ class MainMap extends Component {
                   bikeModel={marker.bikeModel}
                   source={marker.source}
                 />
-      });
+      })
     }
 
+    if (isLoading) {
+      markersDone()
+    }
     return markers
   }
 
@@ -66,9 +84,8 @@ class MainMap extends Component {
         defaultZoom={14}
         defaultCenter={this.props.center}>
         {this.createAccidentMarkers()}
-        {this.createTheftMarkers()}
+        {this.createTheftMarkers(this.props.isLoading, this.props.markersDone)}
       </GoogleMap>
-
     )
   }
 }

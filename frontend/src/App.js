@@ -14,27 +14,7 @@ class App extends Component {
     this.state = {
       showMap: false,
       accidentMarkers: [],
-      theftMarkers: [],
-      oldMarkers:    [
-        {
-            "id": 1,
-            "name": "Eaton Centre",
-            "latitude": "43.6544",
-            "longitude": "-79.3807"
-        },
-        {
-            "id": 2,
-            "name": "City Hall",
-            "latitude": "43.6534",
-            "longitude": "-79.3841"
-        },
-        {
-            "id": 3,
-            "name": "Trinity Bellwoods Park",
-            "latitude": "43.6500",
-            "longitude": "-79.4169"
-        }
-      ]
+      theftMarkers: []
     }
   }
 

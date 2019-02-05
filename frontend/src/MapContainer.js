@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Filters from './Filters';
 import MainMap from './Map';
 import Graphs  from './Graphs';
+import Loading from './Loading';
 
 export default class MapContainer extends Component {
   constructor() {
@@ -32,7 +33,8 @@ export default class MapContainer extends Component {
       theftNeighbourhood: false,
       theftNeighbourhoodChoices: [],
       initialAccidentCount: 0,
-      initialTheftCount: 0
+      initialTheftCount: 0,
+      isLoading: true
     };
     this.toggleAccidentShow = this.toggleAccidentShow.bind(this)
     this.toggleTheftShow = this.toggleTheftShow.bind(this)
@@ -40,7 +42,10 @@ export default class MapContainer extends Component {
     this.createFilteredTheftMarkers = this.createFilteredTheftMarkers.bind(this)
     this.applyAccidentFilters = this.applyAccidentFilters.bind(this)
     this.applyTheftFilters = this.applyTheftFilters.bind(this)
+    this.markersDone = this.markersDone.bind(this)
   }
+
+
 
 
 applyAccidentFilters(filters, initialCount) {
@@ -185,16 +190,28 @@ toggleTheftShow() {
   })
 }
 
+markersDone() {
+  console.log('function called')
+  this.setState({
+    isLoading: false
+  })
+}
+
   render() {
     console.log('MapContainer rendered');
     const theftMarkers = this.createFilteredTheftMarkers();
     const accidentMarkers = this.createFilteredAccidentMarkers();
+    const isLoading = this.state.isLoading
 
     return (
       <div className="map-container">
+      { this.state.isLoading && <Loading /> }
+        <div>
         <MainMap
+          isLoading = {this.state.isLoading} 
           showAccidents={this.state.showAccidents}
           accidentMarkers={accidentMarkers}
+          markersDone={this.markersDone}
           showThefts={this.state.showThefts}
           theftMarkers={theftMarkers}
           center={{lat: 43.653226, lng: -79.3831843}}
@@ -218,7 +235,8 @@ toggleTheftShow() {
           initialAccidentCount={this.state.initialAccidentCount}
           initialTheftCount={this.state.initialTheftCount}
         />
-      </div>
+        </div>
+      </div> 
     );
   }
 }
