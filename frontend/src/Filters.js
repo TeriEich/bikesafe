@@ -64,9 +64,9 @@ export default class Filters extends Component {
 
       <div className="filter-bar">
         <CustomInput type="switch" id="accident-filter" label="Accident Data" onChange={this.props.toggleAccidentShow} defaultChecked={this.props.showAccidents} />
-        <Button disabled={!this.props.showAccidents} color="danger" onClick={() => this.toggleAllTheThings('accidentFilterShow')}>Set Accident Filters</Button>
+        <Button disabled={!this.props.showAccidents} id="mainNav" className="btn btn-dark" onClick={() => this.toggleAllTheThings('accidentFilterShow')}>Set Accident Filters</Button>
         <Modal isOpen={this.state.accidentFilterShow} toggle={() => this.toggleAllTheThings('accidentFilterShow')} className="filter-main-modal">
-          <ModalHeader toggle={() => this.toggleAllTheThings('accidentFilterShow')}>Accident Filters</ModalHeader>
+          <ModalHeader id="mainNav" className="btn btn-dark" toggle={() => this.toggleAllTheThings('accidentFilterShow')}>Accident Filters</ModalHeader>
           <ModalBody>
             <CustomInput type="switch" id="year-filter-accident" label="Year" onClick={() => this.toggleFilterCategory('accidentYear')} defaultChecked={this.state.accidentYear} />
             <Collapse className="year-checkboxes" isOpen={this.state.accidentYear} >
@@ -137,7 +137,7 @@ export default class Filters extends Component {
 
 
         <CustomInput type="switch" id="theft-filter" label="Theft Data" onChange={this.props.toggleTheftShow} defaultChecked={this.props.showThefts} />
-        <Button disabled={!this.props.showThefts} color="danger" onClick={() => this.toggleAllTheThings('theftFilterShow')}>Set Theft Filters</Button>
+        <Button disabled={!this.props.showThefts} id="mainNav" className="btn btn-dark" onClick={() => this.toggleAllTheThings('theftFilterShow')}>Set Theft Filters</Button>
         <Modal isOpen={this.state.theftFilterShow} toggle={() => this.toggleAllTheThings('theftFilterShow')} className="filter-main-modal">
           <ModalHeader toggle={() => this.toggleAllTheThings('theftFilterShow')}>Theft Filters</ModalHeader>
           <ModalBody>
