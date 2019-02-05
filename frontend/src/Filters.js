@@ -81,7 +81,7 @@ export default class Filters extends Component {
             <Button outline color="warning" onClick={() => this.toggleAllTheThings('theftFilterShow')}>Set Theft Filters</Button>
           </div>
           <div className="filter-bar-bikelanes">
-            <CustomInput type="switch" id="bikelane-filter" label="Toggle Bike Lanes" />
+            <CustomInput type="switch" id="bikelane-filter" label="Toggle Bike Lanes" onChange={this.props.toggleBikeLanesShow} defaultChecked={this.props.showBikeLanes} />
           </div>
         </div>
 

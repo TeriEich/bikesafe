@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TheftMarkers from './TheftMarkers';
 import AccidentMarkers from './AccidentMarkers';
-import { withGoogleMap, GoogleMap } from 'react-google-maps';
+import { withGoogleMap, GoogleMap, BicyclingLayer } from 'react-google-maps';
 
 class MainMap extends Component {
 
@@ -57,6 +57,12 @@ class MainMap extends Component {
     return markers
   }
 
+  displayBikeLanes() {
+    if (this.props.showBikeLanes === true) {
+      return <BicyclingLayer autoUpdate />
+    }
+  }
+
   render() {
 
 
@@ -67,6 +73,7 @@ class MainMap extends Component {
         defaultCenter={this.props.center}>
         {this.createAccidentMarkers()}
         {this.createTheftMarkers()}
+        {this.displayBikeLanes()}
       </GoogleMap>
 
     )

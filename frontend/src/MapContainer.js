@@ -9,6 +9,7 @@ export default class MapContainer extends Component {
     this.state = {
       showAccidents: true,
       showThefts: true,
+      showBikeLanes: true,
       accidentYear: false,
       accidentYearChoices: [],
       accidentSource: false,
@@ -36,6 +37,9 @@ export default class MapContainer extends Component {
     };
     this.toggleAccidentShow = this.toggleAccidentShow.bind(this)
     this.toggleTheftShow = this.toggleTheftShow.bind(this)
+
+    this.toggleBikeLanesShow = this.toggleBikeLanesShow.bind(this)
+
     this.createFilteredAccidentMarkers = this.createFilteredAccidentMarkers.bind(this)
     this.createFilteredTheftMarkers = this.createFilteredTheftMarkers.bind(this)
     this.applyAccidentFilters = this.applyAccidentFilters.bind(this)
@@ -185,6 +189,12 @@ toggleTheftShow() {
   })
 }
 
+toggleBikeLanesShow() {
+  this.setState({
+    showBikeLanes: !this.state.showBikeLanes
+  })
+}
+
   render() {
     console.log('MapContainer rendered');
     const theftMarkers = this.createFilteredTheftMarkers();
@@ -193,6 +203,8 @@ toggleTheftShow() {
     return (
       <div className="map-container">
         <MainMap
+          showBikeLanes={this.state.showBikeLanes}
+
           showAccidents={this.state.showAccidents}
           accidentMarkers={accidentMarkers}
           showThefts={this.state.showThefts}
@@ -203,6 +215,8 @@ toggleTheftShow() {
           mapElement={<div style={{ height: `100%`}} />}
         />
         <Filters
+          showBikeLanes={this.state.showBikeLanes}
+          toggleBikeLanesShow={this.state.toggleBikeLanesShow}
           showAccidents={this.state.showAccidents}
           toggleAccidentShow={this.toggleAccidentShow}
           showThefts={this.state.showThefts}
