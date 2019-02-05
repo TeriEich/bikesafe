@@ -6,7 +6,6 @@ import MapGraphAction from './MapGraphAction';
 import axios from 'axios'
 import { Nav, NavLink } from 'reactstrap';
 
-
 class App extends Component {
 
   constructor() {
@@ -58,6 +57,7 @@ class App extends Component {
     }
 
   render() {
+
     return (
       <div className="main-container">
         <NavBar />

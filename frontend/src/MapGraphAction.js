@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import Filters from './Filters'
-import MainMap from './Map'
-import Graphs  from './Graphs'
+import Filters from './Filters';
+import MainMap from './Map';
+import Graphs  from './Graphs';
+
 
 export default class MapGraphAction extends Component {
   constructor() {
@@ -136,6 +137,7 @@ toggleTheftShow() {
     const accidentMarkers = this.createFilteredAccidentMarkers()
     return (
       <div className="map-container">
+        {loadingIcon}
         <MainMap
           showAccidents={this.state.showAccidents}
           accidentMarkers={accidentMarkers}
