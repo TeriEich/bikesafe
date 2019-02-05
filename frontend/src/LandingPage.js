@@ -8,6 +8,7 @@ const landingVideoMp4 = require ("./media/bikesafeto.mp4");
 
 export default class LandingPage extends React.Component {
 	render() {
+
 		return (
 			<header className="masthead">
 				<div className="landing-media">

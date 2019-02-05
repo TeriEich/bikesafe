@@ -62,6 +62,7 @@ function seedThefts() {
 		occurrenceMonth: theft.Occurrence_Month,
 		occurrenceDay: theft.Occurrence_Day,
 		occurrenceTime: theft.Occurrence_Time,
+		bikeType: theft.Bike_Type,
 		bikeMake: theft.Bike_Make,
 		bikeModel: theft.Bike_Model,
 		neighbourhood: theft.Neighbourhood,
