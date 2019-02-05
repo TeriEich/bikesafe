@@ -6,7 +6,6 @@ import MapContainer from './MapContainer';
 import axios from 'axios'
 import { Nav, NavLink } from 'reactstrap';
 
-
 class App extends Component {
 
   constructor() {
@@ -64,7 +63,7 @@ class App extends Component {
         {this.state.showMap ? (
           <MapContainer accidentMarkers={this.state.accidentMarkers} theftMarkers={this.state.theftMarkers}/>
         ) : (
-          <LandingPage toggle={this.toggle} />
+          <LandingPage clickAnywhere={this.toggle} />
         )}
         <footer>
           <Nav>

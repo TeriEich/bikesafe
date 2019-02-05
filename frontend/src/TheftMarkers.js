@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Marker, InfoWindow } from 'react-google-maps';
 
-const blueDot = require ("./media/map-icon-light-blue.svg");
+const blueDot = require ("./media/blue-dot.svg");
 
 
 class TheftMarkers extends Component {
