@@ -9,7 +9,7 @@ export default class MapContainer extends Component {
     this.state = {
       showAccidents: true,
       showThefts: true,
-      showBikeLanes: true,
+      showBikeLanes: false,
       accidentYear: false,
       accidentYearChoices: [],
       accidentSource: false,
@@ -216,7 +216,7 @@ toggleBikeLanesShow() {
         />
         <Filters
           showBikeLanes={this.state.showBikeLanes}
-          toggleBikeLanesShow={this.state.toggleBikeLanesShow}
+          toggleBikeLanesShow={this.toggleBikeLanesShow}
           showAccidents={this.state.showAccidents}
           toggleAccidentShow={this.toggleAccidentShow}
           showThefts={this.state.showThefts}
