@@ -3,7 +3,7 @@ navy: #00223e;
 medium-dark blue (Prussian Blue): #0B3C5D;
 yellow (Gold Leaf): #D9B310;
 light grey: #F8F8F8;
-coral(orange): rgb(238, 67, 59); or btn-danger: #e43643;
+coral(orange): rgb(238, 67, 59)  #ee433b; or btn-danger: #e43643;
 dusky turquoise: #64aab4  rgb(100, 170, 180);
 */
 
@@ -18,17 +18,11 @@ dusky turquoise: #64aab4  rgb(100, 170, 180);
     background-color: #00223e!important;
     font-family: 'Josefin Sans', sans-serif;
     color: #D9B310;
-    /*font-weight: bold*/
 }
 
 #mainNav:hover {
   color: white;
 }
-
-/*.bg-dark {*/
-  /*background-color: #00223e!important;*/
-/*}*/
-
 
 .navbar-dark .navbar-nav .nav-link {
   color: white;
@@ -102,7 +96,6 @@ dusky turquoise: #64aab4  rgb(100, 170, 180);
   color: #D9B310;
   font-weight: bold;
   background-color: #00223e;
-  /*border-color: #0B3C5D;*/
   border: 1px solid;
   border-color: #D9B310;
   margin: 0 auto;
@@ -120,28 +113,10 @@ dusky turquoise: #64aab4  rgb(100, 170, 180);
 .video {
   width: 100%;
   background-size: cover;
-  /*margin: auto;*/
   object-fit: contain;
   position: relative;
   z-index: 0;
 }
-
-/* This class is commented out in LandingPage.js
-/*.show-map-btn {
-  height: 3em;
-  border-width: 1px;
-  border-radius: 0.5em;
-  border-color: #08253a;
-  background: #F9CF00;
-  color: #E5CC2A;
-}
-
-.show-map-btn:hover {
-  border-color: #F19F4D;
-  background: #08253a;
-  color: #E5CC2A;
-}*/
-
 
 .report-form-btn {
   float: right;
@@ -242,22 +217,37 @@ dusky turquoise: #64aab4  rgb(100, 170, 180);
 .accident-graphs {
   order: 1;
   width: 49%;
-  /*height: 99%;*/
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
+.accident-graphs > div > h3 {
+  font-size: 1.5em;
+  display: inline;
+}
+
+.accident-graphs > div > span {
+  font-size: 1.5em;
+}
+
 .theft-graphs {
   order: 2;
   width: 49%;
-  /*height: 99%;*/
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
 
+.theft-graphs > div > h3 {
+  font-size: 1.5em;
+  display: inline;
+}
+
+.theft-graphs > div > span {
+  font-size: 1.5em;
 }
 
 .graph {
@@ -265,11 +255,11 @@ dusky turquoise: #64aab4  rgb(100, 170, 180);
   width: 99%;
   height: 49%;
   object-fit: contain;
-  margin: 2em;
+  /*margin: 2em;*/
   padding: 1em;
-  border: 2px solid;
+  /*border: 2px solid;*/
   box-sizing: content-box;
-  background: white;
+  /*background: white;*/
 }
 
 #graph-1 {
