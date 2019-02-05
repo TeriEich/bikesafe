@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart, Pie, Cell, BarChart, Bar, AreaChart, Area, Label, LabelList } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart, Pie, Cell, BarChart, Bar, AreaChart, Area } from 'recharts';
 import { Button, ButtonGroup } from 'reactstrap';
 import CountUp, {startAnimation} from 'react-countup';
 import VisibilitySensor from 'react-visibility-sensor';
@@ -81,28 +81,28 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
     ];
 
     const theftBikeTypeData = [
-      { name: 'BMX', number_stolen: 0 },
-      { name: 'Electric', number_stolen: 0 },
-      { name: 'Folding', number_stolen: 0 },
-      { name: 'Mountain', number_stolen: 0 },
-      { name: 'Other/Unknown', number_stolen: 0 },
-      { name: 'Racer', number_stolen: 0 },
-      { name: 'Recumbant', number_stolen: 0 },
-      { name: 'Regular', number_stolen: 0 },
-      { name: 'Scooter', number_stolen: 0 },
-      { name: 'Tandem', number_stolen: 0 },
-      { name: 'Touring', number_stolen: 0 },
-      { name: 'Tricycle', number_stolen: 0 },
-      { name: 'Unicycle', number_stolen: 0 }
+      { name: 'BMX', value: 0 },
+      { name: 'Electric', value: 0 },
+      { name: 'Folding', value: 0 },
+      { name: 'Mountain', value: 0 },
+      { name: 'Other/Unknown', value: 0 },
+      { name: 'Racer', value: 0 },
+      { name: 'Recumbant', value: 0 },
+      { name: 'Regular', value: 0 },
+      { name: 'Scooter', value: 0 },
+      { name: 'Tandem', value: 0 },
+      { name: 'Touring', value: 0 },
+      { name: 'Tricycle', value: 0 },
+      { name: 'Unicycle', value: 0 }
     ];
 
     const theftYearsData = [
-      {name: '2014', number_of_thefts: 0},
-      {name: '2015', number_of_thefts: 0},
-      {name: '2016', number_of_thefts: 0},
-      {name: '2017', number_of_thefts: 0},
-      {name: '2018', number_of_thefts: 0},
-      {name: '2019', number_of_thefts: 0}
+      {name: '2014', number_of_accidents: 0},
+      {name: '2015', number_of_accidents: 0},
+      {name: '2016', number_of_accidents: 0},
+      {name: '2017', number_of_accidents: 0},
+      {name: '2018', number_of_accidents: 0},
+      {name: '2019', number_of_accidents: 0}
     ];
 
     const theftTimeOfDayData = [
@@ -118,67 +118,67 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
         case undefined:
           break;
         case 'BMX':
-          theftBikeTypeData[0].number_stolen = theftBikeTypeData[0].number_stolen + 1;
+          theftBikeTypeData[0].value = theftBikeTypeData[0].value + 1;
           break;
         case 'Electric':
-          theftBikeTypeData[1].number_stolen = theftBikeTypeData[1].number_stolen + 1;
+          theftBikeTypeData[1].value = theftBikeTypeData[1].value + 1;
           break;
         case 'Folding':
-          theftBikeTypeData[2].number_stolen = theftBikeTypeData[2].number_stolen + 1;
+          theftBikeTypeData[2].value = theftBikeTypeData[2].value + 1;
           break;
         case 'Mountain':
-          theftBikeTypeData[3].number_stolen = theftBikeTypeData[3].number_stolen + 1;
+          theftBikeTypeData[3].value = theftBikeTypeData[3].value + 1;
           break;
         case 'Other':
-          theftBikeTypeData[4].number_stolen = theftBikeTypeData[4].number_stolen + 1;
+          theftBikeTypeData[4].value = theftBikeTypeData[4].value + 1;
           break;
         case 'Type Unknown':
-          theftBikeTypeData[4].number_stolen = theftBikeTypeData[4].number_stolen + 1;
+          theftBikeTypeData[4].value = theftBikeTypeData[4].value + 1;
           break;
         case 'Racer':
-          theftBikeTypeData[5].number_stolen = theftBikeTypeData[5].number_stolen + 1;
+          theftBikeTypeData[5].value = theftBikeTypeData[5].value + 1;
           break;
         case 'Recumbant':
-          theftBikeTypeData[6].number_stolen = theftBikeTypeData[6].number_stolen + 1;
+          theftBikeTypeData[6].value = theftBikeTypeData[6].value + 1;
           break;
         case 'Regular':
-          theftBikeTypeData[7].number_stolen = theftBikeTypeData[7].number_stolen + 1;
+          theftBikeTypeData[7].value = theftBikeTypeData[7].value + 1;
           break;
         case 'Scooter':
-          theftBikeTypeData[8].number_stolen = theftBikeTypeData[8].number_stolen + 1;
+          theftBikeTypeData[8].value = theftBikeTypeData[8].value + 1;
           break;
         case 'Tandem':
-          theftBikeTypeData[9].number_stolen = theftBikeTypeData[9].number_stolen + 1;
+          theftBikeTypeData[9].value = theftBikeTypeData[9].value + 1;
           break;
         case 'Touring':
-          theftBikeTypeData[10].number_stolen = theftBikeTypeData[10].number_stolen + 1;
+          theftBikeTypeData[10].value = theftBikeTypeData[10].value + 1;
           break;
         case 'Tricycle':
-          theftBikeTypeData[11].number_stolen = theftBikeTypeData[11].number_stolen + 1;
+          theftBikeTypeData[11].value = theftBikeTypeData[11].value + 1;
           break;
         case 'Unicycle':
-          theftBikeTypeData[12].number_stolen = theftBikeTypeData[12].number_stolen + 1;
+          theftBikeTypeData[12].value = theftBikeTypeData[12].value + 1;
           break;
       };
 
       switch (theft.occurrenceYear) {
         case 2014:
-          theftYearsData[0].number_of_thefts = theftYearsData[0].number_of_thefts + 1;
+          theftYearsData[0].number_of_accidents = theftYearsData[0].number_of_accidents + 1;
           break;
         case 2015:
-          theftYearsData[1].number_of_thefts = theftYearsData[1].number_of_thefts + 1;
+          theftYearsData[1].number_of_accidents = theftYearsData[1].number_of_accidents + 1;
           break;
         case 2016:
-          theftYearsData[2].number_of_thefts = theftYearsData[2].number_of_thefts + 1;
+          theftYearsData[2].number_of_accidents = theftYearsData[2].number_of_accidents + 1;
           break;
         case 2017:
-          theftYearsData[3].number_of_thefts = theftYearsData[3].number_of_thefts + 1;
+          theftYearsData[3].number_of_accidents = theftYearsData[3].number_of_accidents + 1;
           break;
         case 2018:
-          theftYearsData[4].number_of_thefts = theftYearsData[4].number_of_thefts + 1;
+          theftYearsData[4].number_of_accidents = theftYearsData[4].number_of_accidents + 1;
           break;
         case 2019:
-          theftYearsData[5].number_of_thefts = theftYearsData[5].number_of_thefts + 1;
+          theftYearsData[5].number_of_accidents = theftYearsData[5].number_of_accidents + 1;
           break;
       };
 
@@ -322,8 +322,8 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
         <div className="accident-graphs">
           <h1>Accident Graphs</h1>
 
+
           <div>
-            <h3>Number of accidents: </h3>
             <VisibilitySensor onChange={this.onAccidentVisibilityChange} offset={{
               top:
                 10
@@ -338,15 +338,13 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
             className="graph" id="acc-graphs-years" alt="bar chart"
             width={800} height={600}
             data={accidentYearsData}>
-            <XAxis dataKey="name" stroke="#00223e">
-              <Label value="Accidents by Year" offset={0} position="insideBottom" />
-            </XAxis>
-            <YAxis stroke="#00223e" />
-            <Bar type="monotone" dataKey="number_of_accidents" fill="#ee433b">
-              <LabelList dataKey="number_of_accidents" position="top" />
-            </Bar>
+            <CartesianGrid strokeDasharray="3 3"/>
+            <XAxis dataKey="name"/>
+            <YAxis/>
+            <Bar dataKey="number_of_accidents" fill="#6a7172" />
             <Tooltip/>
             <Line type="monotone" dataKey="number_of_accidents" stroke="#6a7172" />
+            <Legend />
           </BarChart>
 
 
@@ -429,50 +427,54 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
 
         </div>
 
-
-
         <div className="theft-graphs">
           <h1>Theft Graphs</h1>
 
           <div>
-            <h3>Number of thefts: </h3>
-            <VisibilitySensor onChange={this.onTheftVisibilityChange} offset={{ top: 10 }} delayedCall>
-              <CountUp
-                decimals={0}
-                start={this.props.initialTheftCount}
-                end={this.state.didTheftViewCountUp ? this.props.theftMarkers.length : 0}
-                duration={5}
-              />
+            <VisibilitySensor onChange={this.onTheftVisibilityChange} offset={{
+              top:
+                10
+            }} delayedCall>
+              <CountUp decimals={0} start={this.props.initialTheftCount} end={this.state.didTheftViewCountUp ? this.props.theftMarkers.length : 0}
+                        duration={5} />
             </VisibilitySensor>
           </div>
-
           <BarChart
             className="graph" id="acc-graphs-years" alt="bar chart"
             width={800} height={600}
             data={theftYearsData}>
-            <XAxis dataKey="name" stroke="#00223e">
-              <Label value="Thefts by Year" offset={0} position="insideBottom" />
-            </XAxis>
-            <YAxis stroke="#00223e" />
-            <Bar dataKey="number_of_thefts" type="monotone" fill="#64aab4" barSize={44} />
+            <CartesianGrid strokeDasharray="3 3"/>
+            <XAxis dataKey="name"/>
+            <YAxis/>
+            <Bar dataKey="number_of_accidents" fill="#6a7172" />
             <Tooltip/>
-            <Line type="monotone" dataKey="number_of_thefts" stroke="#00223e" />
+            <Line type="monotone" dataKey="number_of_accidents" stroke="#6a7172" />
+            <Legend />
           </BarChart>
 
 
-          <LineChart
+          <AreaChart
             className="graph" id="graph-1" alt="graph"
             width={800} height={600}
             data={theftBikeTypeData}>
-            <h1>Stolen Bikes by Type</h1>
-            <XAxis dataKey="name" stroke="#00223e">
-              <Label value="Thefts by Bike Type" offset={0} position="insideBottom" />
-            </XAxis>
-            <YAxis stroke="#00223e" />
+            <defs>
+              <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8}/>
+                <stop offset="95%" stopColor="#8884d8" stopOpacity={0}/>
+              </linearGradient>
+              <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="#82ca9d" stopOpacity={0.8}/>
+                <stop offset="95%" stopColor="#82ca9d" stopOpacity={0}/>
+              </linearGradient>
+            </defs>
+            <XAxis dataKey="name"/>
+            <YAxis />
+            <CartesianGrid strokeDasharray="3 3"/>
             <Tooltip/>
-            <Line type="monotone" dataKey="number_stolen" stroke="#64aab4" activeDot={{r: 8}}/>
             <Legend />
-          </LineChart>
+            <Area type="monotone" dataKey="value" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
+            <Area type="monotone" dataKey="value" stroke="#82ca9d" fillOpacity={1} fill="url(#colorPv)" />
+          </AreaChart>
 
           <PieChart
             className="graph" id="graph-6" alt="graph"
