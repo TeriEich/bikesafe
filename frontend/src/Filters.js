@@ -61,7 +61,7 @@ export default class Filters extends Component {
     }
   }
 
-            // <h2>Map Key:</h2>
+
   render() {
 
     return (
@@ -74,11 +74,11 @@ export default class Filters extends Component {
           </div>
           <div className="filter-bar-accident">
             <CustomInput type="switch" id="accident-filter" label="Accident Data" onChange={this.props.toggleAccidentShow} defaultChecked={this.props.showAccidents} />
-            <Button color="danger" onClick={() => this.toggleAllTheThings('accidentFilterShow')}>Set Accident Filters</Button>
+            <Button outline color="warning" onClick={() => this.toggleAllTheThings('accidentFilterShow')}>Set Accident Filters</Button>
           </div>
           <div className="filter-bar-theft">
             <CustomInput type="switch" id="theft-filter" label="Theft Data" onChange={this.props.toggleTheftShow} defaultChecked={this.props.showThefts} />
-            <Button color="danger" onClick={() => this.toggleAllTheThings('theftFilterShow')}>Set Theft Filters</Button>
+            <Button outline color="warning" onClick={() => this.toggleAllTheThings('theftFilterShow')}>Set Theft Filters</Button>
           </div>
           <div className="filter-bar-bikelanes">
             <CustomInput type="switch" id="bikelane-filter" label="Toggle Bike Lanes" />

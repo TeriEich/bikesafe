@@ -189,12 +189,8 @@ dusky turquoise: #64aab4  rgb(100, 170, 180);
   border-right-color: #64aab4;
 }
 
-.filter-bar-key > h2 {
-  font-size: 1.3em;
-}
-
 .filter-bar-key > h3 {
-  font-size: 1.1em;
+  font-size: 1.2em;
 }
 
 .filter-bar-accident {
@@ -202,8 +198,7 @@ dusky turquoise: #64aab4  rgb(100, 170, 180);
 }
 
 .filter-bar-accident > .btn {
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
-  font-size: 1em;
+  font-size: 1.2em;
 }
 
 .filter-bar-theft {
@@ -211,21 +206,8 @@ dusky turquoise: #64aab4  rgb(100, 170, 180);
 }
 
 .filter-bar-theft > .btn {
-  background-color: #64aab4;
-  border-color: #64aab4;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
-  font-size: 1em;
+  font-size: 1.2em;
 }
-
-.filter-bar-theft > .btn:hover {
-  background-color: #478e99;
-  border-color: #478e99;
-}
-
- .filter-bar-theft > .btn:active {
-  background-color: #478e99!important;
-  border-color: #478e99!important;
- }
 
 .filter-bar-bikelanes {
   order: 4;
@@ -346,7 +328,6 @@ footer {
 .modal-header {
   border-bottom: 1px solid #d6d4d4;
   font-family: 'Source Sans Pro', sans-serif;
-
 }
 
 .modal-footer {
