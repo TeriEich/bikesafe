@@ -377,7 +377,7 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
           </ButtonGroup>
 
           {this.state.accidentRoadConditionsShow &&
-          <ResponsiveContainer width="100%" height={400}>         
+          <ResponsiveContainer width="100%" height={400}>
             <PieChart
               className="graph" id="graph-4" alt="graph"
               onMouseEnter={this.onPieEnter}>
@@ -458,7 +458,7 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
             </VisibilitySensor>
           </div>
 
-          
+
           <ResponsiveContainer width="100%" height={400}>
           <BarChart
             className="graph" id="acc-graphs-years" alt="bar chart"
@@ -476,18 +476,22 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
           </ResponsiveContainer>
 
           <ResponsiveContainer width="100%" height={400}>
-          <LineChart
+           <AreaChart
             className="graph" id="graph-1" alt="graph"
+            width={800} height={600}
             data={theftBikeTypeData}>
-            <h1>Stolen Bikes by Type</h1>
-            <XAxis dataKey="name" stroke="#00223e">
-              <Label value="Thefts by Bike Type" offset={0} position="insideBottom" />
-            </XAxis>
-            <YAxis stroke="#00223e" />
+            <defs>
+              <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8}/>
+                <stop offset="95%" stopColor="#8884d8" stopOpacity={0}/>
+              </linearGradient>
+            </defs>
+            <XAxis dataKey="name"/>
+            <YAxis />
             <Tooltip/>
-            <Line type="monotone" dataKey="number_stolen" stroke="#64aab4" activeDot={{r: 8}}/>
             <Legend />
-          </LineChart>
+            <Area type="monotone" dataKey="number_stolen" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
+          </AreaChart>
           </ResponsiveContainer>
 
           <ResponsiveContainer width="100%" height={400}>
