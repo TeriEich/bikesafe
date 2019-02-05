@@ -3,8 +3,8 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Collapse, CustomInp
 import AccidentNeighbourhoods from './AccidentNeighbourhoods';
 import TheftNeighbourhoods from './TheftNeighbourhoods';
 
-const coralDot = require ("./media/map-icon-coral.svg");
-const blueDot = require ("./media/map-icon-light-blue.svg");
+const coralSquare = require ("./media/coral-square.svg");
+const blueDot = require ("./media/blue-dot.svg");
 
 export default class Filters extends Component {
   constructor(props) {
@@ -69,7 +69,7 @@ export default class Filters extends Component {
       <div className="filters">
         <div className="filter-bar">
           <div className="filter-bar-key">
-            <h3><img src={coralDot} /> Accidents</h3>
+            <h3><img src={coralSquare} /> Accidents</h3>
             <h3><img src={blueDot} /> Thefts</h3>
           </div>
           <div className="filter-bar-accident">
