@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart, Pie, Cell, BarChart, Bar, AreaChart, Area, Label, LabelList } from 'recharts';
+import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart, Pie, Cell, BarChart, Bar, AreaChart, Area, Label, LabelList } from 'recharts';
 import { Button, ButtonGroup } from 'reactstrap';
 import CountUp, {startAnimation} from 'react-countup';
 import VisibilitySensor from 'react-visibility-sensor';
@@ -334,9 +334,9 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
           </div>
 
 
+          <ResponsiveContainer width="100%" height={400}>
           <BarChart
             className="graph" id="acc-graphs-years" alt="bar chart"
-            width={800} height={600}
             data={accidentYearsData}>
             <XAxis dataKey="name" stroke="#00223e">
               <Label value="Accidents by Year" offset={0} position="insideBottom" />
@@ -348,17 +348,19 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
             <Tooltip/>
             <Line type="monotone" dataKey="number_of_accidents" stroke="#6a7172" />
           </BarChart>
+          </ResponsiveContainer>
 
 
-
+          <ResponsiveContainer width="100%" height={400}>
           <PieChart
             className="graph" id="acc-graphs-injury" alt="graph"
-            width={800} height={600}
             onMouseEnter={this.onPieEnter}>
             <Pie
               data={accidentInjuryData}
-              labelLine={false}
-              label={accidentInjuryData.name}
+              dataKey="value"
+              nameKey="name"
+              labelLine={true}
+              label={true}
               fill="#8884d8"
             >
               {
@@ -366,6 +368,7 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
               }
             </Pie>
           </PieChart>
+          </ResponsiveContainer>
 
           <ButtonGroup>
             <Button onClick={(e) => this.toggleMap(e, 'accidentRoadConditionsShow', 'accidentVisibilityShow', 'accidentLightConditionsShow')}>Road Conditions</Button>
@@ -374,14 +377,16 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
           </ButtonGroup>
 
           {this.state.accidentRoadConditionsShow &&
+          <ResponsiveContainer width="100%" height={400}>         
             <PieChart
               className="graph" id="graph-4" alt="graph"
-              width={800} height={600}
               onMouseEnter={this.onPieEnter}>
               <Pie
                 data={accidentRoadConditionsData}
-                labelLine={false}
-                label={accidentRoadConditionsData.name}
+                dataKey="value"
+                nameKey="name"
+                labelLine={true}
+                label={true}
                 fill="#8884d8"
               >
                 {
@@ -389,17 +394,20 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
                 }
               </Pie>
             </PieChart>
+          </ResponsiveContainer>
           }
 
           {this.state.accidentLightConditionsShow &&
+          <ResponsiveContainer width="100%" height={400}>
             <PieChart
               className="graph" id="graph-5" alt="graph"
-              width={800} height={600}
               onMouseEnter={this.onPieEnter}>
               <Pie
                 data={accidentLightConditionsData}
-                labelLine={false}
-                label={accidentLightConditionsData.name}
+                dataKey="value"
+                nameKey="name"
+                labelLine={true}
+                label={true}
                 fill="#8884d8"
               >
                 {
@@ -407,17 +415,20 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
                 }
               </Pie>
             </PieChart>
+          </ResponsiveContainer>
           }
 
           {this.state.accidentVisibilityShow &&
+          <ResponsiveContainer width="100%" height={400}>
             <PieChart
               className="graph" id="graph-6" alt="graph"
-              width={800} height={600}
               onMouseEnter={this.onPieEnter}>
               <Pie
                 data={accidentVisibilityData}
-                labelLine={false}
-                label={accidentVisibilityData.name}
+                dataKey="value"
+                nameKey="name"
+                labelLine={true}
+                label={true}
                 fill="#8884d8"
               >
                 {
@@ -425,6 +436,7 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
                 }
               </Pie>
             </PieChart>
+          </ResponsiveContainer>
           }
 
         </div>
@@ -446,23 +458,26 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
             </VisibilitySensor>
           </div>
 
+          
+          <ResponsiveContainer width="100%" height={400}>
           <BarChart
             className="graph" id="acc-graphs-years" alt="bar chart"
-            width={800} height={600}
             data={theftYearsData}>
             <XAxis dataKey="name" stroke="#00223e">
               <Label value="Thefts by Year" offset={0} position="insideBottom" />
             </XAxis>
             <YAxis stroke="#00223e" />
-            <Bar dataKey="number_of_thefts" type="monotone" fill="#64aab4" barSize={44} />
+            <Bar type="monotone" dataKey="number_of_thefts" fill="#64aab4">
+              <LabelList dataKey="number_of_thefts" position="top" />
+            </Bar>
             <Tooltip/>
             <Line type="monotone" dataKey="number_of_thefts" stroke="#00223e" />
           </BarChart>
+          </ResponsiveContainer>
 
-
+          <ResponsiveContainer width="100%" height={400}>
           <LineChart
             className="graph" id="graph-1" alt="graph"
-            width={800} height={600}
             data={theftBikeTypeData}>
             <h1>Stolen Bikes by Type</h1>
             <XAxis dataKey="name" stroke="#00223e">
@@ -473,15 +488,19 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
             <Line type="monotone" dataKey="number_stolen" stroke="#64aab4" activeDot={{r: 8}}/>
             <Legend />
           </LineChart>
+          </ResponsiveContainer>
 
+          <ResponsiveContainer width="100%" height={400}>
           <PieChart
             className="graph" id="graph-6" alt="graph"
             width={800} height={600}
             onMouseEnter={this.onPieEnter}>
             <Pie
               data={theftTimeOfDayData}
-              labelLine={false}
-              label={theftTimeOfDayData.name}
+              dataKey="value"
+              nameKey="name"
+              labelLine={true}
+              label={true}
               fill="#8884d8"
             >
               {
@@ -489,6 +508,7 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
               }
             </Pie>
           </PieChart>
+          </ResponsiveContainer>
 
         </div>
 
