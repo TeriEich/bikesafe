@@ -137,7 +137,6 @@ toggleTheftShow() {
     const accidentMarkers = this.createFilteredAccidentMarkers()
     return (
       <div className="map-container">
-        {loadingIcon}
         <MainMap
           showAccidents={this.state.showAccidents}
           accidentMarkers={accidentMarkers}
