@@ -43,7 +43,6 @@ export default class MapContainer extends Component {
   }
 
 
-
 applyAccidentFilters(filters, initialCount) {
   console.log('apply filters function called');
   this.setState({
@@ -61,7 +60,7 @@ applyAccidentFilters(filters, initialCount) {
     lightCondition: filters.lightCondition,
     lightConditionChoices: filters.lightConditionChoices,
     injury: filters.injury,
-    injuryChoices: filters.injuryChoices,
+    injuryChoices: filters.injuryChoices
   })
 };
 

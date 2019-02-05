@@ -166,7 +166,6 @@ export default class Filters extends Component {
                 toggleFilter={this.toggleFilter}
               />
             </div>
-
           </ModalBody>
           <ModalFooter>
             <Button
@@ -178,6 +177,7 @@ export default class Filters extends Component {
             <Button color="secondary" onClick={() => this.toggleAllTheThings('accidentFilterShow')}>Cancel</Button>
           </ModalFooter>
         </Modal>
+
 
 
         <Modal isOpen={this.state.theftFilterShow} toggle={() => this.toggleAllTheThings('theftFilterShow')} className="filter-modal">
