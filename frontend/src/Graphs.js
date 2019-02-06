@@ -324,7 +324,7 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
 
     return (
       <div className="container-graphs">
-        <div className="accident-graphs">
+        <div className="accident-graphs graphs-column">
           <h1>ACCIDENTS BY THE NUMBERS</h1>
 
           <div className="counter">
@@ -372,7 +372,7 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
               fill="#8884d8"
             >
               {
-                accidentInjuryData.map((entry, index) => <Cell fill={accidentColours[index % accidentColours.length]}/> 
+                accidentInjuryData.map((entry, index) => <Cell fill={accidentColours[index % accidentColours.length]}/>
 )
               }
             </Pie>
@@ -380,6 +380,7 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
           </PieChart>
           </ResponsiveContainer>
 
+          <h2>SELECT A CONDITION:</h2>
           <ButtonGroup>
             <Button outline color="danger" onClick={(e) => this.toggleMap(e, 'accidentRoadConditionsShow', 'accidentVisibilityShow', 'accidentLightConditionsShow')}>Road Conditions</Button>
             <Button outline color="danger" onClick={(e) => this.toggleMap(e, 'accidentLightConditionsShow', 'accidentVisibilityShow', 'accidentRoadConditionsShow')}>Light Conditions</Button>
@@ -457,7 +458,7 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
 
 
 
-        <div className="theft-graphs">
+        <div className="theft-graphs graphs-column">
           <h1>THEFTS BY THE NUMBERS</h1>
 
           <div className="counter">
@@ -510,7 +511,7 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
           </AreaChart>
           </ResponsiveContainer>
 
-          <h2>THEFTS BY TIME OF DAY</h2>
+          <h2 id="time-of-day-pie-title">THEFTS BY TIME OF DAY</h2>
           <ResponsiveContainer width="85%" height={400}>
           <PieChart
             className="graph" id="graph-6" alt="graph"
