@@ -23,9 +23,11 @@ Database
 
 ### Screenshots
 
-!["Landing Page"](https://github.com/uabdul/bikesafe/blob/master/media/Screenshot%20from%202019-02-05%2019-04-57.png)
-!["Filter Selection"](https://github.com/uabdul/bikesafe/blob/master/media/Screenshot%20from%202019-02-05%2019-06-25.png)
-!["Submission Form"](https://github.com/uabdul/bikesafe/blob/master/media/Screenshot%20from%202019-02-05%2019-07-13.png)
+!["Landing Page"](https://github.com/uabdul/bikesafe/blob/master/media/Screen%20Shot%202019-02-06%20at%204.43.47%20PM.png)
+!["Filter Selection"](https://github.com/uabdul/bikesafe/blob/master/media/Screen%20Shot%202019-02-06%20at%204.44.01%20PM.png)
+!["Marker Counts"](https://github.com/uabdul/bikesafe/blob/master/media/Screen%20Shot%202019-02-06%20at%204.44.16%20PM.png)
+!["Charts"](https://github.com/uabdul/bikesafe/blob/master/media/Screen%20Shot%202019-02-06%20at%204.44.27%20PM.png)
+!["Charts"](https://github.com/uabdul/bikesafe/blob/master/media/Screen%20Shot%202019-02-06%20at%204.44.50%20PM.png)
 
 ### Usage
 
