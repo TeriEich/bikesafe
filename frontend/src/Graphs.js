@@ -349,7 +349,7 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
             data={accidentYearsData}>
             <XAxis dataKey="name" stroke="#00223e" />
             <YAxis stroke="#00223e" />
-            <Bar type="monotone" dataKey="number_of_accidents" fill="#ee433b">
+            <Bar type="monotone" dataKey="number_of_accidents" fill="#ee433b" stroke="#8e2823">
               <LabelList dataKey="number_of_accidents" position="top" />
             </Bar>
             <Tooltip/>
@@ -370,13 +370,14 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
               labelLine={true}
               label={true}
               fill="#8884d8"
+              stroke="#8e2823"
             >
               {
                 accidentInjuryData.map((entry, index) => <Cell fill={accidentColours[index % accidentColours.length]}/> 
 )
               }
             </Pie>
-            <Legend iconSize={11} iconType='square' align='center' layout='horizontal' width="80%" wrapperStyle={{ bottom: 40, left:0, right:0, backgroundColor: '#f5f5f5', border: '1px solid #d5d5d5', borderRadius: 3, lineHeight: '40px' }} />
+            <Legend iconSize={11} iconType='square' align='center' layout='horizontal' width="30%" wrapperStyle={{ bottom: 40, left:"35%", right:"35%", backgroundColor: '#f5f5f5', border: '1px solid #d5d5d5', borderRadius: 3, lineHeight: '40px' }} />
           </PieChart>
           </ResponsiveContainer>
 
@@ -399,12 +400,13 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
                 labelLine={true}
                 label={true}
                 fill="#8884d8"
+                stroke="#8e2823"
               >
                 {
                   accidentRoadConditionsData.map((entry, index) => <Cell fill={accidentColours[index % accidentColours.length]}/>)
                 }
               </Pie>
-            <Legend iconSize={11} iconType='square' align='center' layout='horizontal' width="60%" wrapperStyle={{ bottom: 50, left:0, right:0, backgroundColor: '#f5f5f5', border: '1px solid #d5d5d5', borderRadius: 3, lineHeight: '40px' }} />
+            <Legend iconSize={11} iconType='square' align='center' layout='horizontal' width="20%" wrapperStyle={{ bottom: 50, left:"40%", right:"40%", backgroundColor: '#f5f5f5', border: '1px solid #d5d5d5', borderRadius: 3, lineHeight: '40px' }} />
             </PieChart>
           </ResponsiveContainer>
           }
@@ -421,12 +423,13 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
                 labelLine={true}
                 label={true}
                 fill="#8884d8"
+                stroke="#8e2823"
               >
                 {
                   accidentLightConditionsData.map((entry, index) => <Cell fill={accidentColours[index % accidentColours.length]}/>)
                 }
               </Pie>
-            <Legend iconSize={11} iconType='square' align='center' layout='horizontal' width="60%" wrapperStyle={{ bottom: 50, left:0, right:0, backgroundColor: '#f5f5f5', border: '1px solid #d5d5d5', borderRadius: 3, lineHeight: '40px' }} />
+            <Legend iconSize={11} iconType='square' align='center' layout='horizontal' width="70%" wrapperStyle={{ bottom: 50, left:"15%", right:"15%", backgroundColor: '#f5f5f5', border: '1px solid #d5d5d5', borderRadius: 3, lineHeight: '40px' }} />
             </PieChart>
           </ResponsiveContainer>
           }
@@ -443,12 +446,13 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
                 labelLine={true}
                 label={true}
                 fill="#8884d8"
+                stroke="#8e2823"
               >
                 {
                   accidentVisibilityData.map((entry, index) => <Cell fill={accidentColours[index % accidentColours.length]}/>)
                 }
               </Pie>
-            <Legend iconSize={11} iconType='square' align='center' layout='horizontal' width="60%" wrapperStyle={{ bottom: 50, left:0, right:0, backgroundColor: '#f5f5f5', border: '1px solid #d5d5d5', borderRadius: 3, lineHeight: '40px' }} />
+            <Legend iconSize={11} iconType='square' align='center' layout='horizontal' width="30%" wrapperStyle={{ bottom: 50, left:"35%", right:"35%", backgroundColor: '#f5f5f5', border: '1px solid #d5d5d5', borderRadius: 3, lineHeight: '40px' }} />
             </PieChart>
           </ResponsiveContainer>
           }
@@ -482,7 +486,7 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
             data={theftYearsData}>
             <XAxis dataKey="name" stroke="#00223e" />
             <YAxis stroke="#00223e" />
-            <Bar type="monotone" dataKey="number_of_thefts" fill="#64aab4">
+            <Bar type="monotone" dataKey="number_of_thefts" fill="#64aab4" stroke="#284448">
               <LabelList dataKey="number_of_thefts" position="top" />
             </Bar>
             <Tooltip/>
@@ -522,12 +526,13 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
               labelLine={true}
               label={true}
               fill="#8884d8"
+              stroke="#284448"
             >
               {
                 theftTimeOfDayData.map((entry, index) => <Cell fill={theftColours[index % theftColours.length]}/>)
               }
             </Pie>
-            <Legend iconSize={11} iconType='circle' align='center' layout='horizontal' width="60%" wrapperStyle={{ bottom: 50, left:0, right:0, backgroundColor: '#f5f5f5', border: '1px solid #d5d5d5', borderRadius: 3, lineHeight: '40px' }} />
+            <Legend iconSize={11} iconType='circle' align='center' layout='horizontal' width="50%" wrapperStyle={{ bottom: 50, left:"25%", right:"25%", backgroundColor: '#f5f5f5', border: '1px solid #d5d5d5', borderRadius: 3, lineHeight: '40px' }} />
           </PieChart>
           </ResponsiveContainer>
 
