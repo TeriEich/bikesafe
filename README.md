@@ -32,10 +32,12 @@ Database
 ### Usage
 
 ```
-npm install
-npm start - Open the frontend on (http://localhost:3000) to view it in the browser
-npm start - Open the backend on (http://localhost:3001) to run server and populate data
+- Clone the project onto your local machine
+- In the command line, once you are in the project folder, run `npm install` in the frontend and the backend subfolders
+- Once all of the dependencies have been installed, run `npm start` in both of the subfolders
+- Visit http://localhost:3000 in your browser to view the application
 ```
+
 ### Development Team
 
 - Umair Abdul Qadir
