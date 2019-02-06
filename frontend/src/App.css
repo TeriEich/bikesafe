@@ -443,3 +443,19 @@ footer {
 .filter-row-2 {
   order: 2;
 }
+
+#accident-counter {
+  font-size: 6rem;
+  color: #8e2823;
+  text-align: center;
+}
+
+#theft-counter {
+  font-size: 6rem;
+  color: #3c666c;
+  text-align: center;
+}
+
+.counter {
+  text-align: center;
+}

@@ -3,6 +3,8 @@ import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tool
 import { Button, ButtonGroup } from 'reactstrap';
 import CountUp, {startAnimation} from 'react-countup';
 import VisibilitySensor from 'react-visibility-sensor';
+import './App.css';
+
 
 
 export default class Graphs extends Component {
@@ -325,8 +327,8 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
         <div className="accident-graphs">
           <h1>ACCIDENTS BY THE NUMBERS</h1>
 
-          <div>
-            <h2>
+          <div className="counter">
+            <span id="accident-counter">
             <VisibilitySensor onChange={this.onAccidentVisibilityChange} offset={{
               top:
                 10
@@ -334,9 +336,10 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
               <CountUp decimals={0} start={this.props.initialAccidentCount} end={this.state.didAccidentViewCountUp ? this.props.accidentMarkers.length : 0}
                        duration={5} />
             </VisibilitySensor>
-            </h2>
+            </span><br/>
             <h3>TOTAL ACCIDENTS</h3>
           </div>
+
 
 
           <h2>ACCIDENTS BY YEAR</h2>
@@ -344,9 +347,7 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
           <BarChart
             className="graph" id="acc-graphs-years" alt="bar chart"
             data={accidentYearsData}>
-            <XAxis dataKey="name" stroke="#00223e">
-              <Label value="Accidents by Year" offset={0} position="top" />
-            </XAxis>
+            <XAxis dataKey="name" stroke="#00223e" />
             <YAxis stroke="#00223e" />
             <Bar type="monotone" dataKey="number_of_accidents" fill="#ee433b">
               <LabelList dataKey="number_of_accidents" position="top" />
@@ -371,9 +372,11 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
               fill="#8884d8"
             >
               {
-                accidentInjuryData.map((entry, index) => <Cell fill={accidentColours[index % accidentColours.length]}/>)
+                accidentInjuryData.map((entry, index) => <Cell fill={accidentColours[index % accidentColours.length]}/> 
+)
               }
             </Pie>
+            <Legend iconSize={11} iconType='square' align='center' layout='horizontal' width="80%" wrapperStyle={{ bottom: 40, left:0, right:0, backgroundColor: '#f5f5f5', border: '1px solid #d5d5d5', borderRadius: 3, lineHeight: '40px' }} />
           </PieChart>
           </ResponsiveContainer>
 
@@ -401,6 +404,7 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
                   accidentRoadConditionsData.map((entry, index) => <Cell fill={accidentColours[index % accidentColours.length]}/>)
                 }
               </Pie>
+            <Legend iconSize={11} iconType='square' align='center' layout='horizontal' width="60%" wrapperStyle={{ bottom: 50, left:0, right:0, backgroundColor: '#f5f5f5', border: '1px solid #d5d5d5', borderRadius: 3, lineHeight: '40px' }} />
             </PieChart>
           </ResponsiveContainer>
           }
@@ -422,6 +426,7 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
                   accidentLightConditionsData.map((entry, index) => <Cell fill={accidentColours[index % accidentColours.length]}/>)
                 }
               </Pie>
+            <Legend iconSize={11} iconType='square' align='center' layout='horizontal' width="60%" wrapperStyle={{ bottom: 50, left:0, right:0, backgroundColor: '#f5f5f5', border: '1px solid #d5d5d5', borderRadius: 3, lineHeight: '40px' }} />
             </PieChart>
           </ResponsiveContainer>
           }
@@ -443,6 +448,7 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
                   accidentVisibilityData.map((entry, index) => <Cell fill={accidentColours[index % accidentColours.length]}/>)
                 }
               </Pie>
+            <Legend iconSize={11} iconType='square' align='center' layout='horizontal' width="60%" wrapperStyle={{ bottom: 50, left:0, right:0, backgroundColor: '#f5f5f5', border: '1px solid #d5d5d5', borderRadius: 3, lineHeight: '40px' }} />
             </PieChart>
           </ResponsiveContainer>
           }
@@ -454,8 +460,8 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
         <div className="theft-graphs">
           <h1>THEFTS BY THE NUMBERS</h1>
 
-          <div>
-            <h2>
+          <div className="counter">
+            <span id="theft-counter">
             <VisibilitySensor onChange={this.onTheftVisibilityChange} offset={{ top: 10 }} delayedCall>
               <CountUp
                 decimals={0}
@@ -464,7 +470,8 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
                 duration={5}
               />
             </VisibilitySensor>
-            </h2>
+            </span>
+            <br/>
             <h3>TOTAL THEFTS</h3>
           </div>
 
@@ -473,9 +480,7 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
           <BarChart
             className="graph" id="acc-graphs-years" alt="bar chart"
             data={theftYearsData}>
-            <XAxis dataKey="name" stroke="#00223e">
-              <Label value="Thefts by Year" offset={0} position="insideBottom" />
-            </XAxis>
+            <XAxis dataKey="name" stroke="#00223e" />
             <YAxis stroke="#00223e" />
             <Bar type="monotone" dataKey="number_of_thefts" fill="#64aab4">
               <LabelList dataKey="number_of_thefts" position="top" />
@@ -494,15 +499,15 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
             data={theftBikeTypeData}>
             <defs>
               <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8}/>
-                <stop offset="95%" stopColor="#8884d8" stopOpacity={0}/>
+                <stop offset="5%" stopColor="#64aab4" stopOpacity={0.8}/>
+                <stop offset="95%" stopColor="#a2ccd2" stopOpacity={0.5}/>
               </linearGradient>
             </defs>
             <XAxis dataKey="name"/>
             <YAxis />
             <Tooltip/>
             <Legend />
-            <Area type="monotone" dataKey="number_stolen" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
+            <Area type="monotone" dataKey="number_stolen" stroke="#284448" fillOpacity={1} fill="url(#colorUv)" />
           </AreaChart>
           </ResponsiveContainer>
 
@@ -524,6 +529,7 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
                 theftTimeOfDayData.map((entry, index) => <Cell fill={theftColours[index % theftColours.length]}/>)
               }
             </Pie>
+            <Legend iconSize={11} iconType='circle' align='center' layout='horizontal' width="60%" wrapperStyle={{ bottom: 50, left:0, right:0, backgroundColor: '#f5f5f5', border: '1px solid #d5d5d5', borderRadius: 3, lineHeight: '40px' }} />
           </PieChart>
           </ResponsiveContainer>
 
