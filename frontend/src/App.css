@@ -42,6 +42,10 @@ dusky turquoise: #64aab4  rgb(100, 170, 180);
   color: white;
 }
 
+.nav-item > .btn {
+  font-size: 1.2em;
+}
+
 .landing-media {
   width: 100%;
   height: 100%;
@@ -209,6 +213,10 @@ dusky turquoise: #64aab4  rgb(100, 170, 180);
 
 .accident-graphs > div > span {
   font-size: 1.5em;
+}
+
+.accident-graphs > .btn-group > .btn {
+  font-size: 1.3em;
 }
 
 .theft-graphs {
