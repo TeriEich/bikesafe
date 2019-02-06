@@ -15,9 +15,10 @@ dusky turquoise: #64aab4  rgb(100, 170, 180);
 }
 
 #mainNav {
-    background-color: #00223e!important;
-    font-family: 'Josefin Sans', sans-serif;
-    color: #D9B310;
+  background-color: #00223e!important;
+  font-family: 'Josefin Sans', sans-serif;
+  color: #D9B310;
+  border-bottom: 1px solid rgb(248, 248, 248, 0.3);
 }
 
 #mainNav:hover {
