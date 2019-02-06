@@ -385,7 +385,7 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
 
           {this.state.accidentRoadConditionsShow &&
 
-          <ResponsiveContainer width="85%" height={400}>         
+          <ResponsiveContainer width="85%" height={400}>
             <PieChart
               className="graph" id="graph-4" alt="graph"
               onMouseEnter={this.onPieEnter}>
@@ -490,7 +490,6 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
           <ResponsiveContainer width="85%" height={400}>
            <AreaChart
             className="graph" id="graph-1" alt="graph"
-            width={800} height={600}
             data={theftBikeTypeData}>
             <defs>
               <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
@@ -507,10 +506,9 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
           </ResponsiveContainer>
 
           <h2>THEFTS BY TIME OF DAY</h2>
-          <ResponsiveContainer width="100%" height={400}>
+          <ResponsiveContainer width="85%" height={400}>
           <PieChart
             className="graph" id="graph-6" alt="graph"
-            width={800} height={600}
             onMouseEnter={this.onPieEnter}>
             <Pie
               data={theftTimeOfDayData}
