@@ -191,14 +191,13 @@ dusky turquoise: #64aab4  rgb(100, 170, 180);
   padding: 0;
   width: 100%;
   height: auto;
-  justify-content: space-between;
+  justify-content: center;
   background-color: #F8F8F8;
-
 }
 
 .accident-graphs {
   order: 1;
-  width: 49%;
+  width: 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -221,7 +220,7 @@ dusky turquoise: #64aab4  rgb(100, 170, 180);
 
 .theft-graphs {
   order: 2;
-  width: 49%;
+  width: 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -240,35 +239,9 @@ dusky turquoise: #64aab4  rgb(100, 170, 180);
 
 .graph {
   flex-grow: 1;
-  width: 99%;
-  height: 49%;
   object-fit: contain;
-  /*margin: 2em;*/
   padding: 1em;
-  /*border: 2px solid;*/
   box-sizing: content-box;
-  /*background: white;*/
-}
-
-#graph-1 {
-  order: 1;
-  border-color: #00223e;
-}
-
-#graph-2 {
-  order: 2;
-  border-color: #D9B310;
-}
-
-#graph-3 {
-  order: 1;
-  border-color: #D9B310;
-
-}
-
-#graph-4 {
-  order: 2;
-  border-color: #00223e;
 }
 
 footer {
