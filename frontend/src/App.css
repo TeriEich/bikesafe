@@ -42,6 +42,10 @@ dusky turquoise: #64aab4  rgb(100, 170, 180);
   color: white;
 }
 
+.nav-item > .btn {
+  font-size: 1.2em;
+}
+
 .landing-media {
   width: 100%;
   height: 100%;
@@ -85,29 +89,6 @@ dusky turquoise: #64aab4  rgb(100, 170, 180);
   margin-right: 4em;
   font-size: 1.4em;
   font-style: italic;
-}
-
-.landing-button {
-  position: fixed;
-  left: 45%;
-  right: 45%;
-  top: 47%;
-  bottom: 47%;
-  color: #D9B310;
-  font-weight: bold;
-  background-color: #00223e;
-  border: 1px solid;
-  border-color: #D9B310;
-  margin: 0 auto;
-  z-index: 100;
-  overflow: hidden;
-  padding: 0.5em;
-}
-
-.landing-button:hover {
-  background-color: white;
-  color: rgb(0, 34, 62);
-  border-color: rgb(0, 34, 62);
 }
 
 .video {
@@ -232,6 +213,10 @@ dusky turquoise: #64aab4  rgb(100, 170, 180);
 
 .accident-graphs > div > span {
   font-size: 1.5em;
+}
+
+.accident-graphs > .btn-group > .btn {
+  font-size: 1.3em;
 }
 
 .theft-graphs {

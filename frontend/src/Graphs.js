@@ -381,14 +381,14 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
           </ResponsiveContainer>
 
           <ButtonGroup>
-            <Button onClick={(e) => this.toggleMap(e, 'accidentRoadConditionsShow', 'accidentVisibilityShow', 'accidentLightConditionsShow')}>Road Conditions</Button>
-            <Button onClick={(e) => this.toggleMap(e, 'accidentLightConditionsShow', 'accidentVisibilityShow', 'accidentRoadConditionsShow')}>Light Conditions</Button>
-            <Button onClick={(e) => this.toggleMap(e, 'accidentVisibilityShow', 'accidentLightConditionsShow', 'accidentRoadConditionsShow')}>Visibility</Button>
+            <Button outline color="danger" onClick={(e) => this.toggleMap(e, 'accidentRoadConditionsShow', 'accidentVisibilityShow', 'accidentLightConditionsShow')}>Road Conditions</Button>
+            <Button outline color="danger" onClick={(e) => this.toggleMap(e, 'accidentLightConditionsShow', 'accidentVisibilityShow', 'accidentRoadConditionsShow')}>Light Conditions</Button>
+            <Button outline color="danger" onClick={(e) => this.toggleMap(e, 'accidentVisibilityShow', 'accidentLightConditionsShow', 'accidentRoadConditionsShow')}>Visibility</Button>
           </ButtonGroup>
 
           {this.state.accidentRoadConditionsShow &&
 
-          <ResponsiveContainer width="85%" height={400}>         
+          <ResponsiveContainer width="85%" height={400}>
             <PieChart
               className="graph" id="graph-4" alt="graph"
               onMouseEnter={this.onPieEnter}>
