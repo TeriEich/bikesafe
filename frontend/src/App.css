@@ -87,29 +87,6 @@ dusky turquoise: #64aab4  rgb(100, 170, 180);
   font-style: italic;
 }
 
-.landing-button {
-  position: fixed;
-  left: 45%;
-  right: 45%;
-  top: 47%;
-  bottom: 47%;
-  color: #D9B310;
-  font-weight: bold;
-  background-color: #00223e;
-  border: 1px solid;
-  border-color: #D9B310;
-  margin: 0 auto;
-  z-index: 100;
-  overflow: hidden;
-  padding: 0.5em;
-}
-
-.landing-button:hover {
-  background-color: white;
-  color: rgb(0, 34, 62);
-  border-color: rgb(0, 34, 62);
-}
-
 .video {
   width: 100%;
   background-size: cover;
