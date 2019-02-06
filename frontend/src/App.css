@@ -205,8 +205,8 @@ dusky turquoise: #64aab4  rgb(100, 170, 180);
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin: auto;
-  padding: 2em 2em 6em 2em;
+  margin: 0;
+  padding: 0;
   width: 100%;
   height: auto;
   justify-content: space-between;
@@ -221,6 +221,7 @@ dusky turquoise: #64aab4  rgb(100, 170, 180);
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: #FDECEB;
 }
 
 .accident-graphs > div > h3 {
@@ -239,6 +240,7 @@ dusky turquoise: #64aab4  rgb(100, 170, 180);
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: #E0EEF0;
 }
 
 .theft-graphs > div > h3 {

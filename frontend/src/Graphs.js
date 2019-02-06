@@ -302,7 +302,10 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
       };
     });
 
-    const colours = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+    const accidentColours = ['#f48e89', '#f16862', '#ee433b', '#be352f', '#8e2823', '#5f1a17', '#2f0d0b'];
+
+    const theftColours = ['#a2ccd2', '#83bbc3', '#64aab4', '#508890', '#3c666c', '#284448', '#142224'];
+
     const RADIAN = Math.PI / 180;
 
     const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
@@ -320,10 +323,10 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
     return (
       <div className="container-graphs">
         <div className="accident-graphs">
-          <h1>Accident Graphs</h1>
+          <h1>ACCIDENTS BY THE NUMBERS</h1>
 
           <div>
-            <h3>Number of accidents: </h3>
+            <h2>
             <VisibilitySensor onChange={this.onAccidentVisibilityChange} offset={{
               top:
                 10
@@ -331,15 +334,18 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
               <CountUp decimals={0} start={this.props.initialAccidentCount} end={this.state.didAccidentViewCountUp ? this.props.accidentMarkers.length : 0}
                        duration={5} />
             </VisibilitySensor>
+            </h2>
+            <h3>TOTAL ACCIDENTS</h3>
           </div>
 
 
-          <ResponsiveContainer width="100%" height={400}>
+          <h2>ACCIDENTS BY YEAR</h2>
+          <ResponsiveContainer width="85%" height={400}>
           <BarChart
             className="graph" id="acc-graphs-years" alt="bar chart"
             data={accidentYearsData}>
             <XAxis dataKey="name" stroke="#00223e">
-              <Label value="Accidents by Year" offset={0} position="insideBottom" />
+              <Label value="Accidents by Year" offset={0} position="top" />
             </XAxis>
             <YAxis stroke="#00223e" />
             <Bar type="monotone" dataKey="number_of_accidents" fill="#ee433b">
@@ -351,7 +357,8 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
           </ResponsiveContainer>
 
 
-          <ResponsiveContainer width="100%" height={400}>
+          <h2>ACCIDENTS BY TYPE OF INJURY</h2>
+          <ResponsiveContainer width="85%" height={400}>
           <PieChart
             className="graph" id="acc-graphs-injury" alt="graph"
             onMouseEnter={this.onPieEnter}>
@@ -364,7 +371,7 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
               fill="#8884d8"
             >
               {
-                accidentInjuryData.map((entry, index) => <Cell fill={colours[index % colours.length]}/>)
+                accidentInjuryData.map((entry, index) => <Cell fill={accidentColours[index % accidentColours.length]}/>)
               }
             </Pie>
           </PieChart>
@@ -377,7 +384,7 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
           </ButtonGroup>
 
           {this.state.accidentRoadConditionsShow &&
-          <ResponsiveContainer width="100%" height={400}>         
+          <ResponsiveContainer width="85%" height={400}>         
             <PieChart
               className="graph" id="graph-4" alt="graph"
               onMouseEnter={this.onPieEnter}>
@@ -390,7 +397,7 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
                 fill="#8884d8"
               >
                 {
-                  accidentRoadConditionsData.map((entry, index) => <Cell fill={colours[index % colours.length]}/>)
+                  accidentRoadConditionsData.map((entry, index) => <Cell fill={accidentColours[index % accidentColours.length]}/>)
                 }
               </Pie>
             </PieChart>
@@ -398,7 +405,7 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
           }
 
           {this.state.accidentLightConditionsShow &&
-          <ResponsiveContainer width="100%" height={400}>
+          <ResponsiveContainer width="85%" height={400}>
             <PieChart
               className="graph" id="graph-5" alt="graph"
               onMouseEnter={this.onPieEnter}>
@@ -411,7 +418,7 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
                 fill="#8884d8"
               >
                 {
-                  accidentLightConditionsData.map((entry, index) => <Cell fill={colours[index % colours.length]}/>)
+                  accidentLightConditionsData.map((entry, index) => <Cell fill={accidentColours[index % accidentColours.length]}/>)
                 }
               </Pie>
             </PieChart>
@@ -419,7 +426,7 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
           }
 
           {this.state.accidentVisibilityShow &&
-          <ResponsiveContainer width="100%" height={400}>
+          <ResponsiveContainer width="85%" height={400}>
             <PieChart
               className="graph" id="graph-6" alt="graph"
               onMouseEnter={this.onPieEnter}>
@@ -432,7 +439,7 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
                 fill="#8884d8"
               >
                 {
-                  accidentVisibilityData.map((entry, index) => <Cell fill={colours[index % colours.length]}/>)
+                  accidentVisibilityData.map((entry, index) => <Cell fill={accidentColours[index % accidentColours.length]}/>)
                 }
               </Pie>
             </PieChart>
@@ -444,10 +451,10 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
 
 
         <div className="theft-graphs">
-          <h1>Theft Graphs</h1>
+          <h1>THEFTS BY THE NUMBERS</h1>
 
           <div>
-            <h3>Number of thefts: </h3>
+            <h2>
             <VisibilitySensor onChange={this.onTheftVisibilityChange} offset={{ top: 10 }} delayedCall>
               <CountUp
                 decimals={0}
@@ -456,10 +463,12 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
                 duration={5}
               />
             </VisibilitySensor>
+            </h2>
+            <h3>TOTAL THEFTS</h3>
           </div>
 
-          
-          <ResponsiveContainer width="100%" height={400}>
+          <h2>THEFTS BY YEAR</h2>
+          <ResponsiveContainer width="85%" height={400}>
           <BarChart
             className="graph" id="acc-graphs-years" alt="bar chart"
             data={theftYearsData}>
@@ -475,7 +484,8 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
           </BarChart>
           </ResponsiveContainer>
 
-          <ResponsiveContainer width="100%" height={400}>
+          <h2>THEFTS BY BIKE TYPE</h2>
+          <ResponsiveContainer width="85%" height={400}>
           <LineChart
             className="graph" id="graph-1" alt="graph"
             data={theftBikeTypeData}>
@@ -490,6 +500,7 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
           </LineChart>
           </ResponsiveContainer>
 
+          <h2>THEFTS BY TIME OF DAY</h2>
           <ResponsiveContainer width="100%" height={400}>
           <PieChart
             className="graph" id="graph-6" alt="graph"
@@ -504,7 +515,7 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
               fill="#8884d8"
             >
               {
-                theftTimeOfDayData.map((entry, index) => <Cell fill={colours[index % colours.length]}/>)
+                theftTimeOfDayData.map((entry, index) => <Cell fill={theftColours[index % theftColours.length]}/>)
               }
             </Pie>
           </PieChart>
