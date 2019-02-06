@@ -334,12 +334,12 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
           </div>
 
 
-          <ResponsiveContainer width="100%" height={400}>
+          <ResponsiveContainer width="90%" height={600}>
           <BarChart
             className="graph" id="acc-graphs-years" alt="bar chart"
             data={accidentYearsData}>
             <XAxis dataKey="name" stroke="#00223e">
-              <Label value="Accidents by Year" offset={0} position="insideBottom" />
+              <Label value="Accidents by Year" offset={0} position="bottom" />
             </XAxis>
             <YAxis stroke="#00223e" />
             <Bar type="monotone" dataKey="number_of_accidents" fill="#ee433b">
@@ -351,9 +351,9 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
           </ResponsiveContainer>
 
 
-          <ResponsiveContainer width="100%" height={400}>
+          <ResponsiveContainer width="90%" height={600}>
           <PieChart
-            className="graph" id="acc-graphs-injury" alt="graph"
+            className="graph" id="acc-graphs-injury" alt="pie chart"
             onMouseEnter={this.onPieEnter}>
             <Pie
               data={accidentInjuryData}
@@ -377,7 +377,7 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
           </ButtonGroup>
 
           {this.state.accidentRoadConditionsShow &&
-          <ResponsiveContainer width="100%" height={400}>         
+          <ResponsiveContainer width="90%" height={600}>
             <PieChart
               className="graph" id="graph-4" alt="graph"
               onMouseEnter={this.onPieEnter}>
@@ -398,7 +398,7 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
           }
 
           {this.state.accidentLightConditionsShow &&
-          <ResponsiveContainer width="100%" height={400}>
+          <ResponsiveContainer width="90%" height={600}>
             <PieChart
               className="graph" id="graph-5" alt="graph"
               onMouseEnter={this.onPieEnter}>
@@ -419,7 +419,7 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
           }
 
           {this.state.accidentVisibilityShow &&
-          <ResponsiveContainer width="100%" height={400}>
+          <ResponsiveContainer width="90%" height={600}>
             <PieChart
               className="graph" id="graph-6" alt="graph"
               onMouseEnter={this.onPieEnter}>
@@ -458,13 +458,13 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
             </VisibilitySensor>
           </div>
 
-          
-          <ResponsiveContainer width="100%" height={400}>
+
+          <ResponsiveContainer width="90%" height={600}>
           <BarChart
             className="graph" id="acc-graphs-years" alt="bar chart"
             data={theftYearsData}>
             <XAxis dataKey="name" stroke="#00223e">
-              <Label value="Thefts by Year" offset={0} position="insideBottom" />
+              <Label value="Thefts by Year" offset={0} position="bottom" />
             </XAxis>
             <YAxis stroke="#00223e" />
             <Bar type="monotone" dataKey="number_of_thefts" fill="#64aab4">
@@ -475,13 +475,13 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
           </BarChart>
           </ResponsiveContainer>
 
-          <ResponsiveContainer width="100%" height={400}>
+          <ResponsiveContainer width="90%" height={600}>
           <LineChart
             className="graph" id="graph-1" alt="graph"
             data={theftBikeTypeData}>
             <h1>Stolen Bikes by Type</h1>
             <XAxis dataKey="name" stroke="#00223e">
-              <Label value="Thefts by Bike Type" offset={0} position="insideBottom" />
+              <Label value="Thefts by Bike Type" offset={0} position="bottom" />
             </XAxis>
             <YAxis stroke="#00223e" />
             <Tooltip/>
@@ -490,7 +490,7 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
           </LineChart>
           </ResponsiveContainer>
 
-          <ResponsiveContainer width="100%" height={400}>
+          <ResponsiveContainer width="90%" height={600}>
           <PieChart
             className="graph" id="graph-6" alt="graph"
             width={800} height={600}

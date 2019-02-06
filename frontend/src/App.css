@@ -206,7 +206,6 @@ dusky turquoise: #64aab4  rgb(100, 170, 180);
   flex-direction: row;
   flex-wrap: wrap;
   margin: auto;
-  padding: 2em 2em 6em 2em;
   width: 100%;
   height: auto;
   justify-content: space-between;
@@ -219,7 +218,7 @@ dusky turquoise: #64aab4  rgb(100, 170, 180);
   width: 49%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
 }
 
@@ -237,7 +236,7 @@ dusky turquoise: #64aab4  rgb(100, 170, 180);
   width: 49%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
 }
 
@@ -251,36 +250,23 @@ dusky turquoise: #64aab4  rgb(100, 170, 180);
 }
 
 .graph {
-  flex-grow: 1;
-  width: 99%;
-  height: 49%;
-  object-fit: contain;
+  /*width: 99%;*/
+  /*height: 49%;*/
+  /*object-fit: contain;*/
   /*margin: 2em;*/
-  padding: 1em;
+  /*padding: 1em;*/
+  /*margin-top: 3em!important;*/
   /*border: 2px solid;*/
-  box-sizing: content-box;
+  /*box-sizing: content-box;*/
   /*background: white;*/
 }
 
-#graph-1 {
-  order: 1;
-  border-color: #00223e;
+.recharts-responsive-container {
 }
 
-#graph-2 {
-  order: 2;
-  border-color: #D9B310;
-}
-
-#graph-3 {
-  order: 1;
-  border-color: #D9B310;
-
-}
-
-#graph-4 {
-  order: 2;
-  border-color: #00223e;
+.recharts-text {
+  font-size: 1.5em!important;
+  color: #00223e;
 }
 
 footer {
