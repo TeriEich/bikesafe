@@ -455,7 +455,7 @@ export default class NavBar extends React.Component {
 							          	<Label for="accident-coordinates">Location of Accident</Label><span style={{ color: 'red', fontSize: '11px', fontStyle: 'italic'}}> *field required</span>
 							          	<div style={{ height: '100%' }}>
 						                <Map
-						                	googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9OTpk-gYg9nuQ7R5vsWPpmr7U7pQq6Ow"
+						                	googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJOfXbTHxSPOxeOJgA0c2MFKJ6aMNy5eI"
 					                    loadingElement={<div style={{ height: `100%` }} />}
 					                    containerElement={<div style={{ height: `400px`, width: `475px` }} />}
 					                    mapElement={<div style={{ height: `100%` }} />}
@@ -509,7 +509,7 @@ export default class NavBar extends React.Component {
 								        	<Label for="theft-coordinates" name="coordinates">Location of Theft</Label><span style={{ color: 'red', fontSize: '11px', fontStyle: 'italic'}}> *field required</span>
 								          	<div style={{ height: '100%' }}>
 							                <Map
-							                	googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9OTpk-gYg9nuQ7R5vsWPpmr7U7pQq6Ow"
+							                	googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJOfXbTHxSPOxeOJgA0c2MFKJ6aMNy5eI"
 						                    loadingElement={<div style={{ height: `100%` }} />}
 						                    containerElement={<div style={{ height: `400px`, width: `475px` }} />}
 						                    mapElement={<div style={{ height: `100%` }} />}

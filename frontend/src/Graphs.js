@@ -164,6 +164,8 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
       };
 
       switch (theft.occurrenceYear) {
+        case undefined:
+          break;
         case 2014:
           theftYearsData[0].number_of_thefts = theftYearsData[0].number_of_thefts + 1;
           break;
@@ -206,6 +208,8 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
 
     this.props.accidentMarkers.forEach(accident => {
       switch (accident.year) {
+        case undefined:
+          break;
         case 2007:
           accidentYearsData[0].number_of_accidents = accidentYearsData[0].number_of_accidents + 1;
           break;
@@ -247,6 +251,8 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
           break;
       };
       switch (accident.injuryType) {
+        case undefined:
+          break;
         case 'Minor':
           accidentInjuryData[0].value = accidentInjuryData[0].value + 1;
         break;
@@ -260,6 +266,8 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
 
       if (this.state.accidentRoadConditionsShow) {
         switch (accident.roadConditions) {
+          case undefined:
+            break;
           case 'Dry':
             accidentRoadConditionsData[0].value = accidentRoadConditionsData[0].value + 1;
           break;
@@ -271,6 +279,8 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
 
       if (this.state.accidentVisibilityShow) {
         switch (accident.visibility) {
+          case undefined:
+            break;
           case 'Clear':
             accidentVisibilityData[0].value = accidentVisibilityData[0].value + 1;
           break;
@@ -285,6 +295,8 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
 
       if (this.state.accidentLightConditionsShow) {
         switch (accident.light) {
+          case undefined:
+            break;
           case 'Dark':
             accidentLightConditionsData[0].value = accidentLightConditionsData[0].value + 1;
           break;
@@ -304,9 +316,9 @@ toggleMap = (event, firstMap, secondMap, thirdMap) => {
       };
     });
 
-    const accidentColours = ['#f48e89', '#f16862', '#ee433b', '#be352f', '#8e2823', '#5f1a17', '#2f0d0b'];
+    const accidentColours = ['#f16862', '#ee433b', '#be352f', '#8e2823', '#5f1a17', '#2f0d0b'];
 
-    const theftColours = ['#a2ccd2', '#83bbc3', '#64aab4', '#508890', '#3c666c', '#284448', '#142224'];
+    const theftColours = ['#83bbc3', '#64aab4', '#508890', '#3c666c', '#284448', '#142224'];
 
     const RADIAN = Math.PI / 180;
 
