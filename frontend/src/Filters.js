@@ -85,7 +85,7 @@ export default class Filters extends Component {
           </div>
         </div>
 
-        <Modal isOpen={this.state.accidentFilterShow} toggle={() => this.toggleAllTheThings('accidentFilterShow')} className="filter-modal">
+        <Modal isOpen={this.state.accidentFilterShow} toggle={() => this.toggleAllTheThings('accidentFilterShow')} className="filter-modal accident-modal">
           <ModalHeader toggle={() => this.toggleAllTheThings('accidentFilterShow')}>Accident Filters</ModalHeader>
           <ModalBody className="modal-flex">
             <div className="accident-filter-selections modal-row-1">
@@ -180,7 +180,7 @@ export default class Filters extends Component {
 
 
 
-        <Modal isOpen={this.state.theftFilterShow} toggle={() => this.toggleAllTheThings('theftFilterShow')} className="filter-modal">
+        <Modal isOpen={this.state.theftFilterShow} toggle={() => this.toggleAllTheThings('theftFilterShow')} className="filter-modal theft-modal">
           <ModalHeader toggle={() => this.toggleAllTheThings('theftFilterShow')}>Theft Filters</ModalHeader>
           <ModalBody className="modal-flex">
             <div className="theft-filter-selections modal-row-1">
